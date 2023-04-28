@@ -9,6 +9,7 @@ def crop_and_save_image(image_path, output_path, xmin, xmax, ymin, ymax):
         return
 
     # Wytnij ROI z obrazka
+    #roi = image[ymin:ymax, xmin:xmax]
     roi = image[ymin:ymax, xmin:xmax]
 
     # Zapisz nowy obrazek
