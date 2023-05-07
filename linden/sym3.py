@@ -25,7 +25,7 @@ def load_images_and_labels(class_dirs, img_size=224):
 gpus = tf.config.list_physical_devices('GPU')
 if gpus:
     try:
-        # Wybierz pierwsze dostępne GPU
+        # Wybierz pierwsze dostepne GPU
         tf.config.experimental.set_visible_devices(gpus[0], 'GPU')
         print(f"Uczenie na GPU: {gpus[0]}")
     except RuntimeError as e:
