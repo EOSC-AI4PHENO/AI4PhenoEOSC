@@ -35,7 +35,7 @@ else:
 
 start = time.process_time()
 
-class_dirs = ['Linden_Photos_ROI_20.00_and_06.00/0', 'Linden_Photos_ROI_20.00_and_06.00/1']
+class_dirs = ['Linden_Photos_ROI/0', 'Linden_Photos_ROI/1']
 images, labels = load_images_and_labels(class_dirs)
 
 print('After loaded images')
