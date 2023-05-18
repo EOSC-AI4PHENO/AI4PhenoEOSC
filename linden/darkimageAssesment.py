@@ -4,6 +4,34 @@ import pandas as pd
 from datetime import time
 import numpy as np
 from tqdm import tqdm
+from astral.sun import sun
+from astral import Observer
+from datetime import datetime
+import pytz
+from tzwhere.tzwhere import tzwhere
+from geopy.geocoders import Nominatim
+from geopy.exc import GeocoderTimedOut
+from timezonefinder import TimezoneFinder
+
+
+def get_timezone(lat, lon):
+    tf = TimezoneFinder()
+
+    timezone_str = tf.timezone_at(lng=lon, lat=lat)
+
+    return timezone_str
+
+def get_sunrise_sunset(lat, lon, date):
+    observer = Observer(latitude=lat, longitude=lon)
+    s = sun(observer, date=date)
+
+    #tz_str = tzwhere().tzNameAt(lat, lon)
+    tz_str=get_timezone(lat, lon)
+    local_tz = pytz.timezone(tz_str)
+    sunrise_local = s['sunrise'].astimezone(local_tz).time()
+    sunset_local = s['sunset'].astimezone(local_tz).time()
+
+    return sunrise_local, sunset_local
 
 def extract_time_from_filename(filename):
     time_str = filename.split("_")[1]
@@ -53,6 +81,14 @@ def process_images_in_folder(folder_path, brightness_values):
 def save_to_excel(data, output_file):
     df = pd.DataFrame(data, columns=['fullname', 'directory', 'filename', 'time', 'brightness', 'is_daytime'])
     df.to_excel(output_file, index=False)
+
+# przykładowe współrzędne i data
+lat, lon = 52.2297, 21.0122 # współrzędne dla Warszawy
+
+date = datetime.now().date()
+sunrise, sunset = get_sunrise_sunset(lat, lon, date)
+
+print(f"Sunrise: {sunrise}, Sunset: {sunset}")
 
 
 images_folder_path1 = "E:/!DeepTechnology/!Customers/!2023/Seth Software EOSC-AI4Pheno/AI4PhenoEOSC/linden/Linden_Photos_ROI/0"

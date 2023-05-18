@@ -4,6 +4,8 @@ import pandas as pd
 from datetime import time
 import numpy as np
 from tqdm import tqdm
+from astral.sun import sun
+from astral import Observer
 #from concurrent.futures import ProcessPoolExecutor
 
 def extract_time_from_filename(filename):
