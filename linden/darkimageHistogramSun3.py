@@ -139,7 +139,7 @@ def save_to_excel(data, output_file):
     df = pd.DataFrame(data,
                       columns=['fullname', 'filename', 'directory', 'date', 'time', 'utc_date', 'utc_time',
                                'UTCsunrise', 'UTCsunset',
-                               'low_threshold', 'high_threshold', 'lat', 'lon', 'is_image_dark_bright', 'message',
+                               'low_threshold', 'high_threshold', 'lat', 'lon', 'is_well_exposed', 'message',
                                'cumulative_hist_0',
                                'cumulative_hist_10',
                                'cumulative_hist_20',

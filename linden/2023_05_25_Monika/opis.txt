@@ -1,0 +1,13 @@
+Hej, 
+Wysyłam tabelę z paroma dniami z nowymi kategoriami dla światła na zdjęciach. Podział jest taki:
+too dark - wiadomo
+morning light i sunset light - raczej nie są odpowiednie
+east light, west light i midday light - te kategorie światła wszystkie są ok
+jest jeszcze diffused light - też dobre światło, bywa że najlepsze, bywa że trochę za ciemne
+
+Taki podział chyba wydaje się najsensowniejszy i najbezpieczniej byłoby usuwać morning i sunset light, więc pytanie czy nie prościej jest ustawić jakiś ruchomy próg usuwający zdjęcie do np. godziny po wschodzie i godziny przez zachodem, tak jak wspominałam... do przedyskutowania :)
+
+w każdym razie wybrałam tylko kilka dni: 1.05,15.05, 1.06, 9.06, 26.06, 2.07, 4.07, 3.08, 28.08
+
+pozdrawiam,
+Monika
