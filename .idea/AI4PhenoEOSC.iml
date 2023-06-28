@@ -4,7 +4,7 @@
     <content url="file://$MODULE_DIR$">
       <excludeFolder url="file://$MODULE_DIR$/venv" />
     </content>
-    <orderEntry type="jdk" jdkName="Python3.10NEW1" jdkType="Python SDK" />
+    <orderEntry type="jdk" jdkName="Remote Python 3.10.11 (sftp://kurekj@10.0.20.50:22/home/kurekj/anaconda3/envs/Python3.10_Tensor2.12/bin/python3)" jdkType="Python SDK" />
     <orderEntry type="sourceFolder" forTests="false" />
   </component>
 </module>
