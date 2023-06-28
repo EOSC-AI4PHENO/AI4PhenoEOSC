@@ -22,6 +22,7 @@ def load_images_and_labels(class_dirs, img_size=224):
 
     return np.array(images), np.array(labels)
 
+
 gpus = tf.config.list_physical_devices('GPU')
 if gpus:
     try:
