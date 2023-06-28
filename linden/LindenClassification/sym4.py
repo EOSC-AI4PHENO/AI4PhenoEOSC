@@ -32,7 +32,7 @@ def load_images_and_labels(class_dirs, img_size=224):
 print(platform.python_version())
 print(tf.version.VERSION)
 
-print("Num of GPUs available: ", tf.test.gpu_device_name())
+print("Num of GPUs available: ", len(tf.test.gpu_device_name()))
 
 start = time.process_time()
 
