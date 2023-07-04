@@ -1,0 +1,15 @@
+Hej,
+
+Wszystkie ustalone jabłka obramowane, 70 zdjęć gala, 30 goldenów.
+
+Tu dostępne:  link
+
+Jeśli mam to zbić w jeden folder samych jsonów albo jakoś inaczej to dajcie znać, gdyby coś jeszcze potrzeba, albo poprawić to także (najlepiej mailowo bo nie bardzo będę obecna w tym tygodniu na porannych spotkaniach, ale nie wyjeżdżam nigdzie, po prostu zajęcia mam, możemy się zdzwonić na teams w innych godzinach)
+
+Na zdjęciach oprócz jabłek są czasem zaznaczone miejsca gdzie w sumie nie wiem czy są jabłka (unknown), ale też na zdjęciach jabłek odmiany golden widać galę (klasa gala) lub pojawiają się liście które udało mi się stwierdzić że są liśćmi, ale były tak podobne do jabłek że też je oznaczyłam (klasa leaf), jak jest pusto to po prostu jest to jabłko :)
+
+Pozdrawiam
+
+Monika Różańska
+
+
