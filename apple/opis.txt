@@ -1,0 +1,1 @@
+Pisze w pythonie. Mam folder "oznaczone_jablka" w którym są dwa foldery: "0700F133_Golden3" i "0700F136_Gala3". W każdym z dwóch folderów są podfoldery w formacie daty np. "2022-06-26".
