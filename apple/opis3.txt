@@ -1,0 +1,575 @@
+Pisze w Pythonie. Mam plik w formacie json w ktorym punkty ROI są zdefiniowane przez elipse. Dokonaj konwersji punktów elipsy na polygon zgodnie z przykładowym formatem wejściowym i wyjściowym:
+
+Format wejściowy pliku json:
+{
+	"20220620_0907_0700F136_PIC_60_CAM_2.xml.pi.jpg1361903": {
+		"filename": "20220620_0907_0700F136_PIC_60_CAM_2.xml.pi.jpg",
+		"size": 1361903,
+		"regions": [
+			{
+				"shape_attributes": {
+					"name": "circle",
+					"cx": 937,
+					"cy": 31,
+					"r": 42
+				},
+				"region_attributes": {
+				}
+			},
+			{
+				"shape_attributes": {
+					"name": "circle",
+					"cx": 989,
+					"cy": 42,
+					"r": 26
+				},
+				"region_attributes": {
+				}
+			},
+			{
+				"shape_attributes": {
+					"name": "circle",
+					"cx": 2943,
+					"cy": 874,
+					"r": 25
+				},
+				"region_attributes": {
+					"unknown": ""
+				}
+			}
+		],
+		"file_attributes": {
+		}
+	},
+	"20220828_1002_0700F136_PIC_134_CAM_2.xml.pi.jpg1399608": {
+		"filename": "20220828_1002_0700F136_PIC_134_CAM_2.xml.pi.jpg",
+		"size": 1399608,
+		"regions": [
+			{
+				"shape_attributes": {
+					"name": "circle",
+					"cx": 460,
+					"cy": 151,
+					"r": 46
+				},
+				"region_attributes": {
+				}
+			},
+			{
+				"shape_attributes": {
+					"name": "circle",
+					"cx": 102,
+					"cy": 2675,
+					"r": 46
+				},
+				"region_attributes": {
+					"unknown": "yes"
+				}
+			}
+		],
+		"file_attributes": {
+		}
+	},
+	"20220814_1137_0700F136_PIC_121_CAM_2.xml.pi.jpg1336059": {
+		"filename": "20220814_1137_0700F136_PIC_121_CAM_2.xml.pi.jpg",
+		"size": 1336059,
+		"regions": [
+			{
+				"shape_attributes": {
+					"name": "circle",
+					"cx": 276,
+					"cy": 90,
+					"r": 49
+				},
+				"region_attributes": {
+					"unknown": ""
+				}
+			},
+			{
+				"shape_attributes": {
+					"name": "circle",
+					"cx": 2844,
+					"cy": 1349,
+					"r": 48
+				},
+				"region_attributes": {
+					"unknown": "yes"
+				}
+			}
+		],
+		"file_attributes": {
+		}
+	},
+	"20220804_1147_0700F136_PIC_112_CAM_2.xml.pi.jpg1323179": {
+		"filename": "20220804_1147_0700F136_PIC_112_CAM_2.xml.pi.jpg",
+		"size": 1323179,
+		"regions": [
+			{
+				"shape_attributes": {
+					"name": "circle",
+					"cx": 63,
+					"cy": 55,
+					"r": 47.538
+				},
+				"region_attributes": {
+					"unknown": ""
+				}
+			},
+			{
+				"shape_attributes": {
+					"name": "circle",
+					"cx": 278,
+					"cy": 83,
+					"r": 45
+				},
+				"region_attributes": {
+					"unknown": ""
+				}
+			},
+			{
+				"shape_attributes": {
+					"name": "circle",
+					"cx": 813,
+					"cy": 22,
+					"r": 32
+				},
+				"region_attributes": {
+					"unknown": ""
+				}
+			},
+			{
+				"shape_attributes": {
+					"name": "circle",
+					"cx": 771,
+					"cy": 103,
+					"r": 63
+				},
+				"region_attributes": {
+					"unknown": ""
+				}
+			},
+			{
+				"shape_attributes": {
+					"name": "circle",
+					"cx": 641,
+					"cy": 172,
+					"r": 47
+				},
+				"region_attributes": {
+					"unknown": ""
+				}
+			},
+			{
+				"shape_attributes": {
+					"name": "circle",
+					"cx": 287,
+					"cy": 272,
+					"r": 46
+				},
+				"region_attributes": {
+					"unknown": ""
+				}
+			},
+			{
+				"shape_attributes": {
+					"name": "circle",
+					"cx": 682,
+					"cy": 746,
+					"r": 66
+				},
+				"region_attributes": {
+					"unknown": ""
+				}
+			},
+			{
+				"shape_attributes": {
+					"name": "circle",
+					"cx": 904,
+					"cy": 724,
+					"r": 74
+				},
+				"region_attributes": {
+					"unknown": ""
+				}
+			},
+			{
+				"shape_attributes": {
+					"name": "circle",
+					"cx": 1058,
+					"cy": 269,
+					"r": 66
+				},
+				"region_attributes": {
+					"unknown": ""
+				}
+			},
+
+			{
+				"shape_attributes": {
+					"name": "circle",
+					"cx": 1450,
+					"cy": 1077,
+					"r": 44
+				},
+				"region_attributes": {
+					"unknown": "yes"
+				}
+			}
+		],
+		"file_attributes": {
+		}
+	}
+}
+
+Format wyjściowy pliku json:
+{
+
+	"24362039530_b151b41a52_k.jpg708540": {
+		"fileref": "",
+		"size": 708540,
+		"filename": "24362039530_b151b41a52_k.jpg",
+		"base64_img_data": "",
+		"file_attributes": {
+		},
+		"regions": {
+			"0": {
+				"shape_attributes": {
+					"name": "polygon",
+					"all_points_x": [
+						621,
+						641,
+						670,
+						694,
+						723,
+						747,
+						772,
+						810,
+						837,
+						863,
+						882,
+						893,
+						906,
+						918,
+						920,
+						917,
+						911,
+						900,
+						883,
+						859,
+						830,
+						809,
+						786,
+						780,
+						775,
+						778,
+						778,
+						775,
+						768,
+						761,
+						757,
+						756,
+						758,
+						760,
+						762,
+						770,
+						772,
+						762,
+						745,
+						720,
+						702,
+						678,
+						659,
+						635,
+						611,
+						594,
+						586,
+						581,
+						579,
+						586,
+						596,
+						607,
+						621
+					],
+					"all_points_y": [
+						550,
+						527,
+						507,
+						496,
+						489,
+						487,
+						487,
+						499,
+						516,
+						536,
+						559,
+						577,
+						600,
+						645,
+						680,
+						721,
+						745,
+						774,
+						809,
+						842,
+						867,
+						882,
+						892,
+						893,
+						899,
+						906,
+						916,
+						920,
+						921,
+						916,
+						911,
+						909,
+						905,
+						903,
+						898,
+						896,
+						893,
+						892,
+						889,
+						878,
+						869,
+						854,
+						837,
+						812,
+						782,
+						746,
+						716,
+						679,
+						648,
+						618,
+						591,
+						566,
+						550
+					]
+				},
+				"region_attributes": {
+				}
+			}
+		}
+	},
+	"9330497995_4cf0438cb6_k.jpg1391508": {
+		"fileref": "",
+		"size": 1391508,
+		"filename": "9330497995_4cf0438cb6_k.jpg",
+		"base64_img_data": "",
+		"file_attributes": {
+		},
+		"regions": {
+			"0": {
+				"shape_attributes": {
+					"name": "polygon",
+					"all_points_x": [
+						1586,
+						1533,
+						1502,
+						1476,
+						1452,
+						1427,
+						1432,
+						1424,
+						1424,
+						1418,
+						1414,
+						1413,
+						1398,
+						1383,
+						1362,
+						1341,
+						1315,
+						1293,
+						1276,
+						1263,
+						1253,
+						1255,
+						1257,
+						1650,
+						1652,
+						1647,
+						1642,
+						1629,
+						1608,
+						1586
+					],
+					"all_points_y": [
+						183,
+						241,
+						272,
+						304,
+						325,
+						330,
+						342,
+						345,
+						350,
+						350,
+						341,
+						328,
+						322,
+						307,
+						271,
+						234,
+						200,
+						168,
+						133,
+						90,
+						48,
+						13,
+						2,
+						3,
+						26,
+						52,
+						76,
+						114,
+						150,
+						183
+					]
+				},
+				"region_attributes": {
+				}
+			},
+			"1": {
+				"shape_attributes": {
+					"name": "polygon",
+					"all_points_x": [
+						1109,
+						1133,
+						1160,
+						1185,
+						1214,
+						1233,
+						1244,
+						1254,
+						1249,
+						1241,
+						1217,
+						1201,
+						1186,
+						1178,
+						1179,
+						1100,
+						1089,
+						1084,
+						1083,
+						1074,
+						1057,
+						1045,
+						1036,
+						1042,
+						1053,
+						1071,
+						1098,
+						1109
+					],
+					"all_points_y": [
+						311,
+						302,
+						302,
+						308,
+						325,
+						345,
+						370,
+						407,
+						449,
+						475,
+						512,
+						537,
+						565,
+						584,
+						595,
+						655,
+						637,
+						616,
+						574,
+						541,
+						506,
+						469,
+						436,
+						394,
+						363,
+						336,
+						315,
+						311
+					]
+				},
+				"region_attributes": {
+				}
+			},
+			"2": {
+				"shape_attributes": {
+					"name": "polygon",
+					"all_points_x": [
+						295,
+						287,
+						275,
+						262,
+						244,
+						213,
+						184,
+						168,
+						158,
+						141,
+						118,
+						103,
+						112,
+						101,
+						85,
+						82,
+						86,
+						67,
+						44,
+						26,
+						12,
+						2,
+						1,
+						205,
+						229,
+						252,
+						269,
+						291,
+						301,
+						302,
+						295
+					],
+					"all_points_y": [
+						268,
+						298,
+						330,
+						352,
+						378,
+						415,
+						444,
+						461,
+						481,
+						504,
+						519,
+						526,
+						540,
+						547,
+						546,
+						536,
+						527,
+						524,
+						513,
+						496,
+						473,
+						463,
+						1,
+						2,
+						14,
+						46,
+						74,
+						122,
+						182,
+						230,
+						268
+					]
+				},
+				"region_attributes": {
+				}
+			}
+		}
+	}
+}
