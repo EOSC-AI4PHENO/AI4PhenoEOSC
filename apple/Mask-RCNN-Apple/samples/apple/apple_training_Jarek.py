@@ -61,14 +61,14 @@ class AppleConfig(Config):
 config = AppleConfig()
 # config.display()
 ##############################################################################
-BALLOON_DIR = os.path.join(ROOT_DIR, 'balloon_dataset', 'balloon')
+APPLE_DIR = os.path.join(ROOT_DIR, 'apple_dataset', 'apple')
 
 train_ds = AppleDataset()
 val_ds = AppleDataset()
 
 # load data
-train_ds.load_balloon(BALLOON_DIR, 'train')
-val_ds.load_balloon(BALLOON_DIR, 'val')
+train_ds.load_apple(APPLE_DIR, 'train')
+val_ds.load_apple(APPLE_DIR, 'val')
 
 # transform data into container structure - must have
 train_ds.prepare()
