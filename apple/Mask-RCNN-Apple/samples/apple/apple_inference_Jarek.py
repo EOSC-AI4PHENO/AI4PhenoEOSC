@@ -11,8 +11,8 @@ sys.path.append(ROOT_DIR)
 import apple
 from mrcnn.config import Config
 from mrcnn import utils
-from mrcnn import visualize
-from mrcnn.visualize import display_images
+from mrcnn import visualizeJarek
+from mrcnn.visualizeJarek import display_images
 import mrcnn.model as modellib
 from mrcnn.model import log
 
@@ -64,5 +64,5 @@ info = dataset.image_info[image_id]
 
 results = model.detect([image], verbose=1)
 r = results[0]
-visualize.display_instances(image, r['rois'], r['masks'], r['class_ids'], dataset.class_names, r['scores'],
+visualizeJarek.display_instances(image, r['rois'], r['masks'], r['class_ids'], dataset.class_names, r['scores'],
                             title="Predictions", figsize=(7,7))
