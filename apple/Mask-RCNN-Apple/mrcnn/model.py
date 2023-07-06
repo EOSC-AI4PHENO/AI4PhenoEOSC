@@ -1315,7 +1315,7 @@ def load_image_gt(dataset, config, image_id, augmentation=None, use_mini_mask=Fa
     image_meta = compose_image_meta(image_id, original_shape, image.shape,
                                     window, scale, active_class_ids)
 
-    return image, image_meta, class_ids, bbox, mask.astype(np.bool)
+    return image, image_meta, class_ids, bbox, mask.astype(np.bool_)
 
 
 def build_detection_targets(rpn_rois, gt_class_ids, gt_boxes, gt_masks, config):

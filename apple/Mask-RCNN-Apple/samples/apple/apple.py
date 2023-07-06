@@ -91,7 +91,7 @@ class AppleDataset(utils.Dataset):
         self.add_class("apple", 1, "apple")
 
         # Train or validation dataset?
-        assert subset in ["train", "val"]
+        assert subset in ["train", "val", "test"]
         dataset_dir = os.path.join(dataset_dir, subset)
 
         # Load annotations

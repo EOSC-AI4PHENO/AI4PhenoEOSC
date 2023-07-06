@@ -37,9 +37,9 @@ class InferenceConfig(Config):
 config = InferenceConfig()
 #######################################################################
 # Load validation dataset
-val_path = os.path.join(ROOT_DIR, "apple_dataset", "apple")
+test_path = os.path.join(ROOT_DIR, "apple_dataset", "apple")
 dataset = apple.AppleDataset()
-dataset.load_apple(val_path, "val")
+dataset.load_apple(test_path, "test")
 
 # Must call before using the dataset
 dataset.prepare()
@@ -55,15 +55,37 @@ model.load_weights(weights_path, by_name=True)
 model.keras_model.compile(run_eagerly=config.RUN_EAGERLY)
 #################################################################################
 # for image_id in dataset.image_ids:
-image_id = np.random.choice(dataset.image_ids)
-print(f"Processing image_id:{image_id}")
+#image_id = np.random.choice(dataset.image_ids)
+#print(f"Processing image_id:{image_id}")
 
-image, image_meta, gt_class_id, gt_bbox, gt_masks =\
-    modellib.load_image_gt(dataset, config, image_id)
-info = dataset.image_info[image_id]
+#image, image_meta, gt_class_id, gt_bbox, gt_masks =\
+#    modellib.load_image_gt(dataset, config, image_id)
+#info = dataset.image_info[image_id]
 
-results = model.detect([image], verbose=1)
-r = results[0]
-visualizeJarek.display_instances(image, r['rois'], r['masks'], r['class_ids'], dataset.class_names, r['scores'],
-                            title="Predictions", figsize=(7,7))
+#results = model.detect([image], verbose=1)
+#r = results[0]
+#visualizeJarek.display_instances(image, r['rois'], r['masks'], r['class_ids'], dataset.class_names, r['scores'],
+#                            title="Predictions", figsize=(7,7))
+
+#################################################################################
+# for each image in the dataset
+for image_id in dataset.image_ids:
+    print(f"Processing image_id:{image_id}")
+
+    # load image
+    image, image_meta, gt_class_id, gt_bbox, gt_masks = \
+        modellib.load_image_gt(dataset, config, image_id)
+    info = dataset.image_info[image_id]
+
+    # make prediction
+    results = model.detect([image], verbose=1)
+    r = results[0]
+
+    # display and save results
+    visualizeJarek.display_instances(info, image, r['rois'], r['masks'], r['class_ids'],
+                                     dataset.class_names, r['scores'],
+                                     title=f"Predictions_{image_id}", figsize=(7, 7))
+    # save the original image and the image with the mask applied
+    #plt.imsave(f'original_image_{image_id}.png', image)
+    #plt.imsave(f'masked_image_{image_id}.png', masked_image.astype(np.uint8))
 

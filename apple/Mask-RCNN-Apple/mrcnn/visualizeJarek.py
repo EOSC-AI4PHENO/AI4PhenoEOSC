@@ -16,7 +16,7 @@ import colorsys
 import numpy as np
 from skimage.measure import find_contours
 import matplotlib.pyplot as plt
-from matplotlib import patches,  lines
+from matplotlib import patches, lines
 from matplotlib.patches import Polygon
 import IPython.display
 
@@ -80,7 +80,7 @@ def apply_mask(image, mask, color, alpha=0.5):
     return image
 
 
-def display_instances(image, boxes, masks, class_ids, class_names,
+def display_instances(info, image, boxes, masks, class_ids, class_names,
                       scores=None, title="",
                       figsize=(16, 16), ax=None,
                       show_mask=True, show_bbox=True,
@@ -131,8 +131,8 @@ def display_instances(image, boxes, masks, class_ids, class_names,
         y1, x1, y2, x2 = boxes[i]
         if show_bbox:
             p = patches.Rectangle((x1, y1), x2 - x1, y2 - y1, linewidth=2,
-                                alpha=0.7, linestyle="dashed",
-                                edgecolor=color, facecolor='none')
+                                  alpha=0.7, linestyle="dashed",
+                                  edgecolor=color, facecolor='none')
             ax.add_patch(p)
 
         # Label
@@ -140,7 +140,8 @@ def display_instances(image, boxes, masks, class_ids, class_names,
             class_id = class_ids[i]
             score = scores[i] if scores is not None else None
             label = class_names[class_id]
-            caption = "{} {:.3f}".format(label, score) if score else label
+            # caption = "{} {:.3f}".format(label, score) if score else label
+            caption = "{:.3f}".format(score) if score else label
         else:
             caption = captions[i]
         ax.text(x1, y1 + 8, caption,
@@ -166,8 +167,19 @@ def display_instances(image, boxes, masks, class_ids, class_names,
     if auto_show:
         plt.show()
 
-    plt.imsave('original_image.png', image)
-    plt.imsave('masked_image.png', masked_image.astype(np.uint8))
+    fullname = info['path']
+    dirname, filename = os.path.split(fullname)
+    basename, extension = os.path.splitext(filename)
+    Original_basename = basename + "_Original"
+    Original_fullname = os.path.join(dirname, Original_basename + extension)
+
+    Predicted_basename = basename + "_Predicted"
+    Predicted_fullname = os.path.join(dirname, Predicted_basename + extension)
+
+    plt.imsave(Original_fullname, image)
+    plt.imsave(Predicted_fullname, masked_image.astype(np.uint8))
+
+
 def display_differences(image,
                         gt_box, gt_class_id, gt_mask,
                         pred_box, pred_class_id, pred_score, pred_mask,
@@ -181,8 +193,8 @@ def display_differences(image,
         pred_box, pred_class_id, pred_score, pred_mask,
         iou_threshold=iou_threshold, score_threshold=score_threshold)
     # Ground truth = green. Predictions = red
-    colors = [(0, 1, 0, .8)] * len(gt_match)\
-           + [(1, 0, 0, 1)] * len(pred_match)
+    colors = [(0, 1, 0, .8)] * len(gt_match) \
+             + [(1, 0, 0, 1)] * len(pred_match)
     # Concatenate GT and predictions
     class_ids = np.concatenate([gt_class_id, pred_class_id])
     scores = np.concatenate([np.zeros([len(gt_match)]), pred_score])
@@ -192,8 +204,8 @@ def display_differences(image,
     captions = ["" for m in gt_match] + ["{:.2f} / {:.2f}".format(
         pred_score[i],
         (overlaps[i, int(pred_match[i])]
-            if pred_match[i] > -1 else overlaps[i].max()))
-            for i in range(len(pred_match))]
+         if pred_match[i] > -1 else overlaps[i].max()))
+        for i in range(len(pred_match))]
     # Set title if not provided
     title = title or "Ground Truth and Detections\n GT=green, pred=red, captions: score/IoU"
     # Display
@@ -255,7 +267,7 @@ def draw_rois(image, rois, refined_rois, mask, class_ids, class_names, limit=10)
 
             # Mask
             m = utils.unmold_mask(mask[id].astype(np.uint8) * 255, rois[id]
-                                  [:4].astype(np.int32), image.shape)
+            [:4].astype(np.int32), image.shape)
             masked_image = apply_mask(masked_image, m, color)
 
     ax.imshow(masked_image)
@@ -347,7 +359,7 @@ def plot_overlaps(gt_class_ids, pred_class_ids, pred_scores,
             text = "match" if gt_class_ids[j] == pred_class_ids[i] else "wrong"
         color = ("white" if overlaps[i, j] > thresh
                  else "black" if overlaps[i, j] > 0
-                 else "grey")
+        else "grey")
         plt.text(j, i, "{:.3f}\n{}".format(overlaps[i, j], text),
                  horizontalalignment="center", verticalalignment="center",
                  fontsize=9, color=color)
