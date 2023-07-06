@@ -66,3 +66,4 @@ results = model.detect([image], verbose=1)
 r = results[0]
 visualizeJarek.display_instances(image, r['rois'], r['masks'], r['class_ids'], dataset.class_names, r['scores'],
                             title="Predictions", figsize=(7,7))
+

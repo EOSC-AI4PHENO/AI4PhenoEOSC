@@ -163,14 +163,8 @@ def display_instances(image, boxes, masks, class_ids, class_names,
             p = Polygon(verts, facecolor="none", edgecolor=color)
             ax.add_patch(p)
     ax.imshow(masked_image.astype(np.uint8))
-    plt.axis('off')
-
-    # Save the figure without displaying
-    plt.savefig('output.jpg', bbox_inches='tight', pad_inches=0)
-
     if auto_show:
-        #plt.show()
-        plt.close()
+        plt.show()
 
 
 def display_differences(image,
