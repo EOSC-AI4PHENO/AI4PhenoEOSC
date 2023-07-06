@@ -166,7 +166,8 @@ def display_instances(image, boxes, masks, class_ids, class_names,
     if auto_show:
         plt.show()
 
-
+    plt.imsave('original_image.png', image)
+    plt.imsave('masked_image.png', masked_image.astype(np.uint8))
 def display_differences(image,
                         gt_box, gt_class_id, gt_mask,
                         pred_box, pred_class_id, pred_score, pred_mask,
