@@ -109,9 +109,14 @@ for image_id in dataset.image_ids:
 
     # Compute IoU overlaps [pred_masks, gt_masks]
     pred_masks = r['masks']
+    overlaps = utils.calculate_iouJArek2(pred_masks, gt_masks)
+    print(f'overlaps={overlaps}')
+
     #overlaps = utils.compute_overlaps_masks(pred_masks, gt_masks)
-    miou_score = compute_miou(pred_masks, gt_masks)
-    print(f'miou_score={miou_score}')
+    #print(f'overlaps={overlaps}')
+
+    #miou_score = compute_miou(pred_masks, gt_masks)
+    #print(f'miou_score={miou_score}')
 
     # display and save results
     visualizeJarek.display_instances(info, image, r['rois'], r['masks'], r['class_ids'],

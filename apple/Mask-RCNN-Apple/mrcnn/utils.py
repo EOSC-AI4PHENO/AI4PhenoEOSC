@@ -94,6 +94,64 @@ def compute_overlaps(boxes1, boxes2):
         overlaps[:, i] = compute_iou(box2, boxes1, area2[i], area1)
     return overlaps
 
+import numpy as np
+
+def calculate_iouJArek2(mask1, mask2):
+    # Konwertuj maski na tablice numpy
+    mask1 = np.array(mask1, dtype=bool)
+    mask2 = np.array(mask2, dtype=bool)
+
+    # Oblicz liczbę warstw (sliców) w maskach
+    depth1 = mask1.shape[2]
+    depth2 = mask2.shape[2]
+
+    # Oblicz IoU dla każdej pary warstw (sliców)
+    iou_sum = 0.0
+    for i in range(depth1):
+        for j in range(depth2):
+            intersection = np.logical_and(mask1[:, :, i], mask2[:, :, j])
+            intersection_pixels = np.count_nonzero(intersection)
+
+            union = np.logical_or(mask1[:, :, i], mask2[:, :, j])
+            union_pixels = np.count_nonzero(union)
+
+            iou = intersection_pixels / union_pixels
+            iou_sum += iou
+
+    # Uśrednij wyniki IoU
+    iou_avg = iou_sum / (depth1 * depth2)
+
+    return iou_avg
+
+
+def calculate_iouJArek1(mask1, mask2):
+    # Konwertuj maski na tablice numpy
+    mask1 = np.array(mask1, dtype=bool)
+    mask2 = np.array(mask2, dtype=bool)
+
+    # Sprawdź, czy maski mają te same rozmiary w dwóch pierwszych wymiarach
+    if mask1.shape[:2] != mask2.shape[:2]:
+        raise ValueError("Masks must have the same dimensions in the first two axes.")
+
+    # Wybierz mniejszy rozmiar w trzecim wymiarze
+    min_depth = min(mask1.shape[2], mask2.shape[2])
+
+    # Wytnij maski do tego samego rozmiaru w trzecim wymiarze
+    mask1 = mask1[:, :, :min_depth]
+    mask2 = mask2[:, :, :min_depth]
+
+    # Oblicz liczbę pikseli, które pokrywają się (część wspólna)
+    intersection = np.logical_and(mask1, mask2)
+    intersection_pixels = np.count_nonzero(intersection)
+
+    # Oblicz liczbę pikseli, które występują w jednej lub drugiej masce (suma)
+    union = np.logical_or(mask1, mask2)
+    union_pixels = np.count_nonzero(union)
+
+    # Oblicz współczynnik IoU
+    iou = intersection_pixels / union_pixels
+
+    return iou
 
 def compute_overlaps_masks(masks1, masks2):
     """Computes IoU overlaps between two sets of masks.
