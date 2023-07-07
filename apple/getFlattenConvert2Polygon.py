@@ -29,20 +29,21 @@ def convert_circle_to_polygon(input_path, output_path, angle_step=1):
             r = shape_attributes['r']
 
             # Obliczanie punktów wielokąta
-            all_points_x = []
-            all_points_y = []
-            for theta in range(0, 360, angle_step):  # zmień 10 na mniejszą wartość, aby uzyskać więcej punktów
+            points = set()  # Zbiór par punktów
+
+            for theta in range(0, 360, angle_step):
                 theta_rad = math.radians(theta)
                 x = cx + r * math.cos(theta_rad)
                 y = cy + r * math.sin(theta_rad)
-                all_points_x.append(int(x))
-                all_points_y.append(int(y))
+                points.add((int(x), int(y)))
+
+            all_points_x, all_points_y = zip(*points)  # Rozpakowanie par do osobnych tablic
 
             output_data[filename]['regions'][str(idx)] = {
                 "shape_attributes": {
                     "name": "polygon",
-                    "all_points_x": all_points_x,
-                    "all_points_y": all_points_y
+                    "all_points_x": list(all_points_x),
+                    "all_points_y": list(all_points_y)
                 },
                 "region_attributes": region.get('region_attributes', {})
             }

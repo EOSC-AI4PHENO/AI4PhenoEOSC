@@ -34,15 +34,17 @@ class AppleConfig(Config):
     # Give the configuration a recognizable name
     NAME = "apple"
 
+    GPU_COUNT = 2
+
     # We use a GPU with 12GB memory, which can fit two images.
     # Adjust down if you use a smaller GPU.
-    IMAGES_PER_GPU = 1
+    IMAGES_PER_GPU = 8
 
     # Number of classes (including background)
     NUM_CLASSES = 1 + 1  # Background + balloon
 
     # Number of training steps
-    EPOCHS = 20
+    EPOCHS = 400
     STEPS_PER_EPOCH = 61
 
     # Number of gt instances to use in batch
@@ -56,7 +58,6 @@ class AppleConfig(Config):
 
     # TF2 feature - now you can run the model interactively
     RUN_EAGERLY = False
-
 
 config = AppleConfig()
 # config.display()
