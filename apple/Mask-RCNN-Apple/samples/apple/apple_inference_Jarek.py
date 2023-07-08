@@ -66,7 +66,7 @@ dataset.load_apple(test_path, "test")
 dataset.prepare()
 print("Images: {}\nClasses: {}".format(len(dataset.image_ids), dataset.class_names))
 ######################################################################
-weights_path = os.path.join(ROOT_DIR, "model_logs", "apple20230705T1705", "mask_rcnn_apple_0020.h5")
+weights_path = os.path.join(ROOT_DIR, "model_logs", "apple20230707T2136", "mask_rcnn_apple_0361.h5")
 
 # create inference model
 model = modellib.MaskRCNN(mode="inference", model_dir="/home", config=config)
