@@ -8,7 +8,7 @@ import tensorflow as tf
 ROOT_DIR = os.path.abspath("../../")
 sys.path.append(ROOT_DIR)
 
-import apple
+import linden
 from mrcnn.config import Config
 from mrcnn import utils
 from mrcnn import visualizeJarek
@@ -50,12 +50,12 @@ for gpu in gpu_devices:
 
 
 #####################################################################
-class AppleConfig(Config):
+class LindenConfig(Config):
     """Configuration for training on the toy  dataset.
     Derives from the base Config class and overrides some values.
     """
     # Give the configuration a recognizable name
-    NAME = "apple"
+    NAME = "linden"
 
     GPU_COUNT = 1
 
@@ -67,7 +67,7 @@ class AppleConfig(Config):
     NUM_CLASSES = 1 + 1  # Background + balloon
 
     # Number of training steps
-    EPOCHS = 500
+    EPOCHS = 20
     STEPS_PER_EPOCH = 61
 
     # Number of gt instances to use in batch
@@ -83,13 +83,13 @@ class AppleConfig(Config):
     RUN_EAGERLY = True
 
 
-config = AppleConfig()
+config = LindenConfig()
 
 #######################################################################
 # Load validation dataset
-test_path = os.path.join(ROOT_DIR, "apple_dataset", "apple")
-dataset = apple.AppleDataset()
-dataset.load_apple(test_path, "test")
+test_path = os.path.join(ROOT_DIR, "linden_dataset", "linden")
+dataset = linden.LindenDataset()
+dataset.load_linden(test_path, "test")
 
 jsonfullname = os.path.join(test_path,"test", "via_region_data.json")
 
@@ -100,12 +100,7 @@ with open(jsonfullname, 'r') as file:
 dataset.prepare()
 print("Images: {}\nClasses: {}".format(len(dataset.image_ids), dataset.class_names))
 ######################################################################
-#weights_path = os.path.join(ROOT_DIR, "model_logs", "apple20230707T2136", "mask_rcnn_apple_0361.h5")
-#weights_path = os.path.join(ROOT_DIR, "model_logs", "apple20230707T2136", "mask_rcnn_apple_0500.h5")
 
-#weights_path = os.path.join(ROOT_DIR, "model_logs", "apple20230708T0522_0.5", "mask_rcnn_apple_0050.h5")
-#weights_path = os.path.join(ROOT_DIR, "model_logs", "apple20230708T0522_0.5", "mask_rcnn_apple_0020.h5")
-#weights_path = os.path.join(ROOT_DIR, "model_logs", "apple20230708T1006_0.9", "mask_rcnn_apple_0020.h5")
 weights_path = os.path.join(ROOT_DIR, "model_logs", "apple20230708T1131_0.9", "mask_rcnn_apple_0020.h5")
 
 # create inference model
@@ -202,5 +197,5 @@ for image_id in dataset.image_ids:
     rekord = [filename, mioumicro, miouweighted, f1, acc, tn, fp, fn, tp]
     df_results.loc[df_results.shape[0]] = rekord
 
-Statistics_fullname = os.path.join(dirname, "Statistics_20_0.9.xlsx")
+Statistics_fullname = os.path.join(dirname, "linden_Statistics_20_0.9.xlsx")
 df_results.to_excel(Statistics_fullname, index=False)
