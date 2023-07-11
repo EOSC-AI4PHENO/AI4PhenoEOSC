@@ -31,6 +31,50 @@ import json
 from skimage import draw
 import skimage
 
+def results_to_json(results, filename, file_size):
+    # Inicjalizuj strukturę pliku JSON
+    json_file = {
+        filename: {
+            "fileref": "",
+            "size": file_size,
+            "filename": filename,
+            "base64_img_data": "",
+            "file_attributes": {},
+            "regions": {},
+        }
+    }
+
+    # Przejdź przez wszystkie regiony wyników
+    for i in range(len(results['rois'])):
+        # Wyodrębnij punkty (x,y) wielokąta z maski
+        all_points_x, all_points_y = mask_to_polygon(results['masks'][:,:,i])
+
+        # Dodaj region do pliku JSON
+        json_file[filename]["regions"][str(i)] = {
+            "shape_attributes": {
+                "name": "polygon",
+                "all_points_x": [int(x) for x in all_points_x],
+                "all_points_y": [int(y) for y in all_points_y]
+            },
+            "region_attributes": {},
+        }
+    return json_file
+
+def mask_to_polygon(mask):
+    # Mask Polygon
+    # Pad to ensure proper polygons for masks that touch image edges.
+    padded_mask = np.zeros((mask.shape[0] + 2, mask.shape[1] + 2), dtype=np.uint8)
+    padded_mask[1:-1, 1:-1] = mask
+    contours = find_contours(padded_mask, 0.5)
+
+    # Dla wielu obiektów w jednej masce, wybierz ten z największym polem
+    largest_contour = max(contours, key=lambda x: x.shape[0])
+
+    # Przekształć kontury do formatu (x,y)
+    points_x, points_y = np.fliplr(largest_contour).T
+
+    return points_x.tolist(), points_y.tolist()
+
 
 def apply_mask(image, mask, color, alpha=0.5):
     """Apply the given mask to the image.
@@ -70,7 +114,7 @@ def random_colors(N, bright=True):
     return colors
 
 
-def display_instancesDeploment(output_path, filename, image, boxes, masks, class_ids, class_names,
+def display_instancesDeploment(timestamp, output_path, filename, image, boxes, masks, class_ids, class_names,
                                scores=None, title="",
                                figsize=(12, 12), ax=None,
                                show_mask=True, show_bbox=True,
@@ -157,7 +201,8 @@ def display_instancesDeploment(output_path, filename, image, boxes, masks, class
     # if auto_show:
     # plt.show()
 
-    timestamp = datetime.now().strftime("%Y%m%d_%H%M%S_%f#")  # Dodaj mikrosekundy do formatu czasu
+    fullname = os.path.join(output_path,filename)
+
     new_filename = f"{timestamp}_{filename}"  # Utwórz nową nazwę pliku z dodanym znacznikiem czasu
 
     basename, extension = os.path.splitext(new_filename)
@@ -170,9 +215,10 @@ def display_instancesDeploment(output_path, filename, image, boxes, masks, class
     Predicted_basenameFig = basename + "_PredictedFIG"
     Predicted_fullnameFig = os.path.join(output_path, Predicted_basenameFig + '.png')
 
-    plt.savefig(Predicted_fullnameFig, dpi=300)
+    plt.imsave(fullname, image)
     plt.imsave(Original_fullname, image)
     plt.imsave(Predicted_fullname, masked_image.astype(np.uint8))
+    plt.savefig(Predicted_fullnameFig, dpi=300)
 
 
 # show visible GPU devices and limit the memory growth
@@ -242,12 +288,23 @@ dirname, filename = os.path.split(fullname1)
 results = model.detect([image], verbose=1)
 r = results[0]
 
+timestamp = datetime.now().strftime("%Y%m%d_%H%M%S_%f#")  # Dodaj mikrosekundy do formatu czasu
 output_path = os.path.join(ROOT_DIR, "appleDeployment", "AppleOutputDeployment")
-print("output_path:", output_path)
 
-display_instancesDeploment(output_path, filename, image, r['rois'], r['masks'], r['class_ids'],
+display_instancesDeploment(timestamp, output_path, filename, image, r['rois'], r['masks'], r['class_ids'],
                            'apple', r['scores'],
                            title=f"Predictions_{filename}", figsize=(10, 10))
-rois = r['rois']
-masks = r['masks']
-a=4
+
+#########################################################
+file_size = os.path.getsize(fullname1)
+basename, extension = os.path.splitext(filename)
+new_filenameJSON = f"{timestamp}_{basename}.json"
+fullnamejson = os.path.join(output_path, new_filenameJSON)
+
+# Przekształć wyniki do formatu JSON
+json_results = results_to_json(r, filename, file_size)
+
+# Zapisz wyniki do pliku JSON
+with open(fullnamejson, 'w') as json_file:
+    json.dump(json_results, json_file, indent=4)
+
