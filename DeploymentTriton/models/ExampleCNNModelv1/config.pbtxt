@@ -5,7 +5,6 @@ input [
   {
     name: "conv2d_input"
     data_type: TYPE_FP32
-    format: FORMAT_NHWC
     dims: [-1,32,32,3]
   }
 ]
