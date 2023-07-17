@@ -29,4 +29,4 @@ history = model.fit(train_images, train_labels, epochs=10,
                     validation_data=(test_images, test_labels))
 
 # Zapisanie modelu do formatu .pb (SavedModel format) dla Nvidia Triton Inference Server
-model.save('ExmapleCNNModelSaved', save_format='tf')  # gdzie model_path to ścieżka, do której chcesz zapisać model
+model.save('ExmapleCNNModelv1', save_format='tf')  # gdzie model_path to ścieżka, do której chcesz zapisać model
