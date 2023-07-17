@@ -1,0 +1,12 @@
+{
+  "version": 2,
+  "dgSpecHash": "gkWNTGuzGmqT+iM88iQlDrkZkD1LmbK3g8ABx4oWFLpGN7qltKtO2Q3VoAiLZOWk1rPHJqTeZfwzYT6KjggG4w==",
+  "success": true,
+  "projectFilePath": "E:\\!DeepTechnology\\!Customers\\!2023\\Seth Software EOSC-AI4Pheno\\AI4PhenoEOSC\\DeploymentTriton\\ConsoleAppTestRestAPI\\ConsoleAppTestRestAPI\\ConsoleAppTestRestAPI.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\kurekj\\.nuget\\packages\\microsoft.win32.systemevents\\7.0.0\\microsoft.win32.systemevents.7.0.0.nupkg.sha512",
+    "C:\\Users\\kurekj\\.nuget\\packages\\newtonsoft.json\\13.0.3\\newtonsoft.json.13.0.3.nupkg.sha512",
+    "C:\\Users\\kurekj\\.nuget\\packages\\system.drawing.common\\7.0.0\\system.drawing.common.7.0.0.nupkg.sha512"
+  ],
+  "logs": []
+}
