@@ -3,10 +3,22 @@ platform: "tensorflow_savedmodel"
 max_batch_size: 0
 input [
   {
-    name: "conv2d_input"
+    name: "input_image"
     data_type: TYPE_FP32
     format: FORMAT_NHWC
-    dims: [32,32,3]
+    dims: [32, 32, 3]  # W, H, C to wymiary obrazu
+  },
+  {
+    name: "input_anchors"
+    data_type: TYPE_FP32
+    format: FORMAT_NONE
+    dims: [19]  # A to wymiar dla anchorów
+  },
+  {
+    name: "input_image_meta"
+    data_type: TYPE_FP32
+    format: FORMAT_NONE
+    dims: [18]  # M to wymiar dla metadanych obrazu
   }
 ]
 output [
