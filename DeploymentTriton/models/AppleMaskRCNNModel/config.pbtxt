@@ -1,4 +1,4 @@
-name: "ExampleCNNModelv1"
+name: "AppleMaskRCNNModel"
 platform: "tensorflow_savedmodel"
 max_batch_size: 4
 input [
