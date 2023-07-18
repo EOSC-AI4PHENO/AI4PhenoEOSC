@@ -45,7 +45,7 @@ output [
   {
 	name: "mrcnn_mask"
 	data_type: TYPE_FP32
-	dims: [10]
+	dims: [1,100,28,28,2]
   },
   {
 	name: "rpn_bbox"
