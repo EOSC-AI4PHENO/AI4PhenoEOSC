@@ -12,7 +12,7 @@ input [
     name: "input_anchors"
     data_type: TYPE_FP32
     format: FORMAT_NONE
-    dims: [18]  # A to wymiar dla anchorów
+    dims: [-1,-1,4]  # A to wymiar dla anchorów
   },
   {
     name: "input_image_meta"
