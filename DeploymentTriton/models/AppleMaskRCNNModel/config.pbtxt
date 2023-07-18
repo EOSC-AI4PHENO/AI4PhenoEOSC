@@ -50,7 +50,7 @@ output [
   {
 	name: "rpn_bbox"
 	data_type: TYPE_FP32
-	dims: [10]
+	dims: [-1,-1,4]
   },
   {
 	name: "rpn_class"
