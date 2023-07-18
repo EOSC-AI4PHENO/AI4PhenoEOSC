@@ -1,6 +1,6 @@
 name: "AppleMaskRCNNModel"
 platform: "tensorflow_savedmodel"
-max_batch_size: 4
+max_batch_size: 0
 input [
   {
     name: "conv2d_input"
