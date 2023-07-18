@@ -30,7 +30,7 @@ output [
   {
 	name: "mrcnn_bbox"
 	data_type: TYPE_FP32
-	dims: [10]
+	dims: [1,1000,2,4]
   },
   {
 	name: "mrcnn_class"
