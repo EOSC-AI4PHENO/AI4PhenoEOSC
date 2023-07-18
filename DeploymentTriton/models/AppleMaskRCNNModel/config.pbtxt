@@ -35,7 +35,7 @@ output [
   {
 	name: "mrcnn_class"
 	data_type: TYPE_FP32
-	dims: [10]
+	dims: [1,1000,2]
   },
   {
 	name: "mrcnn_detection"
