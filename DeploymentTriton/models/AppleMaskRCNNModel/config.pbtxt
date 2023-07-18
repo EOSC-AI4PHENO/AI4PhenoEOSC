@@ -22,39 +22,39 @@ input [
   }
 ]
 output [
-{
-name: "ROI"
-data_type: TYPE_FP32
-dims: [10]
-},
-{
-name: "mrcnn_bbox"
-data_type: TYPE_FP32
-dims: [10]
-},
-{
-name: "mrcnn_class"
-data_type: TYPE_FP32
-dims: [10]
-},
-{
-name: "mrcnn_detection"
-data_type: TYPE_FP32
-dims: [10]
-},
-{
-name: "mrcnn_mask"
-data_type: TYPE_FP32
-dims: [10]
-},
-{
-name: "rpn_bbox"
-data_type: TYPE_FP32
-dims: [10]
-},
-{
-name: "rpn_class"
-data_type: TYPE_FP32
-dims: [10]
-}
+  {
+	name: "ROI"
+	data_type: TYPE_FP32
+	dims: [1,1000,4]
+  },
+  {
+	name: "mrcnn_bbox"
+	data_type: TYPE_FP32
+	dims: [10]
+  },
+  {
+	name: "mrcnn_class"
+	data_type: TYPE_FP32
+	dims: [10]
+  },
+  {
+	name: "mrcnn_detection"
+	data_type: TYPE_FP32
+	dims: [10]
+  },
+  {
+	name: "mrcnn_mask"
+	data_type: TYPE_FP32
+	dims: [10]
+  },
+  {
+	name: "rpn_bbox"
+	data_type: TYPE_FP32
+	dims: [10]
+  },
+  {
+	name: "rpn_class"
+	data_type: TYPE_FP32
+	dims: [10]
+  }
 ]
