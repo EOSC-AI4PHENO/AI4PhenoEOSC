@@ -40,7 +40,7 @@ output [
   {
 	name: "mrcnn_detection"
 	data_type: TYPE_FP32
-	dims: [10]
+	dims: [1,100,6]
   },
   {
 	name: "mrcnn_mask"
