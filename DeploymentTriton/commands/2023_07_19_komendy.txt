@@ -1,0 +1,42 @@
+conda install grpcio
+pip install tensorflow-serving-api
+
+conda install -c conda-forge "charset-normalizer<2.0"
+
+
+https://www.youtube.com/watch?v=m-eaFJ5GK94
+https://github.com/Curt-Park/mnist-fastapi-celery-triton
+
+Jeśli chcesz pominąć nagłówek, użyj polecenia docker ps -q, które wyświetla tylko identyfikatory kontenerów:
+docker ps -q | wc -l 
+38
+
+docker pull nvcr.io/nvidia/tritonserver:23.06-py3
+
+docker run --gpus=all --rm -p8000:8000 -p8001:8001 -p8002:8002 -v /home/kurekj/AI4PhenoEOSC/DeploymentTriton/models:/models nvcr.io/nvidia/tritonserver:23.06-py3 tritonserver --model-repository=/models
+
+docker: Error response from daemon: could not select device driver "" with capabilities: [[gpu]].
+
+# Dodaj repozytorium Nvidia Docker
+curl -s -L https://nvidia.github.io/nvidia-docker/gpgkey | sudo apt-key add -
+distribution=$(. /etc/os-release;echo $ID$VERSION_ID)
+curl -s -L https://nvidia.github.io/nvidia-docker/$distribution/nvidia-docker.list | sudo tee /etc/apt/sources.list.d/nvidia-docker.list
+
+# Zainstaluj Nvidia Docker
+sudo apt-get update
+sudo apt-get install -y nvidia-docker2
+
+ Poll failed for model directory 'ExmapleCNNModelv1': Invalid model name: Could not determine backend for model 'ExmapleCNNModelv1' with no backend in model configuration. Expected model name of the form 'model.<backend_name>'.
+I0717 16:27:03.478254 1 server.cc:603]
++------------------+------+
+| Repository Agent | Path |
+
+
+docker run --gpus=all --rm -p8050:8000 -p8051:8001 -p8052:8002 -v /home/kurekj/AI4PhenoEOSC/DeploymentTriton/models:/models nvcr.io/nvidia/tritonserver:23.06-py3 tritonserver --model-repository=/models
+
+
+docker ps -a --format '{{.CreatedAt}}, {{.Names}}' | sort -r
+
+curl -v http://localhost:8000/v2/health/ready
+
+docker stop 9c4ec02e637e
