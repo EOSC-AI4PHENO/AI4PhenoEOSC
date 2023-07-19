@@ -1,0 +1,10 @@
+conda env export --name Python3.10_Tensor2.12 > Python3.10_Tensor2.12.yml
+
+conda env remove --name Python3.10_Tensor2.12
+
+conda env create -f Python3.10_Tensor2.12.yml
+------------------------------------------------
+
+conda env export --name Win_Python3.9_Tensor2.10 > Win_Python3.9_Tensor2.10.yml
+
+conda env export --name Python3.10_Tensor2.12 > Python3.10_Tensor2.12.yml
