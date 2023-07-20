@@ -24,7 +24,10 @@ import tensorflow.keras.layers as KL
 import tensorflow.keras.utils as KU
 from tensorflow.python.eager import context
 import tensorflow.keras.models as KM
-from mrcnn import grpcJarek
+#from mrcnn import grpcJarek
+#from mrcnn import grpcJarek1
+from mrcnn import grpcJarek2
+from mrcnn import RESTAPI
 from mrcnn import utils
 ############################################################
 #  Utility Functions
@@ -553,6 +556,7 @@ def detection_targets_graph(proposals, gt_class_ids, gt_boxes, gt_masks, config)
     overlaps = overlaps_graph(proposals, gt_boxes)
 
     # Compute overlaps with crowd boxes [proposals, crowd_boxes]
+    crowd_overlaps = overlaps_graph(proposals, crowd_boxes)
     crowd_overlaps = overlaps_graph(proposals, crowd_boxes)
     crowd_iou_max = tf.reduce_max(input_tensor=crowd_overlaps, axis=1)
     no_crowd_bool = (crowd_iou_max < 0.001)
@@ -2660,11 +2664,16 @@ class MaskRCNN(object):
         #ROI, mrcnn_bbox, mrcnn_class, mrcnn_detection, mrcnn_mask, rpn_bbox, rpn_class =\
         #    RESTAPI.query_triton_model(molded_images, image_metas, anchors)
 
-        ROI, mrcnn_bbox, mrcnn_class, mrcnn_detection, mrcnn_mask, rpn_bbox, rpn_class =\
-            grpcJarek.get_GRPC_prediction(molded_images, image_metas, anchors)
+        #ROI, mrcnn_bbox, mrcnn_class, mrcnn_detection, mrcnn_mask, rpn_bbox, rpn_class =\
+        #    grpcJarek.get_GRPC_prediction(molded_images, image_metas, anchors)
 
-        detections, _, _, mrcnn_mask, _, _, _ =\
-            self.keras_model.predict([molded_images, image_metas, anchors], verbose=0)
+        ROI, mrcnn_bbox, mrcnn_class, detections, mrcnn_mask, rpn_bbox, rpn_class =\
+            grpcJarek2.infer(molded_images, image_metas, anchors)
+
+        #a=grpcJarek2.infer(molded_images, image_metas, anchors)
+
+        #detections, _, _, mrcnn_mask, _, _, _ =\
+        #    self.keras_model.predict([molded_images, image_metas, anchors], verbose=0)
         # Process detections
         results = []
         for i, image in enumerate(images):

@@ -4,7 +4,7 @@ import tensorflow as tf
 from tensorflow_serving.apis import predict_pb2
 from tensorflow_serving.apis import prediction_service_pb2_grpc
 def get_GRPC_prediction(molded_images, image_metas, anchors):
-    channel = grpc.insecure_channel('10.0.20.50:8051')  # Podmień na właściwy adres serwera
+    channel = grpc.insecure_channel('10.0.20.50:8001')  # Podmień na właściwy adres serwera
     stub = prediction_service_pb2_grpc.PredictionServiceStub(channel)
 
     request = predict_pb2.PredictRequest()

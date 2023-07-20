@@ -27,7 +27,7 @@ def main():
     img = img.astype(np.float32).tolist()
 
     # URL do serwera Triton
-    triton_url = "http://10.0.20.50:8050/v2/models/ExampleCNNModelv1/versions/1/infer"
+    triton_url = "http://10.0.20.50:8000/v2/models/ExampleCNNModelv1/versions/1/infer"
 
     # dane wejściowe do inferencji
     infer_input = {

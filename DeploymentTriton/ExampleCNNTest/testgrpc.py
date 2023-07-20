@@ -23,7 +23,7 @@ def main():
     img = x_test[0]
 
     # tworzenie obiektu klienta
-    triton_client = InferenceServerClient(url="10.0.20.50:8051")
+    triton_client = InferenceServerClient(url="10.0.20.50:8001")
 
     # tworzenie wejścia dla modelu
     infer_input = InferInput("conv2d_input", [1, 32, 32, 3], "FP32")

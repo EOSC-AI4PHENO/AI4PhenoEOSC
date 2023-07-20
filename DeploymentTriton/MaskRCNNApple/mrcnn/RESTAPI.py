@@ -20,7 +20,7 @@ def query_triton_model(molded_images: np.ndarray, image_metas: np.ndarray, ancho
     # Adres serwera Triton (zamień na prawdziwy adres serwera)
     #triton_server_url = "http://10.0.20.50:8050/v2/models/AppleMaskRCNNModel/infer"
 
-    triton_server_url = "http://10.0.20.50:8050/v2/models/AppleMaskRCNNModel/versions/1/infer"
+    triton_server_url = "http://10.0.20.50:8000/v2/models/AppleMaskRCNNModel/versions/1/infer"
 
     # Wykonujemy zapytanie POST do serwera Triton
     response = requests.post(triton_server_url, data=json.dumps(data))

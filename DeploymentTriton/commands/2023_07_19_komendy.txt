@@ -3,7 +3,6 @@ pip install tensorflow-serving-api
 
 conda install -c conda-forge "charset-normalizer<2.0"
 
-
 https://www.youtube.com/watch?v=m-eaFJ5GK94
 https://github.com/Curt-Park/mnist-fastapi-celery-triton
 
@@ -32,11 +31,32 @@ I0717 16:27:03.478254 1 server.cc:603]
 | Repository Agent | Path |
 
 
-docker run --gpus=all --rm -p8050:8000 -p8051:8001 -p8052:8002 -v /home/kurekj/AI4PhenoEOSC/DeploymentTriton/models:/models nvcr.io/nvidia/tritonserver:23.06-py3 tritonserver --model-repository=/models
-
+docker run --gpus=all --rm -p8000:8000 -p8001:8001 -p8002:8002 -v /home/kurekj/AI4PhenoEOSC/DeploymentTriton/models:/models nvcr.io/nvidia/tritonserver:23.06-py3 tritonserver --model-repository=/models --metrics-port=8002
 
 docker ps -a --format '{{.CreatedAt}}, {{.Names}}' | sort -r
 
 curl -v http://localhost:8000/v2/health/ready
 
 docker stop 9c4ec02e637e
+--------------------------------------------
+docker run -p 9090:9090 prom/prometheus
+docker cp 8d9fb7c79241:/etc/prometheus/prometheus.yml /home/kurekj/prometheus.yml
+docker cp /home/kurekj/prometheus.yml 143949b718cd:/etc/prometheus/prometheus.yml
+
+docker stop 143949b718cd
+docker start 143949b718cd
+
+http://10.0.20.50:9090
+
+docker stop 2d8d13e8fb3d
+docker rm 2d8d13e8fb3d
+------------------------------------------------
+docker run -d -p 3000:3000 grafana/grafana
+login:admin
+password:admin
+password:ankur80
+
+http://10.0.20.50:3000
+----------------------------------------------------
+promql dla grafany:
+(avg(rate(nv_inference_request_duration_us[5m])) by (model) / avg(rate(nv_inference_count[5m])) by (model)) / 1000000
