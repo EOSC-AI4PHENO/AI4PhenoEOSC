@@ -73,7 +73,7 @@ services:
       - CELERY_BACKEND_URL=${CELERY_BACKEND_URL}
     command: ./starter.sh --target fastapi
     ports:
-      - "8000:80"
+      - "8888:80"
     depends_on:
       - redis
       - rabbitmq
