@@ -1,0 +1,5 @@
+pip install fastapi uvicorn
+uvicorn mainFirstTestFastAPI:app --reload --port 8081
+
+https://denisbrogg.hashnode.dev/python-ml-in-production-part-1-fastapi-celery-with-docker
+https://github.com/denisbrogg/python-api-production-ready
