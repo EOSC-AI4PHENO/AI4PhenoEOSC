@@ -7,3 +7,11 @@ https://github.com/denisbrogg/python-api-production-ready
 pip install fastapi uvicorn
 conda install celery
 conda install pydantic
+
+apt  install docker-compose
+
+curl -sSL https://install.python-poetry.org | python -
+
+
+docker-compose build
+docker-compose up
