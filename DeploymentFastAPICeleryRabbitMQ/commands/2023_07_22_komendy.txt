@@ -36,6 +36,8 @@ conda env export --name myenvPoetry > myenvPoetry.yml
 
 conda env create -f environment_input.yml
 
+conda activate environment_input
+
 conda env export --name environment_input > environment_input.yml
 
 conda env remove --name environment_input

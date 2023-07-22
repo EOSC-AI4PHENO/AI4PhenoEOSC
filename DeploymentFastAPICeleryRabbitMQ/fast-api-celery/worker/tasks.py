@@ -2,7 +2,6 @@ import importlib
 import sys
 import logging
 from celery import Task
-
 from .celery import worker
 
 
@@ -34,7 +33,8 @@ class PredictTask(Task):
 @worker.task(ignore_result=False,
           bind=True,
           base=PredictTask,
-          path=('logic.model', 'FakeModel'),
-          name='{}.{}'.format(__name__, 'Fake'))
-def predict(self, x):
-    return self.model.predict(x)
+          path=('logic.model', 'ImageWellExposedModel'),
+          name='{}.{}'.format(__name__, 'ImageWellExposed'))
+
+def get_sunrise_sunset(self, lat, lon, UTCdate):
+    return self.model.get_sunrise_sunset(lat, lon, UTCdate)
