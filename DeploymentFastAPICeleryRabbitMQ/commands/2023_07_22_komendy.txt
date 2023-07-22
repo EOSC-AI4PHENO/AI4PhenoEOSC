@@ -33,6 +33,8 @@ conda env export --name myenvPoetry > myenvPoetry.yml
 #pip install conda-merge
 #conda-merge Python3.10_Tensor2.12.yml myenvPoetry.yml > Python3.10_Tensor2.12_Docker.yml
 ----------------------------------------------------
+docker-compose build
+docker-compose up
 
 conda env create -f environment_input.yml
 

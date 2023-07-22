@@ -7,7 +7,7 @@ from .models import SunriseSunsetInput, TaskTicket, SunriseSunsetOutput
 
 app = FastAPI()
 
-@app.post('/ImageWellExposedModel/predict', response_model=TaskTicket, status_code=202)
+@app.post('/ImageWellExposedModel/get_sunrise_sunset', response_model=TaskTicket, status_code=202)
 async def schedule_ImageWellExposedModel_get_sunrise_sunset(model_input: SunriseSunsetInput):
     """Create celery prediction task. Return task_id to client in order to retrieve result"""
     task_id = get_sunrise_sunset.delay(dict(model_input).get("lat"), dict(model_input).get("lon"),
