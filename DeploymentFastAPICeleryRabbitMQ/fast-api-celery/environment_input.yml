@@ -1,4 +1,4 @@
-name: myenvPoetry
+name: environment_input
 channels:
   - defaults
 dependencies:
@@ -136,4 +136,4 @@ dependencies:
       #- worker==0.1.0
       - wrapt==1.14.1
       - zipp==3.16.2
-prefix: /home/kurekj/anaconda3/envs/myenvPoetry
+prefix: /home/kurekj/anaconda3/envs/environment_input

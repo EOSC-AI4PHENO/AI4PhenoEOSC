@@ -30,6 +30,13 @@ pip install poetry
 poetry config virtualenvs.create false
 poetry install
 conda env export --name myenvPoetry > myenvPoetry.yml
-pip install conda-merge
-conda-merge Python3.10_Tensor2.12.yml myenvPoetry.yml > Python3.10_Tensor2.12_Docker.yml
+#pip install conda-merge
+#conda-merge Python3.10_Tensor2.12.yml myenvPoetry.yml > Python3.10_Tensor2.12_Docker.yml
+----------------------------------------------------
 
+conda env create -f environment_input.yml
+
+conda env export --name environment_input > environment_input.yml
+
+conda env remove --name environment_input
+------------------------------------------------
