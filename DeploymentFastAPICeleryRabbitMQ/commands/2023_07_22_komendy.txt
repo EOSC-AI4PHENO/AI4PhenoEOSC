@@ -1,0 +1,35 @@
+pip install fastapi uvicorn
+uvicorn mainFirstTestFastAPI:app --reload --port 8081
+
+https://denisbrogg.hashnode.dev/python-ml-in-production-part-1-fastapi-celery-with-docker
+https://github.com/denisbrogg/python-api-production-ready
+
+pip install fastapi uvicorn
+conda install celery
+conda install pydantic
+
+apt  install docker-compose
+
+curl -sSL https://install.python-poetry.org | python -
+
+
+docker-compose build
+docker-compose up
+---------------------------------------------------
+instalacja conda jako kurekj a nie root
+wget https://repo.anaconda.com/archive/Anaconda3-2023.07-1-Linux-x86_64.sh
+bash Anaconda3-2023.07-1-Linux-x86_64.sh
+echo 'export PATH="/home/kurekj/anaconda3/bin:$PATH"' >> /home/kurekj/.bashrc
+source /home/kurekj/.bashrc
+----------------------------------------------------
+konwersja poetry do conda env
+----------------------------------------------------
+conda create -n myenvPoetry python=3.10
+conda activate myenvPoetry
+pip install poetry
+poetry config virtualenvs.create false
+poetry install
+conda env export --name myenvPoetry > myenvPoetry.yml
+pip install conda-merge
+conda-merge Python3.10_Tensor2.12.yml myenvPoetry.yml > Python3.10_Tensor2.12_Docker.yml
+

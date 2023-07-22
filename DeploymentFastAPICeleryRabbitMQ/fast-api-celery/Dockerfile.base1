@@ -13,7 +13,7 @@ RUN conda create -n env python=3.10
 SHELL ["conda", "run", "-n", "env", "/bin/bash", "-c"]
 
 # Install dependencies
-RUN conda env update -n env --file myenvPoetry.yml
+RUN conda env update -n env --file myenvPoetry1.yml
 
 # Export the environment to a yml file
 RUN conda env export > environment.yml
