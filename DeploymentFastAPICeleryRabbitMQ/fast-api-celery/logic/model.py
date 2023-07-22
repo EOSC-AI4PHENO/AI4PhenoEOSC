@@ -17,6 +17,7 @@ class ImageWellExposedModel:
         self.q = 0.5
 
     def get_sunrise_sunset(self, lat: float, lon: float, UTCdate: datetime) -> tuple[datetime, datetime]:
+        a3 = UTCdate.strftime('%Y/%m/%d')
         observer = ephem.Observer()
         observer.lat = str(lat)
         observer.lon = str(lon)

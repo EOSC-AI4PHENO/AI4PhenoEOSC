@@ -37,4 +37,5 @@ class PredictTask(Task):
           name='{}.{}'.format(__name__, 'ImageWellExposed'))
 
 def get_sunrise_sunset(self, lat:float, lon:float, UTCdate:datetime):
+    a2 = UTCdate.strftime('%Y/%m/%d')
     return self.model.get_sunrise_sunset(lat, lon, UTCdate)

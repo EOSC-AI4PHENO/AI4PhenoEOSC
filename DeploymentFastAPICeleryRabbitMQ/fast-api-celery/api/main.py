@@ -7,11 +7,13 @@ from .models import SunriseSunsetInput, TaskTicket, SunriseSunsetOutput
 
 app = FastAPI()
 
+
 @app.post('/ImageWellExposedModel/get_sunrise_sunset', response_model=TaskTicket, status_code=202)
 async def schedule_ImageWellExposedModel_get_sunrise_sunset(model_input: SunriseSunsetInput):
     """Create celery prediction task. Return task_id to client in order to retrieve result"""
     # task_id = get_sunrise_sunset.delay(dict(model_input).get("lat"), dict(model_input).get("lon"),
     #                                    dict(model_input).get("UTCdate"))
+    a1 = model_input.strftime('%Y/%m/%d')
     task_id = get_sunrise_sunset.delay(model_input.lat, model_input.lon, model_input.UTCdate)
     return {'task_id': str(task_id), 'status': 'Processing'}
 
