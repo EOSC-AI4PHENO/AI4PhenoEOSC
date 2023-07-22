@@ -4,7 +4,7 @@ services:
   _python_image_build:
     build:
       context: ./fast-api-celery
-      dockerfile: Dockerfile.base1
+      dockerfile: Dockerfile.base
     image: fast-api-celery-base
     command: ["echo", "build completed"] # any linux command which directly terminates.
 

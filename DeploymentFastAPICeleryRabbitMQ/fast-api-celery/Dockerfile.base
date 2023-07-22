@@ -1,30 +1,38 @@
 #
 # Build image
 #
-
-FROM python:3.9-slim-bullseye AS builder
+FROM continuumio/miniconda3 AS builder
 
 WORKDIR /app
 COPY . .
 
 RUN apt update -y && apt upgrade -y && apt install curl -y
-#RUN curl -sSL https://raw.githubusercontent.com/python-poetry/poetry/master/get-poetry.py | python -
-RUN curl -sSL https://install.python-poetry.org | python -
 
-#RUN $HOME/.poetry/bin/poetry config virtualenvs.create false
-#RUN $HOME/.poetry/bin/poetry install --no-dev
-#RUN $HOME/.poetry/bin/poetry export -f requirements.txt >> requirements.txt
+# Create a conda environment with Python 3.10
+RUN conda create -n env python=3.10
+SHELL ["conda", "run", "-n", "env", "/bin/bash", "-c"]
 
-RUN $HOME/.local/bin/poetry config virtualenvs.create false
-RUN $HOME/.local/bin/poetry install --no-dev
-RUN $HOME/.local/bin/poetry export -f requirements.txt >> requirements.txt
+# Install dependencies
+RUN conda env update -n env --file environment_input.yml
+
+# Export the environment to a yml file
+RUN conda env export > environment.yml
 
 #
 # Prod image
 #
 
-FROM python:3.9-slim-bullseye AS runtime
+FROM continuumio/miniconda3 AS runtime
 
 WORKDIR /app
-COPY --from=builder /app/requirements.txt .
-RUN pip install --no-cache-dir -r requirements.txt
+COPY --from=builder /app/environment.yml .
+
+# Create a conda environment with Python 3.10
+RUN conda create -n env python=3.10
+SHELL ["conda", "run", "-n", "env", "/bin/bash", "-c"]
+
+# Install dependencies
+RUN conda env update -n env --file environment.yml
+
+# Ensure conda environment is activated by default
+ENV PATH /opt/conda/envs/env/bin:$PATH
