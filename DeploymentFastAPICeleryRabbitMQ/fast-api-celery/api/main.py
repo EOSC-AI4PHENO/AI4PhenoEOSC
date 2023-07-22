@@ -24,7 +24,7 @@ async def get_ImageWellExposedModel_get_sunrise_sunset_result(task_id):
     """Fetch result for given task_id"""
     task = AsyncResult(task_id)
     if not task.ready():
-        print(app.url_path_for('schedule_prediction'))
+        #print(app.url_path_for('schedule_prediction'))
         return JSONResponse(status_code=202, content={'task_id': str(task_id), 'status': 'Processing'})
     result = task.get()
     return {'task_id': task_id, 'status': 'Success', 'result': result}
