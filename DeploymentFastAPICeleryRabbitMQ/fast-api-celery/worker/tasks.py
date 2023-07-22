@@ -5,6 +5,7 @@ from celery import Task
 from .celery import worker
 from datetime import datetime
 
+
 class PredictTask(Task):
     """
     Abstraction of Celery's Task class to support loading ML model.
@@ -31,11 +32,24 @@ class PredictTask(Task):
 
 
 @worker.task(ignore_result=False,
-          bind=True,
-          base=PredictTask,
-          path=('logic.model', 'ImageWellExposedModel'),
-          name='{}.{}'.format(__name__, 'ImageWellExposed'))
+             bind=True,
+             base=PredictTask,
+             path=('logic.model', 'ImageWellExposedModel'),
+             name='{}.{}'.format(__name__, 'ImageWellExposed'))
 
-def get_sunrise_sunset(self, lat:float, lon:float, UTCdate:datetime):
+def convert_to_datetime(date_str):
+    formats = ["%Y-%m-%dT%H:%M:%S.%fZ", "%Y-%m-%d %H:%M:%S.%f%z"]
+
+    for fmt in formats:
+        try:
+            return datetime.strptime(date_str, fmt)
+        except ValueError:
+            pass
+
+    raise ValueError("Nieznany format daty: {}".format(date_str))
+
+
+def get_sunrise_sunset(self, lat: float, lon: float, UTCdate: datetime):
+    UTCdate = convert_to_datetime(UTCdate)
     a2 = UTCdate.strftime('%Y/%m/%d')
     return self.model.get_sunrise_sunset(lat, lon, UTCdate)
