@@ -14,8 +14,9 @@ class ImageWellExposedModel:
     def __init__(self):
         self.m = 7.0
         self.q = 0.5
-    def get_sunrise_sunset(self,lat, lon, UTCdate):
+    def get_sunrise_sunset(self, lat: float, lon: float, UTCdate: datetime) -> tuple[datetime, datetime]:
         observer = Observer(latitude=lat, longitude=lon)
+
         s = sun(observer, date=UTCdate)
 
         UTCsunrise = s['sunrise'].astimezone(pytz.timezone('UTC'))
