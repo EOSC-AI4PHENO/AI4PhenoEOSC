@@ -3,7 +3,7 @@ import sys
 import logging
 from celery import Task
 from .celery import worker
-
+from datetime import datetime
 
 class PredictTask(Task):
     """
@@ -36,5 +36,5 @@ class PredictTask(Task):
           path=('logic.model', 'ImageWellExposedModel'),
           name='{}.{}'.format(__name__, 'ImageWellExposed'))
 
-def get_sunrise_sunset(self, lat, lon, UTCdate):
+def get_sunrise_sunset(self, lat:float, lon:float, UTCdate:datetime):
     return self.model.get_sunrise_sunset(lat, lon, UTCdate)
