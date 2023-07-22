@@ -1,11 +1,13 @@
 name: environment_input
 channels:
+  - conda-forge
   - defaults
 dependencies:
   - _libgcc_mutex=0.1=main
   - _openmp_mutex=5.1=1_gnu
+  - astral=3.2=py310hff52083_1
   - bzip2=1.0.8=h7b6447c_0
-  - ca-certificates=2023.05.30=h06a4308_0
+  - ca-certificates=2023.7.22=hbcca054_0
   - ld_impl_linux-64=2.38=h1181459_1
   - libffi=3.4.4=h6a678d5_0
   - libgcc-ng=11.2.0=h1234567_1
@@ -16,6 +18,7 @@ dependencies:
   - openssl=3.0.9=h7f8727e_0
   - pip=23.1.2=py310h06a4308_0
   - python=3.10.12=h955ad1f_0
+  - python_abi=3.10=2_cp310
   - readline=8.2=h5eee18b_0
   - setuptools=67.8.0=py310h06a4308_0
   - sqlite=3.41.2=h5eee18b_0
@@ -30,8 +33,7 @@ dependencies:
       - asgiref==3.5.2
       - asttokens==2.0.5
       - async-timeout==4.0.2
-      #- attrs==21.4.0
-      - attrs
+      - attrs==23.1.0
       - backcall==0.2.0
       - billiard==3.6.4.0
       - build==0.10.0
@@ -133,7 +135,6 @@ dependencies:
       - wcwidth==0.2.5
       - webencodings==0.5.1
       - websockets==10.3
-      #- worker==0.1.0
       - wrapt==1.14.1
       - zipp==3.16.2
 prefix: /home/kurekj/anaconda3/envs/environment_input
