@@ -5,6 +5,13 @@ worker = Celery("myapp", backend=os.getenv("CELERY_BACKEND_URL"), broker=os.gete
 
 #worker = Celery("myapp", backend=os.getenv("CELERY_BACKEND_URL"), broker=os.getenv("CELERY_BROKER_URL"), include=["worker.tasks", "logic"])
 
+worker.conf.task_serializer = 'pickle'
+worker.conf.result_serializer = 'pickle'
+worker.conf.event_serializer = 'pickle'
+worker.conf.accept_content = ['pickle']
+worker.conf.task_accept_content = ['pickle']
+worker.conf.result_accept_content = ['pickle']
+worker.conf.event_accept_content = ['pickle']
 
 # Optional configuration, see the application user guide.
 worker.conf.update(
