@@ -13,9 +13,9 @@ async def schedule_ImageWellExposedModel_get_sunrise_sunset(model_input: Sunrise
     """Create celery prediction task. Return task_id to client in order to retrieve result"""
     # task_id = get_sunrise_sunset.delay(dict(model_input).get("lat"), dict(model_input).get("lon"),
     #                                    dict(model_input).get("UTCdate"))
-    #task_id = get_sunrise_sunset.delay(model_input.lat, model_input.lon, model_input.UTCdate)
-    task_id = get_sunrise_sunset.apply_async(args=[model_input.lat, model_input.lon, model_input.UTCdate],
-                                             serializer='pickle')
+    task_id = get_sunrise_sunset.delay(model_input.lat, model_input.lon, model_input.UTCdate)
+    #task_id = get_sunrise_sunset.apply_async(args=[model_input.lat, model_input.lon, model_input.UTCdate],
+    #                                         serializer='pickle')
     return {'task_id': str(task_id), 'status': 'Processing'}
 
 
