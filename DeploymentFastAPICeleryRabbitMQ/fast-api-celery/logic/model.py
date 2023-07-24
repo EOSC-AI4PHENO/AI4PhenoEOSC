@@ -19,6 +19,8 @@ class ImageWellExposedModel:
 
     def convert_to_datetime(self, date_str) -> datetime:
         formats = ["%Y-%m-%dT%H:%M:%S.%fZ", "%Y-%m-%d %H:%M:%S.%f%z"]
+        #2023-07-24T15:30:00.000Z
+        #2023-07-24 15:30:00.000+0200
 
         for fmt in formats:
             try:
@@ -29,7 +31,7 @@ class ImageWellExposedModel:
         raise ValueError("Nieznany format daty: {}".format(date_str))
 
     def get_sunrise_sunset(self, lat: float, lon: float, UTCdate: datetime) -> tuple[datetime, datetime]:
-        UTCdate = self.convert_to_datetime(UTCdate)
+        #UTCdate = self.convert_to_datetime(UTCdate)
         #a3 = UTCdate.strftime('%Y/%m/%d')
         observer = Observer(latitude=lat, longitude=lon)
         s = sun(observer, date=UTCdate)
