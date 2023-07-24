@@ -4,7 +4,9 @@ import logging
 from celery import Task
 from .celery import worker
 from datetime import datetime
-
+import numpy as np
+import cv2
+import base64
 
 class PredictTask(Task):
     """
@@ -37,7 +39,11 @@ class PredictTask(Task):
              path=('logic.model', 'ImageWellExposedModel'),
              name='{}.{}'.format(__name__, 'ImageWellExposed'))
 
-
+def is_Image_WellExposedByHisto(self, imageBase64:str, lat: float, lon: float, UTCdate: datetime):
+    image_bytes = base64.b64decode(imageBase64)
+    image_np = np.frombuffer(image_bytes, dtype=np.uint8)
+    imageRGB = cv2.imdecode(image_np, cv2.IMREAD_COLOR)
+    return self.model.is_Image_WellExposedByHisto(imageRGB, lat, lon, UTCdate)
 
 def get_sunrise_sunset(self, lat: float, lon: float, UTCdate: datetime):
     return self.model.get_sunrise_sunset(lat, lon, UTCdate)
