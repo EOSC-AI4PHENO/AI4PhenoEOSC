@@ -13,7 +13,7 @@ services:
     build: ./redis
     container_name: redis-backend
     networks:
-      - production-boilerplate
+      - production-AI4PhenoEOSC
     ports:
       - "6379:6379"
 
@@ -22,7 +22,7 @@ services:
     build: ./rabbit-mq
     container_name: rabbitmq-broker
     networks:
-      - production-boilerplate
+      - production-AI4PhenoEOSC
     ports:
       - "5672:5672"
       - "15672:15672"
@@ -35,7 +35,7 @@ services:
     image: fast-api-celery-custom
     container_name: celery-worker
     networks:
-      - production-boilerplate
+      - production-AI4PhenoEOSC
     environment:
       - CELERY_BROKER_URL=${CELERY_BROKER_URL}
       - CELERY_BACKEND_URL=${CELERY_BACKEND_URL}
@@ -50,7 +50,7 @@ services:
     image: fast-api-celery-custom
     container_name: celery-flower
     networks:
-      - production-boilerplate
+      - production-AI4PhenoEOSC
     environment:
       - CELERY_BROKER_URL=${CELERY_BROKER_URL}
       - CELERY_BACKEND_URL=${CELERY_BACKEND_URL}
@@ -67,7 +67,7 @@ services:
     image: fast-api-celery-custom
     container_name: fastapi
     networks:
-      - production-boilerplate
+      - production-AI4PhenoEOSC
     environment:
       - CELERY_BROKER_URL=${CELERY_BROKER_URL}
       - CELERY_BACKEND_URL=${CELERY_BACKEND_URL}
