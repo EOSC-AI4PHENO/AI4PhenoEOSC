@@ -17,8 +17,12 @@ worker = Celery("myapp", backend=os.getenv("CELERY_BACKEND_URL"), broker=os.gete
 
 
 # Optional configuration, see the application user guide.
+# worker.conf.update(
+#     result_expires=3600,
+# )
+
 worker.conf.update(
-    result_expires=3600,
+    result_expires=86400,
 )
 
 if __name__ == "__main__":

@@ -43,7 +43,8 @@ class ImageWellExposedModel:
 
         return UTCsunrise, UTCsunset
 
-    def is_Image_WellExposedByHisto(self, imageRGB: np.ndarray, lat: float = 52.2297, lon: float = 21.0122,
+    def is_Image_WellExposedByHisto(self, imageRGB: np.ndarray, filename: str, lat: float = 52.2297,
+                                    lon: float = 21.0122,
                                     UTCdate: datetime = None) -> tuple[bool, str]:
         # Wczytaj obraz w skali szarości
 
@@ -75,16 +76,16 @@ class ImageWellExposedModel:
 
             # Jeżeli czas zdjęcia jest po zachodzie słońca lub przed wschodem słońca
             if image_time > UTCsunset.time() or image_time < UTCsunrise.time():
-                return False, 'Image is too dark due to being taken after sunset or before sunrise'
+                return False, 'Image is too dark due to being taken after sunset or before sunrise', filename
 
         # Sprawdź, czy obraz jest za ciemny
         if dark_pixels_stats > low_threshold:  # 0.7
-            return False, 'Image is too dark'
+            return False, 'Image is too dark', filename
         # Sprawdź, czy obraz jest za jasny
         elif bright_pixels_stats > high_threshold:  # 0.5
-            return False, 'Image is too bright'
+            return False, 'Image is too bright', filename
         else:
-            return True, 'Image is well exposed'
+            return True, 'Image is well exposed', filename
 
 # # Tworzę instancję klasy WellExposedModel
 # model = ImageWellExposedModel()

@@ -48,9 +48,10 @@ namespace ConsoleAppAI4PhenoTest
     #region class ImageWellExposedOutput
     public class ImageWellExposedOutput
     {
-        public string TaskId { get; set; }
-        public string Status { get; set; }
-        public Tuple<bool, string> Result { get; set; }
+        public string task_id { get; set; }
+        public string status { get; set; }
+        //public Tuple<bool, string> result { get; set; }
+        public List<object> result { get; set; }
     }
     #endregion
 
@@ -97,7 +98,7 @@ namespace ConsoleAppAI4PhenoTest
         #region static SunriseSunsetOutput GetSunriseSunsetCallResult(string task_id)
         public static SunriseSunsetOutput GetSunriseSunsetCallResult(string task_id)
         {
-            string url = string.Format("{0}/ImageWellExposedModel/result/{1}", baseUrl, task_id);
+            string url = string.Format("{0}/ImageWellExposedModel/get_sunrise_sunset_result/{1}", baseUrl, task_id);
 
             var response = client.GetAsync(url).Result;
 
@@ -155,6 +156,29 @@ namespace ConsoleAppAI4PhenoTest
             Console.WriteLine($"TaskId: {objTaskTicket.task_id}, Status: {objTaskTicket.Status}");
 
             return objTaskTicket;
+        }
+        #endregion
+
+        #region static ImageWellExposedOutput GetisImageWellExposedByHistoCallResult(string task_id)
+        public static ImageWellExposedOutput GetisImageWellExposedByHistoCallResult(string task_id)
+        {
+            string url = string.Format("{0}/ImageWellExposedModel/is_Image_WellExposedByHisto_result/{1}", baseUrl, task_id);
+
+            var response = client.GetAsync(url).Result;
+
+            if (!response.IsSuccessStatusCode)
+            {
+                Console.WriteLine(response.Content.ReadAsStringAsync().Result);
+            }
+
+            response.EnsureSuccessStatusCode();
+            var responseBody = response.Content.ReadAsStringAsync().Result;
+
+            ImageWellExposedOutput objImageWellExposedOutput = JsonConvert.DeserializeObject<ImageWellExposedOutput>(responseBody);
+
+            Console.WriteLine($"TaskId: {objImageWellExposedOutput.task_id}, Status: {objImageWellExposedOutput.status}, isWellExposed: {objImageWellExposedOutput.result.Item1.ToString()}, isWellExposedText: {objImageWellExposedOutput.result.Item2}");
+
+            return objImageWellExposedOutput;
         }
         #endregion
     }
