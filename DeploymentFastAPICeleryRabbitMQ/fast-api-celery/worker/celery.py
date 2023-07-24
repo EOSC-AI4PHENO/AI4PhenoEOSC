@@ -2,8 +2,12 @@ from celery import Celery
 import os
 
 worker = Celery("myapp", backend=os.getenv("CELERY_BACKEND_URL"), broker=os.getenv("CELERY_BROKER_URL"),
-                include=["worker.tasks", "logic"], task_serializer='pickle', result_serializer='pickle',
-                accept_content=['pickle'])
+                include=["worker.tasks", "logic"], task_serializer='json', result_serializer='json',
+                accept_content=['json'])
+
+# worker = Celery("myapp", backend=os.getenv("CELERY_BACKEND_URL"), broker=os.getenv("CELERY_BROKER_URL"),
+#                 include=["worker.tasks", "logic"], task_serializer='pickle', result_serializer='pickle',
+#                 accept_content=['pickle'])
 
 # worker = Celery("myapp", backend=os.getenv("CELERY_BACKEND_URL"), broker=os.getenv("CELERY_BROKER_URL"),
 #                 include=["worker.tasks", "logic"], task_serializer='msgpack', result_serializer='msgpack',
