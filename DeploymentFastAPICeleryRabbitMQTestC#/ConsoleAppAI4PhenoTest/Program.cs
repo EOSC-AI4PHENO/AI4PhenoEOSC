@@ -2,6 +2,7 @@
 
 using ConsoleAppAI4PhenoTest;
 
-ImageWellExposedTest.GetSunriseSunsetCall();
+//Ticket objtaskTicket1 = ImageWellExposedTest.PostSunriseSunsetCall();
+//SunriseSunsetOutput objSunriseSunsetOutput=ImageWellExposedTest.GetSunriseSunsetCallResult(objtaskTicket1.task_id);
 
-Console.WriteLine("Hello, World!");
+Ticket objtaskTicket2 = ImageWellExposedTest.PostisImageWellExposedByHistoCall();
