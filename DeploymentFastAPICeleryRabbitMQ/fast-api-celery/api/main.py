@@ -2,15 +2,14 @@ from fastapi import FastAPI, File, UploadFile
 from fastapi.responses import JSONResponse
 from celery.result import AsyncResult
 
-
 from worker.tasks import get_sunrise_sunset,is_Image_WellExposedByHisto
 from .models import SunriseSunsetInput, TaskTicket, SunriseSunsetOutput
-from .models import ImageExposureInput, ImageExposureOutput
+from .models import ImageWellExposedInput, ImageWellExposedOutput
 
 app = FastAPI()
 
 @app.post('/ImageWellExposedModel/is_Image_WellExposedByHisto', response_model=TaskTicket, status_code=202)
-async def schedule_ImageWellExposedModel_is_Image_WellExposedByHisto(model_input: ImageExposureInput):
+async def schedule_ImageWellExposedModel_is_Image_WellExposedByHisto(model_input: ImageWellExposedInput):
     """Create celery prediction task. Return task_id to client in order to retrieve result"""
     task_id = is_Image_WellExposedByHisto.delay(model_input.imageRGB, model_input.lat, model_input.lon, model_input.UTCdate)
     return {'task_id': str(task_id), 'status': 'Processing'}
