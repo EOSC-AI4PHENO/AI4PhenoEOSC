@@ -1,7 +1,7 @@
 from pydantic import BaseModel
 from datetime import datetime
 import numpy as np
-
+from typing import Optional
 
 class TaskTicket(BaseModel):
     """ID and status for the async tasks"""
@@ -47,7 +47,7 @@ class AutomaticAppleSegmentationInput(BaseModel):
     """Model features as input for prediction"""
     imageBase64: str  # base64 encoded image
     filename: str
-    jsonBase64ImageROIs: str
+    jsonBase64ImageROIs: Optional[str]  # optional parameter
 
 class AutomaticAppleSegmentationOutput(BaseModel):
     """Model features as input for prediction"""

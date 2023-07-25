@@ -8,9 +8,16 @@ class AppleSegmentationModel:
         self.m = 7.0  # not used only example
         self.q = 0.5  # not used only example
 
-    def get_apple_automatic_rois(self, imageBase64: str, filename: str, jsonBase64ImageROIs: str) -> tuple[str, str]:
+    def get_apple_automatic_rois(self, imageRGB: np.ndarray, filename: str, jsonBase64ImageROIs: str) -> tuple[str, str]:
+        #jsonBase64AppleROIs = ''
+
+        if jsonBase64ImageROIs is None:
+            jsonBase64AppleROIs = 'jsonBase64ImageROIs is None'
+        else:
+            jsonBase64AppleROIs = 'jsonBase64ImageROIs is NOT None'
+
         filename = filename
-        jsonBase64AppleROIs = 'json2323...'
+
         return filename, jsonBase64AppleROIs
 
 # # Tworzę instancję klasy AppleSegmentationModel
