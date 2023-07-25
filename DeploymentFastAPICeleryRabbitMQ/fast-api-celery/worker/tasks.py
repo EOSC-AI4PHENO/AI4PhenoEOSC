@@ -52,3 +52,12 @@ def is_Image_WellExposedByHisto(self, imageBase64:str, filename:str, lat: float,
              name='{}.{}'.format(__name__, 'get_sunrise_sunset'))
 def get_sunrise_sunset(self, lat: float, lon: float, UTCdate: datetime):
     return self.model.get_sunrise_sunset(lat, lon, UTCdate)
+
+@worker.task(ignore_result=False,
+             bind=True,
+             base=PredictTask,
+             path=('logic.modelApple', 'AppleSegmentationModel'),
+             name='{}.{}'.format(__name__, 'get_apple_automatic_rois'))
+def get_apple_automatic_rois(self, imageBase64: str, filename: str, jsonBase64ImageROIs: str):
+    return self.model.get_apple_automatic_rois(imageBase64, filename, jsonBase64ImageROIs)
+

@@ -40,4 +40,18 @@ class ImageWellExposedOutput(BaseModel):
     status: str
     WellExposedStatusFlag: bool
     WellExposedStatusDesc: str
-    filename:  str
+    filename: str
+
+
+class AutomaticAppleSegmentationInput(BaseModel):
+    """Model features as input for prediction"""
+    imageBase64: str  # base64 encoded image
+    filename: str
+    jsonBase64ImageROIs: str
+
+class AutomaticAppleSegmentationOutput(BaseModel):
+    """Model features as input for prediction"""
+    task_id: str
+    status: str
+    filename: str
+    jsonBase64AppleROIs: str

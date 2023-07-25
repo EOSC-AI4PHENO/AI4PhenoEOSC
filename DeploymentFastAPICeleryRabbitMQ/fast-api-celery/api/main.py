@@ -2,12 +2,12 @@ from fastapi import FastAPI, File, UploadFile
 from fastapi.responses import JSONResponse
 from celery.result import AsyncResult
 
-from worker.tasks import get_sunrise_sunset, is_Image_WellExposedByHisto
+from worker.tasks import get_sunrise_sunset, is_Image_WellExposedByHisto, get_apple_automatic_rois
 from .models import SunriseSunsetInput, TaskTicket, SunriseSunsetOutput
 from .models import ImageWellExposedInput, ImageWellExposedOutput
+from .models import AutomaticAppleSegmentationInput, AutomaticAppleSegmentationOutput
 
 app = FastAPI()
-
 
 @app.post('/ImageWellExposedModel/is_Image_WellExposedByHisto', response_model=TaskTicket, status_code=202)
 async def schedule_ImageWellExposedModel_is_Image_WellExposedByHisto(model_input: ImageWellExposedInput):
@@ -41,7 +41,6 @@ async def schedule_ImageWellExposedModel_get_sunrise_sunset(model_input: Sunrise
     # return {'task_id': str(task_id), 'status': 'Processing'}
     return TaskTicket(task_id=str(task_id), status='Processing')
 
-
 @app.get('/ImageWellExposedModel/get_sunrise_sunset_result/{task_id}', response_model=SunriseSunsetOutput,
          status_code=200,
          responses={202: {'model': TaskTicket, 'description': 'Accepted: Not Ready'}})
@@ -55,3 +54,23 @@ async def get_ImageWellExposedModel_get_sunrise_sunset_result(task_id):
     UTCsunrise, UTCsunset = result
     # return {'task_id': task_id, 'status': 'Success', 'UTCsunrise': UTCsunrise, 'UTCsunset': UTCsunset}
     return SunriseSunsetOutput(task_id=task_id, status='Success', UTCsunrise=UTCsunrise, UTCsunset=UTCsunset)
+
+@app.post('/AutomaticAppleSegmentationModel/get_apple_automatic_rois', response_model=TaskTicket, status_code=202)
+async def schedule_AutomaticAppleSegmentationModel_get_apple_automatic_rois(model_input: AutomaticAppleSegmentationInput):
+    """Create celery prediction task. Return task_id to client in order to retrieve result"""
+    task_id = get_apple_automatic_rois.delay(model_input.imageBase64, model_input.filename, model_input.jsonBase64ImageROIs)
+    # return {'task_id': str(task_id), 'status': 'Processing'}
+    return TaskTicket(task_id=str(task_id), status='Processing')
+
+@app.get('/AutomaticAppleSegmentationModel/get_apple_automatic_rois_result/{task_id}', response_model=AutomaticAppleSegmentationOutput,
+         status_code=200,
+         responses={202: {'model': TaskTicket, 'description': 'Accepted: Not Ready'}})
+async def get_AutomaticAppleSegmentationModel_get_apple_automatic_rois_result(task_id):
+    """Fetch result for given task_id"""
+    task = AsyncResult(task_id)
+    if not task.ready():
+        # print(app.url_path_for('schedule_prediction'))
+        return JSONResponse(status_code=202, content={'task_id': str(task_id), 'status': 'Processing'})
+    result = task.get()
+    filename, jsonBase64AppleROIs = result
+    return AutomaticAppleSegmentationOutput(task_id=task_id, status='Success', filename=filename, jsonBase64AppleROIs=jsonBase64AppleROIs)
