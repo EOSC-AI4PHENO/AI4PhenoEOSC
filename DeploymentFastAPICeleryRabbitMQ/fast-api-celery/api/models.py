@@ -40,3 +40,4 @@ class ImageWellExposedOutput(BaseModel):
     status: str
     WellExposedStatusFlag: bool
     WellExposedStatusDesc: str
+    filename:  str
