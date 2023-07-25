@@ -7,4 +7,4 @@ using ConsoleAppAI4PhenoTest;
 
 //Ticket objtaskTicket2 = ImageWellExposedTest.PostisImageWellExposedByHistoCall();
 
-ImageWellExposedOutput objImageWellExposedOutput = ImageWellExposedTest.GetisImageWellExposedByHistoCallResult("9c368994-a4af-4fa9-98ed-c0eed37663bf");
+//ImageWellExposedOutput objImageWellExposedOutput = ImageWellExposedTest.GetisImageWellExposedByHistoCallResult("9c368994-a4af-4fa9-98ed-c0eed37663bf");

@@ -21,7 +21,8 @@ class SunriseSunsetOutput(BaseModel):
     """Final result"""
     task_id: str
     status: str
-    result: tuple[datetime, datetime]
+    UTCsunrise: datetime
+    UTCsunset: datetime
 
 
 class ImageWellExposedInput(BaseModel):
@@ -37,4 +38,5 @@ class ImageWellExposedOutput(BaseModel):
     """Final result"""
     task_id: str
     status: str
-    result: tuple[bool, str]
+    WellExposedStatusFlag: bool
+    WellExposedStatusDesc: str
