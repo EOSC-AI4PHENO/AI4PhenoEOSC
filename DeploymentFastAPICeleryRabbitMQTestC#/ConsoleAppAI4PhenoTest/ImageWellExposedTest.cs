@@ -31,8 +31,8 @@ namespace ConsoleAppAI4PhenoTest
     {
         public string task_id { get; set; }
         public string status { get; set; }
-        public int UTCsunrise { get; set; }
-        public int UTCsunset { get; set; }
+        public DateTime UTCsunrise { get; set; }
+        public DateTime UTCsunset { get; set; }
     }
     #endregion
 
@@ -40,6 +40,7 @@ namespace ConsoleAppAI4PhenoTest
     public class ImageWellExposedInput
     {
         public string imageBase64 { get; set; }
+        public string filename { get; set; }
         public double lat { get; set; }
         public double lon { get; set; }
         public DateTime UTCdate { get; set; }
@@ -53,6 +54,7 @@ namespace ConsoleAppAI4PhenoTest
         public string status { get; set; }
         public bool WellExposedStatusFlag { get; set; }
         public string WellExposedStatusDesc { get; set; }
+        public string filename { get; set; }
 
     }
     #endregion
@@ -126,14 +128,18 @@ namespace ConsoleAppAI4PhenoTest
         {
             string fullname = @"E:\!DeepTechnology\!Customers\!2023\Seth Software EOSC-AI4Pheno\AI4PhenoEOSC\linden\LindenClassification\Linden_Photos_ROI\0\2022-01-01_00.06.40_class_0_ROI.jpg";
 
+            string filename = System.IO.Path.GetFileName(fullname);
+
             string imagejson = ImageConverter.ImageToBase64(fullname);
 
             var modelInput = new ImageWellExposedInput
             {
                 imageBase64 = imagejson,
+                filename = filename,
                 lat = 52.2297f,
                 lon = 21.0122f,
-                UTCdate = DateTime.UtcNow
+                //UTCdate = DateTime.UtcNow
+                UTCdate = new DateTime(2022,01,01,00,06,40)
             };
 
             StringContent stringContent = new StringContent(JsonConvert.SerializeObject(modelInput), Encoding.UTF8, "application/json");
@@ -178,7 +184,7 @@ namespace ConsoleAppAI4PhenoTest
 
             ImageWellExposedOutput objImageWellExposedOutput = JsonConvert.DeserializeObject<ImageWellExposedOutput>(responseBody);
 
-            Console.WriteLine($"TaskId: {objImageWellExposedOutput.task_id}, Status: {objImageWellExposedOutput.status}, isWellExposed: {objImageWellExposedOutput.WellExposedStatusFlag}, isWellExposedText: {objImageWellExposedOutput.WellExposedStatusDesc}");
+            Console.WriteLine($"TaskId: {objImageWellExposedOutput.task_id}, Status: {objImageWellExposedOutput.status}, isWellExposed: {objImageWellExposedOutput.WellExposedStatusFlag}, isWellExposedText: {objImageWellExposedOutput.WellExposedStatusDesc},filename:{objImageWellExposedOutput.filename}");
 
             return objImageWellExposedOutput;
         }
