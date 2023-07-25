@@ -37,7 +37,7 @@ class PredictTask(Task):
              bind=True,
              base=PredictTask,
              path=('logic.model', 'ImageWellExposedModel'),
-             name='{}.{}'.format(__name__, 'ImageWellExposed'))
+             name='{}.{}'.format(__name__, 'is_Image_WellExposedByHisto'))
 
 def is_Image_WellExposedByHisto(self, imageBase64:str, filename:str, lat: float, lon: float, UTCdate: datetime):
     image_bytes = base64.b64decode(imageBase64)
@@ -45,5 +45,10 @@ def is_Image_WellExposedByHisto(self, imageBase64:str, filename:str, lat: float,
     imageRGB = cv2.imdecode(image_np, cv2.IMREAD_COLOR)
     return self.model.is_Image_WellExposedByHisto(imageRGB, filename, lat, lon, UTCdate)
 
+@worker.task(ignore_result=False,
+             bind=True,
+             base=PredictTask,
+             path=('logic.model', 'ImageWellExposedModel'),
+             name='{}.{}'.format(__name__, 'get_sunrise_sunset'))
 def get_sunrise_sunset(self, lat: float, lon: float, UTCdate: datetime):
     return self.model.get_sunrise_sunset(lat, lon, UTCdate)

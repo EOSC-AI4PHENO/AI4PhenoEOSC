@@ -31,7 +31,8 @@ namespace ConsoleAppAI4PhenoTest
     {
         public string task_id { get; set; }
         public string status { get; set; }
-        public List<DateTime> result { get; set; }
+        public int UTCsunrise { get; set; }
+        public int UTCsunset { get; set; }
     }
     #endregion
 
@@ -50,8 +51,9 @@ namespace ConsoleAppAI4PhenoTest
     {
         public string task_id { get; set; }
         public string status { get; set; }
-        //public Tuple<bool, string> result { get; set; }
-        public List<object> result { get; set; }
+        public bool WellExposedStatusFlag { get; set; }
+        public string WellExposedStatusDesc { get; set; }
+
     }
     #endregion
 
@@ -112,7 +114,7 @@ namespace ConsoleAppAI4PhenoTest
 
             SunriseSunsetOutput objSunriseSunsetOutput = JsonConvert.DeserializeObject<SunriseSunsetOutput>(responseBody);
 
-            Console.WriteLine($"TaskId: {objSunriseSunsetOutput.task_id}, Status: {objSunriseSunsetOutput.status}, UTCsunrise: {objSunriseSunsetOutput.result[0]}, UTCsunset: {objSunriseSunsetOutput.result[1]}");
+            Console.WriteLine($"TaskId: {objSunriseSunsetOutput.task_id}, Status: {objSunriseSunsetOutput.status}, UTCsunrise: {objSunriseSunsetOutput.UTCsunrise}, UTCsunset: {objSunriseSunsetOutput.UTCsunset}");
 
 
             return objSunriseSunsetOutput;
@@ -176,7 +178,7 @@ namespace ConsoleAppAI4PhenoTest
 
             ImageWellExposedOutput objImageWellExposedOutput = JsonConvert.DeserializeObject<ImageWellExposedOutput>(responseBody);
 
-            Console.WriteLine($"TaskId: {objImageWellExposedOutput.task_id}, Status: {objImageWellExposedOutput.status}, isWellExposed: {objImageWellExposedOutput.result.Item1.ToString()}, isWellExposedText: {objImageWellExposedOutput.result.Item2}");
+            Console.WriteLine($"TaskId: {objImageWellExposedOutput.task_id}, Status: {objImageWellExposedOutput.status}, isWellExposed: {objImageWellExposedOutput.WellExposedStatusFlag}, isWellExposedText: {objImageWellExposedOutput.WellExposedStatusDesc}");
 
             return objImageWellExposedOutput;
         }
