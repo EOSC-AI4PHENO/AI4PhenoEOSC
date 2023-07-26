@@ -54,4 +54,4 @@ class AutomaticAppleSegmentationOutput(BaseModel):
     task_id: str
     status: str
     filename: str
-    jsonBase64AppleROIs: str
+    jsonBase64AppleROIs: Optional[str] = None 
