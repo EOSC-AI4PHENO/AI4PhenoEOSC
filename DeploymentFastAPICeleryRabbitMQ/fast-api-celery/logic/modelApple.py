@@ -8,6 +8,7 @@ from .grpcJarek2 import infer
 import skimage
 from skimage.measure import find_contours
 import base64
+import json
 
 class AppleDeploymentConfig(Config):
     """Configuration for training on the toy  dataset.
@@ -115,9 +116,10 @@ class AppleSegmentationModel:
         r = results[0]
 
         json_results = self.results_to_json(r, filename, image_size)
+        json_str = json.dumps(json_results)
 
-        byte_content = json_results.encode('utf-8')
-        jsonBase64AppleROIs = base64.b64encode(byte_content)
+        # Koduj ciąg tekstowy do base64
+        jsonBase64AppleROIs = base64.b64encode(json_str.encode()).decode()
 
         if jsonBase64ImageROIs is None:
             b = 5
