@@ -29,8 +29,11 @@ import tensorflow.keras.models as KM
 #from mrcnn import grpcJarek2
 #from mrcnn import RESTAPI
 #from mrcnn import utils
-import grpcJarek2
-import utils
+#import grpcJarek2
+#from .grpcJarek2 import infer
+#import utils
+from . import grpcJarek2
+from . import utils
 ############################################################
 #  Utility Functions
 ############################################################
