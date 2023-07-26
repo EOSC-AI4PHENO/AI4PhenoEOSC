@@ -47,11 +47,11 @@ class AutomaticAppleSegmentationInput(BaseModel):
     """Model features as input for prediction"""
     imageBase64: str  # base64 encoded image
     filename: str
-    jsonBase64ImageROIs: Optional[str]  # optional parameter
+    jsonBase64ImageROIs: Optional[str] = None   # optional parameter
 
 class AutomaticAppleSegmentationOutput(BaseModel):
     """Model features as input for prediction"""
     task_id: str
     status: str
     filename: str
-    jsonBase64AppleROIs: Optional[str] = None 
+    jsonBase64AppleROIs: str
