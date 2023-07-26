@@ -60,7 +60,8 @@ def get_sunrise_sunset(self, lat: float, lon: float, UTCdate: datetime):
              name='{}.{}'.format(__name__, 'get_apple_automatic_rois'))
 def get_apple_automatic_rois(self, imageBase64: str, filename: str, jsonBase64ImageROIs: str):
     image_bytes = base64.b64decode(imageBase64)
+    image_size = len(image_bytes)
     image_np = np.frombuffer(image_bytes, dtype=np.uint8)
     imageRGB = cv2.imdecode(image_np, cv2.IMREAD_COLOR)
-    return self.model.get_apple_automatic_rois(imageRGB, filename, jsonBase64ImageROIs)
+    return self.model.get_apple_automatic_rois(imageRGB, image_size, filename, jsonBase64ImageROIs)
 
