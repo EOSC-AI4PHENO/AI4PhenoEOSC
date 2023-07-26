@@ -3,7 +3,8 @@ import cv2
 import numpy as np
 #import modelJarek as modellib
 from .modelJarek import MaskRCNN
-from config import Config
+from .config import Config
+from .grpcJarek2 import infer
 import skimage
 from skimage.measure import find_contours
 import base64
