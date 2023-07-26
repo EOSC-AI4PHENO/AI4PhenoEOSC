@@ -60,3 +60,9 @@ http://10.0.20.50:3000
 ----------------------------------------------------
 promql dla grafany:
 (avg(rate(nv_inference_request_duration_us[5m])) by (model) / avg(rate(nv_inference_count[5m])) by (model)) / 1000000
+----------------------------------------------------
+
+| AppleMaskRCNNModel | 1       | UNAVAILABLE: Internal: unable to auto-complete model configuration for 'AppleMaskRCNNModel', failed to load model: Read less bytes than requested |
+|                    |         |         [[{{function_node __inference__traced_restore_69679}}{{node RestoreV2}}]]                                                                       |
+| ExampleCNNModelv1  | 1       | UNAVAILABLE: Internal: unable to auto-complete model configuration for 'ExampleCNNModelv1', failed to load model: Read less bytes than requested  |
+|                    |         |         [[{{function_node __inference__traced_restore_77226}}{{node RestoreV2}}]]   
