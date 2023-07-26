@@ -6,6 +6,7 @@ dependencies:
   - _libgcc_mutex=0.1=conda_forge
   - _openmp_mutex=4.5=2_gnu
   - amqp=5.1.1=pyhd8ed1ab_0
+  - annotated-types=0.5.0=pyhd8ed1ab_0
   - aom=3.5.0=h27087fc_0
   - astral=3.2=py310hff52083_1
   - backports=1.0=pyhd8ed1ab_3
@@ -88,6 +89,8 @@ dependencies:
   - prompt-toolkit=3.0.39=pyha770c72_0
   - prompt_toolkit=3.0.39=hd8ed1ab_0
   - pthread-stubs=0.4=h36c2ea0_1001
+  - pydantic=2.1.1=pyhd8ed1ab_0
+  - pydantic-core=2.4.0=py310hcb5633a_0
   - pysocks=1.7.1=pyha2e5f31_6
   - python=3.10.12=h955ad1f_0
   - python-dateutil=2.8.2=pyhd8ed1ab_0
@@ -108,6 +111,8 @@ dependencies:
   - tifffile=2023.7.18=pyhd8ed1ab_0
   - tk=8.6.12=h27826a3_0
   - tritonclient=2.34.0=pyhca7485f_0
+  - typing-extensions=4.7.1=hd8ed1ab_0
+  - typing_extensions=4.7.1=pyha770c72_0
   - tzdata=2023c=h71feb2d_0
   - vine=5.0.0=pyhd8ed1ab_1
   - wcwidth=0.2.6=pyhd8ed1ab_0
@@ -122,7 +127,6 @@ dependencies:
   - zstd=1.5.2=hfc55251_7
   - pip:
       - absl-py==1.4.0
-      - annotated-types==0.5.0
       - anyio==3.7.1
       - asgiref==3.7.2
       - asttokens==2.2.1
@@ -204,8 +208,6 @@ dependencies:
       - pyasn1==0.5.0
       - pyasn1-modules==0.3.0
       - pycparser==2.21
-      - pydantic==2.0.3
-      - pydantic-core==2.3.0
       - pygments==2.15.1
       - pyparsing==3.1.0
       - pyproject-hooks==1.0.0
@@ -235,7 +237,6 @@ dependencies:
       - tornado==6.3.2
       - traitlets==5.9.0
       - trove-classifiers==2023.7.6
-      - typing-extensions==4.5.0
       - ujson==5.8.0
       - urllib3==1.26.16
       - uvicorn==0.23.1
