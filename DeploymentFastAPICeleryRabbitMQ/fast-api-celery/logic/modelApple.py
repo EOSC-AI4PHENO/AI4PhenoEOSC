@@ -1,12 +1,12 @@
 from datetime import datetime
 import cv2
 import numpy as np
-import modelJarek as modellib
+#import modelJarek as modellib
+from .modelJarek import MaskRCNN
 from config import Config
 import skimage
 from skimage.measure import find_contours
 import base64
-
 
 class AppleDeploymentConfig(Config):
     """Configuration for training on the toy  dataset.
@@ -108,7 +108,8 @@ class AppleSegmentationModel:
 
         config = AppleDeploymentConfig()
         image = self.load_image(imageRGB)
-        model = modellib.MaskRCNN(mode="inference", model_dir="/home", config=config)
+        #model = modellib.MaskRCNN(mode="inference", model_dir="/home", config=config)
+        model = MaskRCNN(mode="inference", model_dir="/home", config=config)
         results = model.detect([image], verbose=1)
         r = results[0]
 
