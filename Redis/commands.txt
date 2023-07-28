@@ -1,0 +1,9 @@
+docker run -p 8081:8081 --name redis-commander -d \
+--env REDIS_HOSTS=10.0.20.50:redis:6379 rediscommander/redis-commander:latest
+
+docker run -p 8081:8081 --name redis-commander -it \
+--env REDIS_HOSTS=local:localhost:6379 rediscommander/redis-commander:latest
+
+docker run -v redisinsight:/db -p 8881:8001 redislabs/redisinsight:latest
+
+

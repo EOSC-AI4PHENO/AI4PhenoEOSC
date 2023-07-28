@@ -35,7 +35,7 @@ namespace ConsoleAppAI4PhenoTest
         #region static Ticket PostAppleSegmentationGetAppleAutomaticRoisCall()
         public static Ticket PostAppleSegmentationGetAppleAutomaticRoisCall()
         {
-            string fullname = @"E:\!DeepTechnology\!Customers\!2023\Seth Software EOSC-AI4Pheno\AI4PhenoEOSC\apple\dataset_2023_07_05_17_28_03\test\20220811_1257_0700F136_PIC_120_CAM_2.xml.pi.jpg";
+            string fullname = @"E:\!DeepTechnology\!Customers\!2023\Seth Software EOSC-AI4Pheno\AI4PhenoEOSC\apple\dataset_2023_07_05_17_28_03\test\20220726_1137_0700F136_PIC_103_CAM_2.xml.pi.jpg";
 
             string filename = System.IO.Path.GetFileName(fullname);
 
@@ -69,6 +69,41 @@ namespace ConsoleAppAI4PhenoTest
             Console.WriteLine($"TaskId: {objTaskTicket.task_id}, Status: {objTaskTicket.Status}");
 
             return objTaskTicket;
+        }
+        #endregion
+
+        #region static AutomaticAppleSegmentationOutput GetAppleSegmentationGetAppleAutomaticRoisCallResult(string task_id)
+        public static AutomaticAppleSegmentationOutput GetAppleSegmentationGetAppleAutomaticRoisCallResult(string task_id)
+        {
+            string url = string.Format("{0}/AutomaticAppleSegmentationModel/get_apple_automatic_rois_result/{1}", baseUrl, task_id);
+
+            var response = client.GetAsync(url).Result;
+
+            if (!response.IsSuccessStatusCode)
+            {
+                Console.WriteLine(response.Content.ReadAsStringAsync().Result);
+            }
+
+            response.EnsureSuccessStatusCode();
+            var responseBody = response.Content.ReadAsStringAsync().Result;
+
+            AutomaticAppleSegmentationOutput objAutomaticAppleSegmentationOutput = JsonConvert.DeserializeObject<AutomaticAppleSegmentationOutput>(responseBody);
+
+            Console.WriteLine($"TaskId: {objAutomaticAppleSegmentationOutput.task_id}, Status: {objAutomaticAppleSegmentationOutput.status},filename:{objAutomaticAppleSegmentationOutput.filename}");
+
+
+            // Decode the Base64 string
+            byte[] base64EncodedBytes = Convert.FromBase64String(objAutomaticAppleSegmentationOutput.jsonBase64AppleROIs);
+            string jsonText = Encoding.UTF8.GetString(base64EncodedBytes);
+
+            // Path to save the JSON file
+            string filename = objAutomaticAppleSegmentationOutput.filename;
+            filename= System.IO.Path.ChangeExtension(filename, "json");
+
+            // Write JSON string to a file
+            File.WriteAllText(filename, jsonText);
+
+            return objAutomaticAppleSegmentationOutput;
         }
         #endregion
     }
