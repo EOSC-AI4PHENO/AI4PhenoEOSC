@@ -3,14 +3,12 @@ from fastapi.responses import JSONResponse
 from celery.result import AsyncResult
 import redis
 
-from worker.tasks import get_sunrise_sunset, is_Image_WellExposedByHisto, get_apple_automatic_rois, \
-    delete_task_from_redis
+from worker.tasks import get_sunrise_sunset, is_Image_WellExposedByHisto, get_apple_automatic_rois
 from .models import SunriseSunsetInput, TaskTicket, SunriseSunsetOutput, TaskRedisRemoved
 from .models import ImageWellExposedInput, ImageWellExposedOutput
 from .models import AutomaticAppleSegmentationInput, AutomaticAppleSegmentationOutput
 
 app = FastAPI()
-
 
 def delete_task_from_redis(self, task_id) -> bool:
     r = redis.Redis(host='10.0.20.50', port=6379)
