@@ -69,12 +69,4 @@ def get_apple_automatic_rois(self, imageBase64: str, filename: str, jsonBase64Im
     imageRGB = cv2.imdecode(image_np, cv2.IMREAD_COLOR)
     return self.model.get_apple_automatic_rois(imageRGB, image_size, filename, jsonBase64ImageROIs)
 
-@worker.task(ignore_result=False,
-             bind=True,
-             base=PredictTask,
-             path=('logic.modelGeneral', 'GeneralModel'),
-             name='{}.{}'.format(__name__, 'delete_task_from_redis'),
-             queue='queue4')
-def delete_task_from_redis(self, task_id: str):
-    return self.model.delete_task_from_redis(task_id)
 

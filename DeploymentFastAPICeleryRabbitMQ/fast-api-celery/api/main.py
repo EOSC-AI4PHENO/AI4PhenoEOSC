@@ -1,13 +1,36 @@
 from fastapi import FastAPI, File, UploadFile
 from fastapi.responses import JSONResponse
 from celery.result import AsyncResult
+import redis
 
-from worker.tasks import get_sunrise_sunset, is_Image_WellExposedByHisto, get_apple_automatic_rois
-from .models import SunriseSunsetInput, TaskTicket, SunriseSunsetOutput
+from worker.tasks import get_sunrise_sunset, is_Image_WellExposedByHisto, get_apple_automatic_rois, \
+    delete_task_from_redis
+from .models import SunriseSunsetInput, TaskTicket, SunriseSunsetOutput, TaskRedisRemoved
 from .models import ImageWellExposedInput, ImageWellExposedOutput
 from .models import AutomaticAppleSegmentationInput, AutomaticAppleSegmentationOutput
 
 app = FastAPI()
+
+
+def delete_task_from_redis(self, task_id) -> bool:
+    r = redis.Redis(host='10.0.20.50', port=6379)
+
+    key = "celery-task-meta-" + task_id
+
+    # Usuń klucz i sprawdź, czy udało się go usunąć
+    result = r.delete(key)
+
+    if result == 1:
+        return True  # klucz został usunięty
+    else:
+        return False  # klucz nie istniał lub wystąpił błąd
+
+
+@app.get('/Redis/delete_task_from_redis/{task_id}', response_model=TaskRedisRemoved)
+def delete_task_from_redis(task_id):
+    statusFlag = delete_task_from_redis(task_id)
+
+    return TaskRedisRemoved(statusFlag)
 
 @app.post('/ImageWellExposedModel/is_Image_WellExposedByHisto', response_model=TaskTicket, status_code=202)
 async def schedule_ImageWellExposedModel_is_Image_WellExposedByHisto(model_input: ImageWellExposedInput):
@@ -41,6 +64,7 @@ async def schedule_ImageWellExposedModel_get_sunrise_sunset(model_input: Sunrise
     # return {'task_id': str(task_id), 'status': 'Processing'}
     return TaskTicket(task_id=str(task_id), status='Processing')
 
+
 @app.get('/ImageWellExposedModel/get_sunrise_sunset_result/{task_id}', response_model=SunriseSunsetOutput,
          status_code=200,
          responses={202: {'model': TaskTicket, 'description': 'Accepted: Not Ready'}})
@@ -55,14 +79,19 @@ async def get_ImageWellExposedModel_get_sunrise_sunset_result(task_id):
     # return {'task_id': task_id, 'status': 'Success', 'UTCsunrise': UTCsunrise, 'UTCsunset': UTCsunset}
     return SunriseSunsetOutput(task_id=task_id, status='Success', UTCsunrise=UTCsunrise, UTCsunset=UTCsunset)
 
+
 @app.post('/AutomaticAppleSegmentationModel/get_apple_automatic_rois', response_model=TaskTicket, status_code=202)
-async def schedule_AutomaticAppleSegmentationModel_get_apple_automatic_rois(model_input: AutomaticAppleSegmentationInput):
+async def schedule_AutomaticAppleSegmentationModel_get_apple_automatic_rois(
+        model_input: AutomaticAppleSegmentationInput):
     """Create celery prediction task. Return task_id to client in order to retrieve result"""
-    task_id = get_apple_automatic_rois.delay(model_input.imageBase64, model_input.filename, model_input.jsonBase64ImageROIs)
+    task_id = get_apple_automatic_rois.delay(model_input.imageBase64, model_input.filename,
+                                             model_input.jsonBase64ImageROIs)
     # return {'task_id': str(task_id), 'status': 'Processing'}
     return TaskTicket(task_id=str(task_id), status='Processing')
 
-@app.get('/AutomaticAppleSegmentationModel/get_apple_automatic_rois_result/{task_id}', response_model=AutomaticAppleSegmentationOutput,
+
+@app.get('/AutomaticAppleSegmentationModel/get_apple_automatic_rois_result/{task_id}',
+         response_model=AutomaticAppleSegmentationOutput,
          status_code=200,
          responses={202: {'model': TaskTicket, 'description': 'Accepted: Not Ready'}})
 async def get_AutomaticAppleSegmentationModel_get_apple_automatic_rois_result(task_id):
@@ -73,4 +102,5 @@ async def get_AutomaticAppleSegmentationModel_get_apple_automatic_rois_result(ta
         return JSONResponse(status_code=202, content={'task_id': str(task_id), 'status': 'Processing'})
     result = task.get()
     filename, jsonBase64AppleROIs = result
-    return AutomaticAppleSegmentationOutput(task_id=task_id, status='Success', filename=filename, jsonBase64AppleROIs=jsonBase64AppleROIs)
+    return AutomaticAppleSegmentationOutput(task_id=task_id, status='Success', filename=filename,
+                                            jsonBase64AppleROIs=jsonBase64AppleROIs)

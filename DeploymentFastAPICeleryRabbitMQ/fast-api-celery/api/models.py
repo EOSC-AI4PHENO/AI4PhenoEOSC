@@ -3,6 +3,10 @@ from datetime import datetime
 import numpy as np
 from typing import Optional
 
+class TaskRedisRemoved(BaseModel):
+    """ID and status for the async tasks"""
+    statusFlag: bool
+
 class TaskTicket(BaseModel):
     """ID and status for the async tasks"""
     task_id: str
