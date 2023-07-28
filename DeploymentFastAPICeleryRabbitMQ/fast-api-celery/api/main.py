@@ -25,7 +25,7 @@ def delete_task_from_redis(self, task_id) -> bool:
 
 
 @app.get('/Redis/delete_task_from_redis/{task_id}', response_model=TaskRedisRemoved)
-def delete_task_from_redis(task_id):
+def Redis_delete_task_from_redis(task_id):
     statusFlag = delete_task_from_redis(task_id)
 
     return TaskRedisRemoved(statusFlag)
