@@ -24,11 +24,11 @@ def delete_task_from_redis(task_id) -> bool:
         return False  # klucz nie istniał lub wystąpił błąd
 
 
-@app.get('/Redis/delete_task_from_redis/{task_id}', response_model=TaskRedisRemoved)
+@app.get('/Redis/delete_task_from_redis/{task_id}', response_model=TaskRedisRemoved, status_code=200)
 def Redis_delete_task_from_redis(task_id):
-    statusFlag = delete_task_from_redis(task_id)
+    statusFlag1 = delete_task_from_redis(task_id)
 
-    return TaskRedisRemoved(statusFlag)
+    return TaskRedisRemoved(statusFlag=statusFlag1)
 
 @app.post('/ImageWellExposedModel/is_Image_WellExposedByHisto', response_model=TaskTicket, status_code=202)
 async def schedule_ImageWellExposedModel_is_Image_WellExposedByHisto(model_input: ImageWellExposedInput):
