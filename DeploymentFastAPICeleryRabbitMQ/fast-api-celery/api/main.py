@@ -10,7 +10,7 @@ from .models import AutomaticAppleSegmentationInput, AutomaticAppleSegmentationO
 
 app = FastAPI()
 
-def delete_task_from_redis(task_id) -> bool:
+def delete_task_from_redis(task_id):
     r = redis.Redis(host='10.0.20.50', port=6379)
 
     key = "celery-task-meta-" + task_id
