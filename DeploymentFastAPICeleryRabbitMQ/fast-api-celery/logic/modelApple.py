@@ -1,7 +1,7 @@
 from datetime import datetime
 import cv2
 import numpy as np
-#import modelJarek as modellib
+# import modelJarek as modellib
 from .modelJarek import MaskRCNN
 from .config import Config
 from .grpcJarek2 import infer
@@ -9,6 +9,8 @@ import skimage
 from skimage.measure import find_contours
 import base64
 import json
+from . import Convert2Polygon
+
 
 class AppleDeploymentConfig(Config):
     """Configuration for training on the toy  dataset.
@@ -105,12 +107,12 @@ class AppleSegmentationModel:
         self.m = 7.0  # not used only example
         self.q = 0.5  # not used only example
 
-    def get_apple_automatic_rois(self, imageRGB: np.ndarray, image_size: int, filename: str,
+    def get_apple_automatic_rois(self, imageRGB: np.ndarray, image_size: int, height: int, width: int, filename: str,
                                  jsonBase64ImageROIs: str) -> tuple[str, str]:
 
         config = AppleDeploymentConfig()
         image = self.load_image(imageRGB)
-        #model = modellib.MaskRCNN(mode="inference", model_dir="/home", config=config)
+        # model = modellib.MaskRCNN(mode="inference", model_dir="/home", config=config)
         model = MaskRCNN(mode="inference", model_dir="/home", config=config)
         results = model.detect([image], verbose=1)
         r = results[0]
@@ -118,13 +120,11 @@ class AppleSegmentationModel:
         json_results = self.results_to_json(r, filename, image_size)
         json_str = json.dumps(json_results)
 
-        # Koduj ciąg tekstowy do base64
-        jsonBase64AppleROIs = base64.b64encode(json_str.encode()).decode()
-
         if jsonBase64ImageROIs is None:
-            b = 5
+            # Koduj ciąg tekstowy do base64
+            jsonBase64AppleROIs = base64.b64encode(json_str.encode()).decode()
         else:
-            a = 3
+            jsonBase64ImageROIsPolygon = Convert2Polygon(jsonBase64ImageROIs, width, height)
 
         return filename, jsonBase64AppleROIs
 

@@ -67,6 +67,8 @@ def get_apple_automatic_rois(self, imageBase64: str, filename: str, jsonBase64Im
     image_size = len(image_bytes)
     image_np = np.frombuffer(image_bytes, dtype=np.uint8)
     imageRGB = cv2.imdecode(image_np, cv2.IMREAD_COLOR)
-    return self.model.get_apple_automatic_rois(imageRGB, image_size, filename, jsonBase64ImageROIs)
+    # Get the width and height
+    height, width, _ = imageRGB.shape
+    return self.model.get_apple_automatic_rois(imageRGB, image_size, height, width, filename, jsonBase64ImageROIs)
 
 
