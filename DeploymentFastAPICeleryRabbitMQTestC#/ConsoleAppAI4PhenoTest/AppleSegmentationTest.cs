@@ -35,7 +35,7 @@ namespace ConsoleAppAI4PhenoTest
         #region static Ticket PostAppleSegmentationGetAppleAutomaticRoisCall()
         public static Ticket PostAppleSegmentationGetAppleAutomaticRoisCall()
         {
-            string fullname = @"E:\!DeepTechnology\!Customers\!2023\Seth Software EOSC-AI4Pheno\AI4PhenoEOSC\apple\dataset_2023_07_05_17_28_03\test\20220726_1137_0700F136_PIC_103_CAM_2.xml.pi.jpg";
+            string fullname = @"E:\!DeepTechnology\!Customers\!2023\Seth Software EOSC-AI4Pheno\AI4PhenoEOSC\VGGBartek\20220914_1207_0700F136_PIC_150_CAM_2.xml.pi.jpg";
 
             string filename = System.IO.Path.GetFileName(fullname);
 
