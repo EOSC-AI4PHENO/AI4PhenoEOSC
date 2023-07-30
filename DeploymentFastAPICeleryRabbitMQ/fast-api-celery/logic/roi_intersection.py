@@ -12,7 +12,6 @@ import base64
 import io
 from skimage import draw
 from sympy import Point, Polygon, intersection
-from vgg_helper import is_json_structure_with_0_1_2_3,convert_json_to_structure_with_0_1_2_3
 
 def poly2mask(vertex_row_coords, vertex_col_coords, shape):
     fill_row_coords, fill_col_coords = draw.polygon(vertex_row_coords, vertex_col_coords, shape)
@@ -21,7 +20,7 @@ def poly2mask(vertex_row_coords, vertex_col_coords, shape):
     return mask
 
 
-def filter_json_file(json_file_zaznaczenie_b64, json_file_wykrywane_jablka_b64, width, height):
+def filter_json_file1(json_file_zaznaczenie_b64, json_file_wykrywane_jablka_b64, width, height):
     import numpy as np
     import base64
     import io

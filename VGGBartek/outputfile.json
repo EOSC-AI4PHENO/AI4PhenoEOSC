@@ -5,8 +5,8 @@
         "filename": "20220914_1207_0700F136_PIC_150_CAM_2.xml.pi.jpg",
         "base64_img_data": "",
         "file_attributes": {},
-        "regions": [
-            {
+        "regions": {
+            "0": {
                 "shape_attributes": {
                     "name": "polygon",
                     "all_points_x": [
@@ -810,7 +810,7 @@
                 },
                 "region_attributes": {}
             },
-            {
+            "1": {
                 "shape_attributes": {
                     "name": "polygon",
                     "all_points_x": [
@@ -1898,7 +1898,7 @@
                 },
                 "region_attributes": {}
             },
-            {
+            "2": {
                 "shape_attributes": {
                     "name": "polygon",
                     "all_points_x": [
@@ -2818,7 +2818,7 @@
                 },
                 "region_attributes": {}
             },
-            {
+            "3": {
                 "shape_attributes": {
                     "name": "polygon",
                     "all_points_x": [
@@ -3746,7 +3746,7 @@
                 },
                 "region_attributes": {}
             },
-            {
+            "4": {
                 "shape_attributes": {
                     "name": "polygon",
                     "all_points_x": [
@@ -4576,7 +4576,7 @@
                 },
                 "region_attributes": {}
             },
-            {
+            "5": {
                 "shape_attributes": {
                     "name": "polygon",
                     "all_points_x": [
@@ -5546,7 +5546,7 @@
                 },
                 "region_attributes": {}
             },
-            {
+            "6": {
                 "shape_attributes": {
                     "name": "polygon",
                     "all_points_x": [
@@ -6418,7 +6418,7 @@
                 },
                 "region_attributes": {}
             },
-            {
+            "7": {
                 "shape_attributes": {
                     "name": "polygon",
                     "all_points_x": [
@@ -7368,7 +7368,7 @@
                 },
                 "region_attributes": {}
             },
-            {
+            "8": {
                 "shape_attributes": {
                     "name": "polygon",
                     "all_points_x": [
@@ -8418,7 +8418,7 @@
                 },
                 "region_attributes": {}
             },
-            {
+            "9": {
                 "shape_attributes": {
                     "name": "polygon",
                     "all_points_x": [
@@ -9268,7 +9268,7 @@
                 },
                 "region_attributes": {}
             },
-            {
+            "10": {
                 "shape_attributes": {
                     "name": "polygon",
                     "all_points_x": [
@@ -10102,7 +10102,7 @@
                 },
                 "region_attributes": {}
             },
-            {
+            "11": {
                 "shape_attributes": {
                     "name": "polygon",
                     "all_points_x": [
@@ -10880,7 +10880,7 @@
                 },
                 "region_attributes": {}
             },
-            {
+            "12": {
                 "shape_attributes": {
                     "name": "polygon",
                     "all_points_x": [
@@ -11934,6 +11934,6 @@
                 },
                 "region_attributes": {}
             }
-        ]
+        }
     }
 }

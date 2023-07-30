@@ -91,21 +91,21 @@ def base64_to_jsonfile(jsoncontent_base64: str, outputfilename: str):
         json_file.write(json_content)
 
 
-filename = '20220914_1207_0700F136_PIC_150_CAM_2.xml.pi.jpg'
-img = Image.open(filename)
-width, height = img.size
-
-# filenamejson = 'via_project_28Jul2023_19h2m_json.json'
-# filenamejsonout = 'via_project_28Jul2023_19h2m_json_converted.json'
-
-filenamejson = 'jarektest.json'
-filenamejsonout = 'jarektestout.json'
-
-jsonfile_base64_input = jsonfile_to_base64(filenamejson)
-
-# is_json_structure_with_0_1_2_3_Result = is_json_structure_with_0_1_2_3(jsonfile_base64_input)
-# if not is_json_structure_with_0_1_2_3_Result:
-#     file_b64 = convert_json_to_structure_with_0_1_2_3(jsonfile_base64_input)
-
-jsonfile_base64_output = Convert2Polygon(jsonfile_base64_input, width=width, height=height)
-base64_to_jsonfile(jsonfile_base64_output, filenamejsonout)
+# filename = '20220914_1207_0700F136_PIC_150_CAM_2.xml.pi.jpg'
+# img = Image.open(filename)
+# width, height = img.size
+#
+# # filenamejson = 'via_project_28Jul2023_19h2m_json.json'
+# # filenamejsonout = 'via_project_28Jul2023_19h2m_json_converted.json'
+#
+# filenamejson = 'jarektest.json'
+# filenamejsonout = 'jarektestout.json'
+#
+# jsonfile_base64_input = jsonfile_to_base64(filenamejson)
+#
+# # is_json_structure_with_0_1_2_3_Result = is_json_structure_with_0_1_2_3(jsonfile_base64_input)
+# # if not is_json_structure_with_0_1_2_3_Result:
+# #     file_b64 = convert_json_to_structure_with_0_1_2_3(jsonfile_base64_input)
+#
+# jsonfile_base64_output = Convert2Polygon(jsonfile_base64_input, width=width, height=height)
+# base64_to_jsonfile(jsonfile_base64_output, filenamejsonout)

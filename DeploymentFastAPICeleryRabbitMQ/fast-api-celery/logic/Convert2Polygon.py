@@ -5,6 +5,7 @@ from scipy.spatial import ConvexHull
 import base64
 import io
 
+
 def circle2polygon(cx, cy, r, width, height):
     xv, yv = np.meshgrid(np.arange(width), np.arange(height), indexing='ij')
     r2 = np.power(r, 2)
@@ -36,8 +37,7 @@ def rect2polygon(x, y, rwidth, rheight, width, height):
     y = np.maximum(np.minimum(np.array(y), height), 1).tolist()
     return [x, y]
 
-
-def Convert2Polygon(jsonfile_base64: str, width: int, height: int):
+def Convert2Polygon1(jsonfile_base64: str, width: int, height: int):
     json_bytes = base64.b64decode(jsonfile_base64)
     json_file = io.StringIO(json_bytes.decode('utf-8'))
     data = json.load(json_file)
@@ -45,7 +45,8 @@ def Convert2Polygon(jsonfile_base64: str, width: int, height: int):
     for photo in photos:
         one_photo = data[photo]
         regions = one_photo['regions']
-        for region in regions:
+        new_regions = {}  # utworzenie nowego słownika
+        for i, region in enumerate(regions):
             shape_attributes = region['shape_attributes']
             name = shape_attributes['name']
             if name in ['circle', 'ellipse', 'rect']:
@@ -72,6 +73,8 @@ def Convert2Polygon(jsonfile_base64: str, width: int, height: int):
 
                 region['shape_attributes'] = {'name': 'polygon', 'all_points_x': x,
                                               'all_points_y': y}
+            new_regions[str(i)] = region  # dodajemy region do nowego słownika
+        one_photo['regions'] = new_regions  # zastępujemy starą listę nowym słownikiem
     json_out = json.dumps(data)
     return base64.b64encode(json_out.encode('utf-8')).decode('utf-8')
 
@@ -91,9 +94,17 @@ def base64_to_jsonfile(jsoncontent_base64: str, outputfilename: str):
 # img = Image.open(filename)
 # width, height = img.size
 #
-# filenamejson='via_project_28Jul2023_19h2m_json.json'
-# filenamejsonout='via_project_28Jul2023_19h2m_json_converted.json'
+# # filenamejson = 'via_project_28Jul2023_19h2m_json.json'
+# # filenamejsonout = 'via_project_28Jul2023_19h2m_json_converted.json'
 #
-# jsonfile_base64_input=jsonfile_to_base64(filenamejson)
-# jsonfile_base64_output=Convert2Polygon(jsonfile_base64_input, width=width, height=height)
-# base64_to_jsonfile(jsonfile_base64_output,filenamejsonout)
+# filenamejson = 'jarektest.json'
+# filenamejsonout = 'jarektestout.json'
+#
+# jsonfile_base64_input = jsonfile_to_base64(filenamejson)
+#
+# # is_json_structure_with_0_1_2_3_Result = is_json_structure_with_0_1_2_3(jsonfile_base64_input)
+# # if not is_json_structure_with_0_1_2_3_Result:
+# #     file_b64 = convert_json_to_structure_with_0_1_2_3(jsonfile_base64_input)
+#
+# jsonfile_base64_output = Convert2Polygon(jsonfile_base64_input, width=width, height=height)
+# base64_to_jsonfile(jsonfile_base64_output, filenamejsonout)
