@@ -36,15 +36,18 @@ namespace ConsoleAppAI4PhenoTest
         public static Ticket PostAppleSegmentationGetAppleAutomaticRoisCall()
         {
             string fullname = @"E:\!DeepTechnology\!Customers\!2023\Seth Software EOSC-AI4Pheno\AI4PhenoEOSC\VGGBartek\20220914_1207_0700F136_PIC_150_CAM_2.xml.pi.jpg";
-
             string filename = System.IO.Path.GetFileName(fullname);
-
             string imagejson = ImageConverter.ImageToBase64(fullname);
+
+            string fullnameAREA = @"E:\!DeepTechnology\!Customers\!2023\Seth Software EOSC-AI4Pheno\AI4PhenoEOSC\VGGBartek\via_project_30Jul2023_20h54m_jsonTEST.json";
+            string filenameAREA = System.IO.Path.GetFileName(fullnameAREA);
+            string imagejsonAREA = ImageConverter.ImageToBase64(fullnameAREA);
 
             var modelInput = new AutomaticAppleSegmentationInput
             {
                 imageBase64 = imagejson,
-                filename = filename
+                filename = filename,
+                jsonBase64ImageROIs= imagejsonAREA
             };
 
             StringContent stringContent = new StringContent(JsonConvert.SerializeObject(modelInput), Encoding.UTF8, "application/json");
