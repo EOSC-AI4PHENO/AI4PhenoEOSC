@@ -17,8 +17,8 @@ def poly2mask(vertex_row_coords, vertex_col_coords, shape):
     return mask
 
 
-json_file_zaznaczenie = 'zaznaczenie_ROI_ogolnego.json'
-json_file_wykrywane_jablka = 'zaznaczenie_jablek.json'
+json_file_zaznaczenie = 'E:\!DeepTechnology\!Customers\!2023\Seth Software EOSC-AI4Pheno\AI4PhenoEOSC\VGGBartek\iloczyn_ROI\via_project_30Jul2023_10h45m_json.json'
+json_file_wykrywane_jablka = 'E:\!DeepTechnology\!Customers\!2023\Seth Software EOSC-AI4Pheno\AI4PhenoEOSC\VGGBartek\iloczyn_ROI\20220821_1302_0700F136_PIC_128_CAM_2.xml.pi.json'
 image_file = 'obraz_wejscie.png'
 
 
