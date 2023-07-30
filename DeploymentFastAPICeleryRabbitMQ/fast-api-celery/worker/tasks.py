@@ -37,8 +37,7 @@ class PredictTask(Task):
              bind=True,
              base=PredictTask,
              path=('logic.model', 'ImageWellExposedModel'),
-             name='{}.{}'.format(__name__, 'is_Image_WellExposedByHisto'),
-             queue='queue1')
+             name='{}.{}'.format(__name__, 'is_Image_WellExposedByHisto'))
 
 def is_Image_WellExposedByHisto(self, imageBase64:str, filename:str, lat: float, lon: float, UTCdate: datetime):
     image_bytes = base64.b64decode(imageBase64)
@@ -50,8 +49,7 @@ def is_Image_WellExposedByHisto(self, imageBase64:str, filename:str, lat: float,
              bind=True,
              base=PredictTask,
              path=('logic.model', 'ImageWellExposedModel'),
-             name='{}.{}'.format(__name__, 'get_sunrise_sunset'),
-             queue='queue2')
+             name='{}.{}'.format(__name__, 'get_sunrise_sunset'))
 
 def get_sunrise_sunset(self, lat: float, lon: float, UTCdate: datetime):
     return self.model.get_sunrise_sunset(lat, lon, UTCdate)
@@ -60,8 +58,7 @@ def get_sunrise_sunset(self, lat: float, lon: float, UTCdate: datetime):
              bind=True,
              base=PredictTask,
              path=('logic.modelApple', 'AppleSegmentationModel'),
-             name='{}.{}'.format(__name__, 'get_apple_automatic_rois'),
-             queue='queue3')
+             name='{}.{}'.format(__name__, 'get_apple_automatic_rois'))
 def get_apple_automatic_rois(self, imageBase64: str, filename: str, jsonBase64ImageROIs: str):
     image_bytes = base64.b64decode(imageBase64)
     image_size = len(image_bytes)
