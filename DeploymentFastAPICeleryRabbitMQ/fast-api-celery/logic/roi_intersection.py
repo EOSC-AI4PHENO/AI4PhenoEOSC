@@ -6,7 +6,6 @@ from scipy.spatial import ConvexHull
 from skimage import draw
 import numpy as np
 from shapely.geometry import Polygon
-import matplotlib.pyplot as plt
 import cv2
 import base64
 import io
