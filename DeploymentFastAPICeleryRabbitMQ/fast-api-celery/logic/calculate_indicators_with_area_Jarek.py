@@ -130,22 +130,22 @@ def calculate_indicators(img_base64, apple_data_json_base64, ROI_data_json_base6
 
     return df
 
-fullnameIMG='E:/!DeepTechnology/!Customers/!2023/Seth Software EOSC-AI4Pheno/AI4PhenoEOSC/WskaznikiBartek/20220914_1207_0700F136_PIC_150_CAM_2.xml.pi.jpg'
-fullnameJSON='E:/!DeepTechnology/!Customers/!2023/Seth Software EOSC-AI4Pheno/AI4PhenoEOSC/WskaznikiBartek/20220914_1207_0700F136_PIC_150_CAM_2.xml.pi.json'
-
-filename = os.path.basename(fullnameIMG)
-
-df_all = []
-
-# Przygotuj dane wejściowe do funkcji calculate_indicators
-with open(fullnameIMG, "rb") as img_file:
-    img_base64 = base64.b64encode(img_file.read()).decode('utf-8')
-
-with open(fullnameJSON, "rb") as json_file:
-    apple_data_json_base64 = base64.b64encode(json_file.read()).decode('utf-8')
-
-# Wywołaj funkcję calculate_indicators z danymi wejściowymi
-df_local = calculate_indicators(img_base64, apple_data_json_base64)
+# fullnameIMG='E:/!DeepTechnology/!Customers/!2023/Seth Software EOSC-AI4Pheno/AI4PhenoEOSC/WskaznikiBartek/20220914_1207_0700F136_PIC_150_CAM_2.xml.pi.jpg'
+# fullnameJSON='E:/!DeepTechnology/!Customers/!2023/Seth Software EOSC-AI4Pheno/AI4PhenoEOSC/WskaznikiBartek/20220914_1207_0700F136_PIC_150_CAM_2.xml.pi.json'
+#
+# filename = os.path.basename(fullnameIMG)
+#
+# df_all = []
+#
+# # Przygotuj dane wejściowe do funkcji calculate_indicators
+# with open(fullnameIMG, "rb") as img_file:
+#     img_base64 = base64.b64encode(img_file.read()).decode('utf-8')
+#
+# with open(fullnameJSON, "rb") as json_file:
+#     apple_data_json_base64 = base64.b64encode(json_file.read()).decode('utf-8')
+#
+# # Wywołaj funkcję calculate_indicators z danymi wejściowymi
+# df_local = calculate_indicators(img_base64, apple_data_json_base64)
 
 # r_av = float(df_local["r.av"].iloc[0])
 # g_av = float(df_local["g.av"].iloc[0])
@@ -193,13 +193,13 @@ df_local = calculate_indicators(img_base64, apple_data_json_base64)
 #     number_of_apples = number_of_apples
 # )
 
-df_local['img_file'] = filename
-df_all.append(df_local)
-
-df_all = pd.concat(df_all, ignore_index=True).reset_index(inplace = False, drop = True)
-columns = list(df_all)
-columns = [columns[-1]]+columns[:-1]
-df_all = df_all[columns]
-
-# Zapisz DataFrame do pliku Excela
-df_all.to_excel('wyniki_with_area2.xlsx', index=False)
+# df_local['img_file'] = filename
+# df_all.append(df_local)
+#
+# df_all = pd.concat(df_all, ignore_index=True).reset_index(inplace = False, drop = True)
+# columns = list(df_all)
+# columns = [columns[-1]]+columns[:-1]
+# df_all = df_all[columns]
+#
+# # Zapisz DataFrame do pliku Excela
+# df_all.to_excel('wyniki_with_area2.xlsx', index=False)
