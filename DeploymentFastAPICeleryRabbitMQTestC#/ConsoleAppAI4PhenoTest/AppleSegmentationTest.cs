@@ -162,7 +162,7 @@ namespace ConsoleAppAI4PhenoTest
             var jsonString = JsonConvert.SerializeObject(modelInput);
             //File.WriteAllText("json.txt", jsonString);
 
-            string url = string.Format("{0}/AutomaticAppleSegmentationModel/get_apple_automatic_rois", baseUrl);
+            string url = string.Format("{0}/AutomaticAppleSegmentationModel/get_apple_automatic_rois_with_indicators", baseUrl);
 
             var response = client.PostAsync(url, stringContent).Result;
 

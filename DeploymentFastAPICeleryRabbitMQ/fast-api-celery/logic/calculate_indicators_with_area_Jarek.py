@@ -111,11 +111,11 @@ def calculate_indicatorsold(img, apple_data_json, ROI_data_json = None):
     return df
 
 
-def calculate_indicators(img_base64, apple_data_json_base64, ROI_data_json_base64=None):
-    img_data = base64.b64decode(img_base64)
-    nparr = np.frombuffer(img_data, np.uint8)
-    img = cv2.imdecode(nparr, cv2.IMREAD_COLOR)  # cv2.IMREAD_COLOR oznacza, że chcemy załadować obraz jako BGR
-    img = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)  # następnie konwertujemy go na RGB
+def calculate_indicators(img, apple_data_json_base64, ROI_data_json_base64=None):
+    #img_data = base64.b64decode(img_base64)
+    #nparr = np.frombuffer(img_data, np.uint8)
+    #img = cv2.imdecode(nparr, cv2.IMREAD_COLOR)  # cv2.IMREAD_COLOR oznacza, że chcemy załadować obraz jako BGR
+    #img = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)  # następnie konwertujemy go na RGB
 
     apple_data_json_data = base64.b64decode(apple_data_json_base64)
     apple_data_json = json.loads(apple_data_json_data.decode('utf-8'))
