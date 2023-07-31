@@ -120,7 +120,7 @@ async def schedule_AutomaticAppleSegmentationModel_get_apple_automatic_rois_with
 
 
 @app.get('/AutomaticAppleSegmentationModel/get_apple_automatic_rois_with_indicators_result/{task_id}',
-         response_model=AutomaticAppleSegmentationOutput,
+         response_model=AutomaticAppleSegmentationWithIndicatorsOutput,
          status_code=200,
          responses={202: {'model': TaskTicket, 'description': 'Accepted: Not Ready'}})
 async def get_AutomaticAppleSegmentationModel_get_apple_automatic_rois_with_indicators_result(task_id):

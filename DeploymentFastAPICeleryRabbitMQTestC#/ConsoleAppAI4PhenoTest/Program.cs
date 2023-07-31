@@ -11,5 +11,5 @@ using ConsoleAppAI4PhenoTest;
 //Ticket objtaskTicket3 = AppleSegmentationTest.PostAppleSegmentationGetAppleAutomaticRoisCall();
 //AutomaticAppleSegmentationOutput objAutomaticAppleSegmentationOutput = AppleSegmentationTest.GetAppleSegmentationGetAppleAutomaticRoisCallResult("07b66344-9dce-4ecb-a200-2c0a859e2a45");
 
-Ticket objtaskTicket4 = AppleSegmentationTest.PostAppleSegmentationGetAppleAutomaticRoisWithIndicatorsCall();
-//AutomaticAppleSegmentationWithIndicatorsOutput objAutomaticAppleSegmentationWithIndicatorsOutput = AppleSegmentationTest.GetAppleSegmentationGetAppleAutomaticRoisWithIndicatorsCallResult("a1817c7f-7ad7-4af5-bba9-3a6d776250ef");
+//Ticket objtaskTicket4 = AppleSegmentationTest.PostAppleSegmentationGetAppleAutomaticRoisWithIndicatorsCall();
+AutomaticAppleSegmentationWithIndicatorsOutput objAutomaticAppleSegmentationWithIndicatorsOutput = AppleSegmentationTest.GetAppleSegmentationGetAppleAutomaticRoisWithIndicatorsCallResult("2a1d0b13-a940-4168-9b40-39dc14481e3b");
