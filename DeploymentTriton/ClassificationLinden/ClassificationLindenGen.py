@@ -36,7 +36,7 @@ print("Num of GPUs available: ", len(tf.test.gpu_device_name()))
 
 start = time.process_time()
 
-class_dirs = ['Linden_Photos_ROI/0', 'Linden_Photos_ROI/1']
+class_dirs = ['E:/!DeepTechnology/!Customers/!2023/Seth Software EOSC-AI4Pheno/AI4PhenoEOSC/linden/LindenClassification/Linden_Photos_ROI/0', 'E:/!DeepTechnology/!Customers/!2023/Seth Software EOSC-AI4Pheno/AI4PhenoEOSC/linden/LindenClassification/Linden_Photos_ROI/1']
 images, labels = load_images_and_labels(class_dirs)
 
 print('After loaded images')
