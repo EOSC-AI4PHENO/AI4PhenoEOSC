@@ -1,0 +1,68 @@
+conda install grpcio
+pip install tensorflow-serving-api
+
+conda install -c conda-forge "charset-normalizer<2.0"
+
+https://www.youtube.com/watch?v=m-eaFJ5GK94
+https://github.com/Curt-Park/mnist-fastapi-celery-triton
+
+Jeśli chcesz pominąć nagłówek, użyj polecenia docker ps -q, które wyświetla tylko identyfikatory kontenerów:
+docker ps -q | wc -l 
+38
+
+docker pull nvcr.io/nvidia/tritonserver:23.06-py3
+
+docker run --gpus=all --rm -p8000:8000 -p8001:8001 -p8002:8002 -v /home/kurekj/AI4PhenoEOSC/DeploymentTriton/models:/models nvcr.io/nvidia/tritonserver:23.06-py3 tritonserver --model-repository=/models
+
+docker: Error response from daemon: could not select device driver "" with capabilities: [[gpu]].
+
+# Dodaj repozytorium Nvidia Docker
+curl -s -L https://nvidia.github.io/nvidia-docker/gpgkey | sudo apt-key add -
+distribution=$(. /etc/os-release;echo $ID$VERSION_ID)
+curl -s -L https://nvidia.github.io/nvidia-docker/$distribution/nvidia-docker.list | sudo tee /etc/apt/sources.list.d/nvidia-docker.list
+
+# Zainstaluj Nvidia Docker
+sudo apt-get update
+sudo apt-get install -y nvidia-docker2
+
+ Poll failed for model directory 'ExmapleCNNModelv1': Invalid model name: Could not determine backend for model 'ExmapleCNNModelv1' with no backend in model configuration. Expected model name of the form 'model.<backend_name>'.
+I0717 16:27:03.478254 1 server.cc:603]
++------------------+------+
+| Repository Agent | Path |
+
+
+docker run --gpus=all --rm -p8000:8000 -p8001:8001 -p8002:8002 -v /home/kurekj/AI4PhenoEOSC/DeploymentTriton/models:/models nvcr.io/nvidia/tritonserver:23.06-py3 tritonserver --model-repository=/models --metrics-port=8002
+
+docker ps -a --format '{{.CreatedAt}}, {{.Names}}' | sort -r
+
+curl -v http://localhost:8000/v2/health/ready
+
+docker stop 9c4ec02e637e
+--------------------------------------------
+docker run -p 9090:9090 prom/prometheus
+docker cp 8d9fb7c79241:/etc/prometheus/prometheus.yml /home/kurekj/prometheus.yml
+docker cp /home/kurekj/prometheus.yml 55cc6709a05c:/etc/prometheus/prometheus.yml
+
+docker stop 55cc6709a05c
+docker start 55cc6709a05c
+
+http://10.0.20.50:9090
+
+docker stop 2d8d13e8fb3d
+docker rm 2d8d13e8fb3d
+------------------------------------------------
+docker run -d -p 3000:3000 grafana/grafana
+login:admin
+password:admin
+password:ankur80
+
+http://10.0.20.50:3000
+----------------------------------------------------
+promql dla grafany:
+(avg(rate(nv_inference_request_duration_us[5m])) by (model) / avg(rate(nv_inference_count[5m])) by (model)) / 1000000
+----------------------------------------------------
+
+| AppleMaskRCNNModel | 1       | UNAVAILABLE: Internal: unable to auto-complete model configuration for 'AppleMaskRCNNModel', failed to load model: Read less bytes than requested |
+|                    |         |         [[{{function_node __inference__traced_restore_69679}}{{node RestoreV2}}]]                                                                       |
+| ExampleCNNModelv1  | 1       | UNAVAILABLE: Internal: unable to auto-complete model configuration for 'ExampleCNNModelv1', failed to load model: Read less bytes than requested  |
+|                    |         |         [[{{function_node __inference__traced_restore_77226}}{{node RestoreV2}}]]   
