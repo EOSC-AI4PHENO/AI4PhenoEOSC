@@ -11,6 +11,8 @@ import base64
 import json
 from . import Convert2Polygon
 from . import roi_intersection
+from . import calculate_indicators_with_area_Jarek
+import pandas as pd
 
 class AppleDeploymentConfig(Config):
     """Configuration for training on the toy  dataset.
@@ -130,6 +132,33 @@ class AppleSegmentationModel:
             jsonBase64ImageROIsPolygon = Convert2Polygon.Convert2Polygon1(jsonBase64ImageROIs, width, height)
             json_apple_rois_b64_filtered = roi_intersection.filter_json_file1(jsonBase64ImageROIsPolygon, json_apple_rois_b64, width, height)
             return filename, json_apple_rois_b64_filtered
+
+    def get_apple_automatic_rois_with_indicators(self, imageRGB: np.ndarray, image_size: int, height: int, width: int, filename: str,
+                                 jsonBase64ImageROIs: str):
+
+        config = AppleDeploymentConfig()
+        image = self.load_image(imageRGB)
+        # model = modellib.MaskRCNN(mode="inference", model_dir="/home", config=config)
+        model = MaskRCNN(mode="inference", model_dir="/home", config=config)
+        results = model.detect([image], verbose=1)
+        r = results[0]
+
+        json_results = self.results_to_json(r, filename, image_size)
+        json_str = json.dumps(json_results)
+        json_apple_rois_b64 = base64.b64encode(json_str.encode()).decode()
+
+        if jsonBase64ImageROIs is None:
+            # Koduj ciąg tekstowy do base64
+            # nie ma regionów gdzie szukać jabłek, zwróć z całego obrazu
+
+            df_local = calculate_indicators_with_area_Jarek.calculate_indicators(imageRGB, json_apple_rois_b64)
+
+            return filename, json_apple_rois_b64, df_local
+        else:
+            jsonBase64ImageROIsPolygon = Convert2Polygon.Convert2Polygon1(jsonBase64ImageROIs, width, height)
+            json_apple_rois_b64_filtered = roi_intersection.filter_json_file1(jsonBase64ImageROIsPolygon, json_apple_rois_b64, width, height)
+            df_local = calculate_indicators_with_area_Jarek.calculate_indicators(imageRGB, json_apple_rois_b64_filtered)
+            return filename, json_apple_rois_b64_filtered, df_local
 
 
 # # Tworzę instancję klasy AppleSegmentationModel

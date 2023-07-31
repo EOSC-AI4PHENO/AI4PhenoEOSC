@@ -8,5 +8,5 @@ using ConsoleAppAI4PhenoTest;
 //Ticket objtaskTicket2 = ImageWellExposedTest.PostisImageWellExposedByHistoCall();
 //ImageWellExposedOutput objImageWellExposedOutput = ImageWellExposedTest.GetisImageWellExposedByHistoCallResult(objtaskTicket2.task_id);
 
-Ticket objtaskTicket3 = AppleSegmentationTest.PostAppleSegmentationGetAppleAutomaticRoisCall();
-//AutomaticAppleSegmentationOutput objAutomaticAppleSegmentationOutput = AppleSegmentationTest.GetAppleSegmentationGetAppleAutomaticRoisCallResult("e2cd14e7-047c-498e-9eef-bf8520e7a6f4");
+//Ticket objtaskTicket3 = AppleSegmentationTest.PostAppleSegmentationGetAppleAutomaticRoisCall();
+AutomaticAppleSegmentationOutput objAutomaticAppleSegmentationOutput = AppleSegmentationTest.GetAppleSegmentationGetAppleAutomaticRoisCallResult("07b66344-9dce-4ecb-a200-2c0a859e2a45");

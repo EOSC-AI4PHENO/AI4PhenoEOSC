@@ -3,9 +3,11 @@ from datetime import datetime
 import numpy as np
 from typing import Optional
 
+
 class TaskRedisRemoved(BaseModel):
     """ID and status for the async tasks"""
     statusFlag: bool
+
 
 class TaskTicket(BaseModel):
     """ID and status for the async tasks"""
@@ -51,7 +53,8 @@ class AutomaticAppleSegmentationInput(BaseModel):
     """Model features as input for prediction"""
     imageBase64: str  # base64 encoded image
     filename: str
-    jsonBase64ImageROIs: Optional[str] = None   # optional parameter
+    jsonBase64ImageROIs: Optional[str] = None  # optional parameter
+
 
 class AutomaticAppleSegmentationOutput(BaseModel):
     """Model features as input for prediction"""
@@ -59,3 +62,30 @@ class AutomaticAppleSegmentationOutput(BaseModel):
     status: str
     filename: str
     jsonBase64AppleROIs: str
+
+
+class AutomaticAppleSegmentationWithIndicatorsOutput(BaseModel):
+    """Model features as input for prediction"""
+    task_id: str
+    status: str
+    filename: str
+    jsonBase64AppleROIs: str
+    r_av: float
+    g_av: float
+    b_av: float
+    r_sd: float
+    g_sd: float
+    b_sd: float
+    bri_av: float
+    bri_sd: float
+    gi_av: float
+    gei_av: float
+    gei_sd: float
+    ri_av: float
+    ri_sd: float
+    bi_av: float
+    bi_sd: float
+    avg_width: float
+    avg_height: float
+    avg_area: float
+    number_of_apples: int
