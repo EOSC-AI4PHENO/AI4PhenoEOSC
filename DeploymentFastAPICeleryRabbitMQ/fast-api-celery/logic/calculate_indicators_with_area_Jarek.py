@@ -109,8 +109,6 @@ def calculate_indicatorsold(img, apple_data_json, ROI_data_json = None):
     df['number_of_apples'] = number_of_apples
 
     return df
-
-
 def calculate_indicators(img, apple_data_json_base64, ROI_data_json_base64=None):
     #img_data = base64.b64decode(img_base64)
     #nparr = np.frombuffer(img_data, np.uint8)
