@@ -45,17 +45,30 @@ print(time.process_time() - start)
 X_train, X_temp, y_train, y_temp = train_test_split(images, labels, stratify=labels, test_size=0.3, random_state=42)
 X_val, X_test, y_val, y_test = train_test_split(X_temp, y_temp, stratify=y_temp, test_size=0.5, random_state=42)
 
+# model = tf.keras.Sequential([
+#     tf.keras.layers.InputLayer(input_shape=(365,302, 3)),
+#     tf.keras.layers.Conv2D(32, kernel_size=(3, 3), activation='relu'),
+#     tf.keras.layers.MaxPooling2D(pool_size=(2, 2)),
+#     tf.keras.layers.Conv2D(64, kernel_size=(3, 3), activation='relu'),
+#     tf.keras.layers.MaxPooling2D(pool_size=(2, 2)),
+#     tf.keras.layers.Flatten(),
+#     tf.keras.layers.Dense(64, activation='relu'),
+#     tf.keras.layers.Dropout(0.5),
+#     tf.keras.layers.Dense(2, activation='softmax')
+# ])
+
 model = tf.keras.Sequential([
-    tf.keras.layers.InputLayer(input_shape=(365,302, 3)),
+    tf.keras.layers.InputLayer(input_shape=(None, None, 3)),  # zmieniamy input_shape na None, None
     tf.keras.layers.Conv2D(32, kernel_size=(3, 3), activation='relu'),
     tf.keras.layers.MaxPooling2D(pool_size=(2, 2)),
     tf.keras.layers.Conv2D(64, kernel_size=(3, 3), activation='relu'),
     tf.keras.layers.MaxPooling2D(pool_size=(2, 2)),
-    tf.keras.layers.Flatten(),
+    tf.keras.layers.GlobalAveragePooling2D(),  # zmieniamy Flatten na GlobalAveragePooling2D
     tf.keras.layers.Dense(64, activation='relu'),
     tf.keras.layers.Dropout(0.5),
     tf.keras.layers.Dense(2, activation='softmax')
 ])
+
 
 model.compile(optimizer=tf.keras.optimizers.Adam(),
               loss=tf.keras.losses.SparseCategoricalCrossentropy(),
