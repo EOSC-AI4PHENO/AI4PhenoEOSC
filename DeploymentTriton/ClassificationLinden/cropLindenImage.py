@@ -36,6 +36,44 @@ def json_to_base64(fullname):
     return base64_json
 
 
+def cropImages(imageRGB: np.ndarray, jsonBase64ImageROIs: str):
+    height, width, _ = imageRGB.shape
+    jsonBase64ImageROIsPolygon = Convert2Polygon.Convert2Polygon1(jsonBase64ImageROIs, width, height)
+
+    # Dekodowanie base64
+    decoded_json = base64.b64decode(jsonBase64ImageROIsPolygon).decode('utf-8')
+
+    # Konwersja na słownik Pythona
+    json_data = json.loads(decoded_json)
+
+    # Pierwszy klucz w słowniku
+    first_key = list(json_data.keys())[0]
+
+    # Wszystkie regiony
+    regions = json_data[first_key]["regions"]
+
+    images_roi = []
+
+    # Przejście przez wszystkie regiony
+    for region_key in regions.keys():
+        region = regions[region_key]
+
+        # Współrzędne punktów
+        all_points_x = region["shape_attributes"]["all_points_x"]
+        all_points_y = region["shape_attributes"]["all_points_y"]
+
+        # Obliczanie prostokąta otaczającego
+        min_x = min(all_points_x)
+        max_x = max(all_points_x)
+        min_y = min(all_points_y)
+        max_y = max(all_points_y)
+
+        image_roi = imageRGB[min_y:max_y, min_x:max_x]
+        images_roi.append(image_roi)
+
+    return images_roi
+
+
 def cropImage(imageRGB: np.ndarray, jsonBase64ImageROIs: str):
     height, width, _ = imageRGB.shape
     jsonBase64ImageROIsPolygon=Convert2Polygon.Convert2Polygon1(jsonBase64ImageROIs, width, height)
@@ -68,14 +106,17 @@ def cropImage(imageRGB: np.ndarray, jsonBase64ImageROIs: str):
     return image_roi
 
 
-# fullname = 'E:/!DeepTechnology/!Customers/!2023/Seth Software EOSC-AI4Pheno/AI4PhenoEOSC/linden/Linden_Photos_Flowering/1/2022-06-19_02.48.33_class_1.jpg'
-# image = cv2.imread(fullname)
-#
-# fullnameROIs = 'via_project_1Aug2023_7h29m_json.json'
-#
-# jsonBase64ImageROIs = json_to_base64(fullnameROIs)
-#
-# image_roi = cropImage(image, jsonBase64ImageROIs)
-#
-# # Zapis obrazu do pliku
-# cv2.imwrite('output_image.jpg', cv2.cvtColor(image_roi, cv2.COLOR_RGB2BGR))
+fullname = 'E:/!DeepTechnology/!Customers/!2023/Seth Software EOSC-AI4Pheno/AI4PhenoEOSC/linden/Linden_Photos_Flowering/1/2022-06-19_02.48.33_class_1.jpg'
+image = cv2.imread(fullname)
+
+fullnameROIs = 'via_project_1Aug2023_7h29m_json.json'
+
+jsonBase64ImageROIs = json_to_base64(fullnameROIs)
+
+images_roi = cropImages(image, jsonBase64ImageROIs)
+
+i=1
+for image_roi in images_roi:
+    cv2.imwrite('output_image'+str(i)+'.jpg', cv2.cvtColor(image_roi, cv2.COLOR_RGB2BGR))
+    i=i+1
+

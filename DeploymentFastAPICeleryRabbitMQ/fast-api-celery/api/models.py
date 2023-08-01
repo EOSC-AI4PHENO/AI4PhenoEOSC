@@ -2,7 +2,7 @@ from pydantic import BaseModel
 from datetime import datetime
 import numpy as np
 from typing import Optional
-
+from typing import List
 
 class TaskRedisRemoved(BaseModel):
     """ID and status for the async tasks"""
@@ -94,11 +94,11 @@ class LindenClassificationInput(BaseModel):
     """Model features as input for prediction"""
     imageBase64: str  # base64 encoded image
     filename: str
-    jsonBase64ImageROI: str
+    jsonBase64ImageROIs: str
 
 class LindenClassificationOutput(BaseModel):
     """Model features as input for prediction"""
     task_id: str
     status: str
     filename: str
-    isflowering: bool
+    isfloweringList:  List[bool]

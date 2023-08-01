@@ -166,7 +166,7 @@ async def get_AutomaticAppleSegmentationModel_get_apple_automatic_rois_with_indi
 async def schedule_LindenClassificationModel_get_classification_linden(
         model_input: LindenClassificationInput):
     """Create celery prediction task. Return task_id to client in order to retrieve result"""
-    task_id = get_classification_linden.delay(model_input.imageBase64, model_input.filename,model_input.jsonBase64ImageROI)
+    task_id = get_classification_linden.delay(model_input.imageBase64, model_input.filename,model_input.jsonBase64ImageROIs)
     # return {'task_id': str(task_id), 'status': 'Processing'}
     return TaskTicket(task_id=str(task_id), status='Processing')
 
@@ -181,5 +181,5 @@ async def get_LindenClassificationModel_get_classification_linden_result(task_id
         # print(app.url_path_for('schedule_prediction'))
         return JSONResponse(status_code=202, content={'task_id': str(task_id), 'status': 'Processing'})
     result = task.get()
-    filename, isflowering = result
-    return LindenClassificationOutput(task_id=task_id, status='Success', filename=filename, isflowering=isflowering)
+    filename, isfloweringList = result
+    return LindenClassificationOutput(task_id=task_id, status='Success', filename=filename, isfloweringList=isfloweringList)
