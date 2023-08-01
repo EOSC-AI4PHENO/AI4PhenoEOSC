@@ -1,6 +1,6 @@
 import cv2
 import numpy as np
-from . import grpcJarek2
+from . import grpcLindenClassification
 from . import Convert2Polygon
 import base64
 import json
@@ -41,7 +41,7 @@ class LindenModel:
 
     def get_classification_linden(self, imageRGB: np.ndarray, filename: str, jsonBase64ImageROI: str):
         cropedImage = self.cropImage(imageRGB, jsonBase64ImageROI)
-        prediction = grpcJarek2.infer(cropedImage)
+        prediction = grpcLindenClassification.infer(cropedImage)
         predicted_labels = np.argmax(prediction)
 
         if predicted_labels == 1:
