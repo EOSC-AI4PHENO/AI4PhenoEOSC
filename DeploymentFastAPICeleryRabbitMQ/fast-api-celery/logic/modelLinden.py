@@ -5,6 +5,7 @@ from . import Convert2Polygon
 import base64
 import json
 
+
 class LindenModel:
     def __init__(self):
         self.m = 7.0  # not used only example
@@ -84,7 +85,7 @@ class LindenModel:
         for croppedImage in croppedImagesList:
             prediction = grpcLindenClassification.infer(croppedImage)
             predicted_labels = np.argmax(prediction)
-            predicted_labels_list.append(predicted_labels)
+            predicted_labels_list.append(predicted_labels == 1)
 
         # Convert predicted_labels_list to a tuple
         predicted_labels_tuple = tuple(predicted_labels_list)
