@@ -84,6 +84,6 @@ class LindenModel:
         for croppedImage in croppedImagesList:
             prediction = grpcLindenClassification.infer(croppedImage)
             predicted_labels = np.argmax(prediction)
-            predicted_labels_list.append(predicted_labels == 1)
+            predicted_labels_list.append(predicted_labels)
 
         return filename, predicted_labels_list

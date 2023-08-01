@@ -12,7 +12,7 @@ namespace ConsoleAppAI4PhenoTest
     {
         public string imageBase64 { get; set; }
         public string filename { get; set; }
-        public string jsonBase64ImageROI { get; set; }
+        public string jsonBase64ImageROIs { get; set; }
     }
     #endregion
 
@@ -46,7 +46,7 @@ namespace ConsoleAppAI4PhenoTest
             {
                 imageBase64 = imagejson,
                 filename = filename,
-                jsonBase64ImageROI = imagejsonAREA
+                jsonBase64ImageROIs = imagejsonAREA
             };
 
             StringContent stringContent = new StringContent(JsonConvert.SerializeObject(modelInput), Encoding.UTF8, "application/json");
