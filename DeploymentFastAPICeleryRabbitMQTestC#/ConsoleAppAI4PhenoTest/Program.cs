@@ -15,3 +15,4 @@ using ConsoleAppAI4PhenoTest;
 //AutomaticAppleSegmentationWithIndicatorsOutput objAutomaticAppleSegmentationWithIndicatorsOutput = AppleSegmentationTest.GetAppleSegmentationGetAppleAutomaticRoisWithIndicatorsCallResult("c340bd81-e214-412c-af8c-897633143a81");
 
 Ticket objtaskTicket5 = LindenClassificationTest.PostLindenClassificationModelgetClassificationLindenCall();
+LindenClassificationOutput objLindenClassificationOutput = LindenClassificationTest.GetLindenClassificationGetClassificationLindenResult("c340bd81-e214-412c-af8c-897633143a81");

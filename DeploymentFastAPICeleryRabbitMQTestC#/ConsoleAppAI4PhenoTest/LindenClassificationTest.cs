@@ -73,5 +73,28 @@ namespace ConsoleAppAI4PhenoTest
             return objTaskTicket;
         }
         #endregion
+
+        #region static LindenClassificationOutput GetLindenClassificationGetClassificationLindenResult(string task_id)
+        public static LindenClassificationOutput GetLindenClassificationGetClassificationLindenResult(string task_id)
+        {
+            string url = string.Format("{0}/LindenClassificationModel/get_classification_linden_result/{1}", baseUrl, task_id);
+
+            var response = client.GetAsync(url).Result;
+
+            if (!response.IsSuccessStatusCode)
+            {
+                Console.WriteLine(response.Content.ReadAsStringAsync().Result);
+            }
+
+            response.EnsureSuccessStatusCode();
+            var responseBody = response.Content.ReadAsStringAsync().Result;
+
+            LindenClassificationOutput objLindenClassificationOutput = JsonConvert.DeserializeObject<LindenClassificationOutput>(responseBody);
+
+            Console.WriteLine($"TaskId: {objLindenClassificationOutput.task_id}, Status: {objLindenClassificationOutput.status},filename:{objLindenClassificationOutput.filename},IsFlowering:{objLindenClassificationOutput.isflowering}");
+
+            return objLindenClassificationOutput;
+        }
+        #endregion
     }
 }
