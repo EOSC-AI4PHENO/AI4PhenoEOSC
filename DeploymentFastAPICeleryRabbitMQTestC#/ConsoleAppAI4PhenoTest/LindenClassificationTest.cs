@@ -22,7 +22,7 @@ namespace ConsoleAppAI4PhenoTest
         public string task_id { get; set; }
         public string status { get; set; }
         public string filename { get; set; }
-        public bool isflowering { get; set; }
+        public List<bool> isfloweringList { get; set; }
     }
     #endregion
 
@@ -91,7 +91,7 @@ namespace ConsoleAppAI4PhenoTest
 
             LindenClassificationOutput objLindenClassificationOutput = JsonConvert.DeserializeObject<LindenClassificationOutput>(responseBody);
 
-            Console.WriteLine($"TaskId: {objLindenClassificationOutput.task_id}, Status: {objLindenClassificationOutput.status},filename:{objLindenClassificationOutput.filename},IsFlowering:{objLindenClassificationOutput.isflowering}");
+            Console.WriteLine($"TaskId: {objLindenClassificationOutput.task_id}, Status: {objLindenClassificationOutput.status},filename:{objLindenClassificationOutput.filename},IsFlowering:{objLindenClassificationOutput.isfloweringList[0]}");
 
             return objLindenClassificationOutput;
         }
