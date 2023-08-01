@@ -89,3 +89,16 @@ class AutomaticAppleSegmentationWithIndicatorsOutput(BaseModel):
     avg_height: float
     avg_area: float
     number_of_apples: int
+
+class LindenClassificationInput(BaseModel):
+    """Model features as input for prediction"""
+    imageBase64: str  # base64 encoded image
+    filename: str
+    jsonBase64ImageROI: str
+
+class LindenClassificationOutput(BaseModel):
+    """Model features as input for prediction"""
+    task_id: str
+    status: str
+    filename: str
+    isflowering: bool

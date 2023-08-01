@@ -1,0 +1,79 @@
+{
+	"5.jpg539246": {
+		"filename": "5.jpg",
+		"size": 539246,
+		"regions": [
+			{
+				"shape_attributes": {
+					"name": "polygon",
+					"all_points_x": [
+						730,
+						959,
+						1252,
+						1358,
+						1177,
+						898
+					],
+					"all_points_y": [
+						1118,
+						814,
+						985,
+						1195,
+						1295,
+						1238
+					]
+				},
+				"region_attributes": {
+				}
+			},
+			{
+				"shape_attributes": {
+					"name": "polygon",
+					"all_points_x": [
+						730,
+						959,
+						1252,
+						1358,
+						1177,
+						898
+					],
+					"all_points_y": [
+						1118,
+						814,
+						985,
+						1195,
+						1295,
+						1238
+					]
+				},
+				"region_attributes": {
+				}
+			},
+			{
+				"shape_attributes": {
+					"name": "polygon",
+					"all_points_x": [
+						730,
+						959,
+						1252,
+						1358,
+						1177,
+						898
+					],
+					"all_points_y": [
+						1118,
+						814,
+						985,
+						1195,
+						1295,
+						1238
+					]
+				},
+				"region_attributes": {
+				}
+			}
+		],
+		"file_attributes": {
+		}
+	}
+}

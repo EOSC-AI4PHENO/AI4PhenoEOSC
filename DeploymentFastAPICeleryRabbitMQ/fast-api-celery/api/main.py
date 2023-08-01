@@ -4,11 +4,12 @@ from celery.result import AsyncResult
 import redis
 
 from worker.tasks import get_sunrise_sunset, is_Image_WellExposedByHisto, get_apple_automatic_rois, \
-    get_apple_automatic_rois_with_indicators
+    get_apple_automatic_rois_with_indicators,get_classification_linden
 from .models import SunriseSunsetInput, TaskTicket, SunriseSunsetOutput, TaskRedisRemoved
 from .models import ImageWellExposedInput, ImageWellExposedOutput
 from .models import AutomaticAppleSegmentationInput, AutomaticAppleSegmentationOutput, \
     AutomaticAppleSegmentationWithIndicatorsOutput
+from .models import LindenClassificationInput,LindenClassificationOutput
 
 app = FastAPI()
 
@@ -160,3 +161,25 @@ async def get_AutomaticAppleSegmentationModel_get_apple_automatic_rois_with_indi
     )
 
     return output
+
+@app.post('/LindenClassificationModel/get_classification_linden', response_model=TaskTicket, status_code=202)
+async def schedule_LindenClassificationModel_get_classification_linden(
+        model_input: LindenClassificationInput):
+    """Create celery prediction task. Return task_id to client in order to retrieve result"""
+    task_id = get_classification_linden.delay(model_input.imageBase64, model_input.filename,model_input.jsonBase64ImageROI)
+    # return {'task_id': str(task_id), 'status': 'Processing'}
+    return TaskTicket(task_id=str(task_id), status='Processing')
+
+@app.get('/LindenClassificationModel/get_classification_linden_result/{task_id}',
+         response_model=LindenClassificationOutput,
+         status_code=200,
+         responses={202: {'model': TaskTicket, 'description': 'Accepted: Not Ready'}})
+async def get_LindenClassificationModel_get_classification_linden_result(task_id):
+    """Fetch result for given task_id"""
+    task = AsyncResult(task_id)
+    if not task.ready():
+        # print(app.url_path_for('schedule_prediction'))
+        return JSONResponse(status_code=202, content={'task_id': str(task_id), 'status': 'Processing'})
+    result = task.get()
+    filename, isflowering = result
+    return LindenClassificationOutput(task_id=task_id, status='Success', filename=filename, isflowering=isflowering)

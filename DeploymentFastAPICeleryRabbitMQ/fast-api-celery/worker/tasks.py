@@ -82,4 +82,16 @@ def get_apple_automatic_rois_with_indicators(self, imageBase64: str, filename: s
     height, width, _ = imageRGB.shape
     return self.model.get_apple_automatic_rois_with_indicators(imageRGB, image_size, height, width, filename, jsonBase64ImageROIs)
 
-
+@worker.task(ignore_result=False,
+             bind=True,
+             base=PredictTask,
+             path=('logic.modelLinden', 'LindenModel'),
+             name='{}.{}'.format(__name__, 'get_classification_linden'))
+def get_classification_linden(self, imageBase64: str, filename: str, jsonBase64ImageROI: str):
+    image_bytes = base64.b64decode(imageBase64)
+    image_size = len(image_bytes)
+    image_np = np.frombuffer(image_bytes, dtype=np.uint8)
+    imageRGB = cv2.imdecode(image_np, cv2.IMREAD_COLOR)
+    # Get the width and height
+    height, width, _ = imageRGB.shape
+    return self.model.get_classification_linden(imageRGB, filename, jsonBase64ImageROI)
