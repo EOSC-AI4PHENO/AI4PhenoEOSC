@@ -31,18 +31,18 @@ def infer(image: np.ndarray):
     return dense_1
 
 
-fullname = "E:/!DeepTechnology/!Customers/!2023/Seth Software EOSC-AI4Pheno/AI4PhenoEOSC/linden/LindenClassification/Linden_Photos_ROI/1/2022-06-19_03.48.34_class_1_ROI.jpg"
-image = np.array(Image.open(fullname))  # Wczytanie obrazka i przekształcenie go w np.ndarray
-
-# Wywołanie funkcji infer z przekazanym obrazkiem
-prediction = infer(image)
-
-predicted_labels = np.argmax(prediction)
-
-if predicted_labels == 1:
-    print(1)
-else:
-    print(0)
-
-print(f"Prediction: {prediction}")
-print(f"predicted_labels: {predicted_labels}")
+# fullname = "E:/!DeepTechnology/!Customers/!2023/Seth Software EOSC-AI4Pheno/AI4PhenoEOSC/linden/LindenClassification/Linden_Photos_ROI/1/2022-06-19_03.48.34_class_1_ROI.jpg"
+# image = np.array(Image.open(fullname))  # Wczytanie obrazka i przekształcenie go w np.ndarray
+#
+# # Wywołanie funkcji infer z przekazanym obrazkiem
+# prediction = infer(image)
+#
+# predicted_labels = np.argmax(prediction)
+#
+# if predicted_labels == 1:
+#     print(1)
+# else:
+#     print(0)
+#
+# print(f"Prediction: {prediction}")
+# print(f"predicted_labels: {predicted_labels}")
