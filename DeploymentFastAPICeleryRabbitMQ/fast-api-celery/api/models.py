@@ -101,4 +101,4 @@ class LindenClassificationOutput(BaseModel):
     task_id: str
     status: str
     filename: str
-    isfloweringList: tuple[bool, ...]
+    isfloweringList: List[bool]

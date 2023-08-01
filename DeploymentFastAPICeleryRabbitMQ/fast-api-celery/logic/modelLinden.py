@@ -88,6 +88,6 @@ class LindenModel:
             predicted_labels_list.append(predicted_labels == 1)
 
         # Convert predicted_labels_list to a tuple
-        predicted_labels_tuple = tuple(predicted_labels_list)
+        #predicted_labels_tuple = tuple(predicted_labels_list)
 
-        return filename, predicted_labels_tuple
+        return filename, predicted_labels_list
