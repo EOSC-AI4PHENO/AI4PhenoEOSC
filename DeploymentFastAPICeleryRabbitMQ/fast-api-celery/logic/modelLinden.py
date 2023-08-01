@@ -90,4 +90,6 @@ class LindenModel:
         # Convert predicted_labels_list to a tuple
         #predicted_labels_tuple = tuple(predicted_labels_list)
 
+        predicted_labels_list = list(map(bool, predicted_labels_list))
+
         return filename, predicted_labels_list
