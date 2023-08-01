@@ -77,7 +77,7 @@ class LindenModel:
         return image_roi
 
     def get_classification_linden(self, imageRGB: np.ndarray, filename: str, jsonBase64ImageROI: str):
-        croppedImagesList  = self.cropImages(imageRGB, jsonBase64ImageROI)
+        croppedImagesList = self.cropImages(imageRGB, jsonBase64ImageROI)
 
         predicted_labels_list = []
 
@@ -86,4 +86,7 @@ class LindenModel:
             predicted_labels = np.argmax(prediction)
             predicted_labels_list.append(predicted_labels)
 
-        return filename, predicted_labels_list
+        # Convert predicted_labels_list to a tuple
+        predicted_labels_tuple = tuple(predicted_labels_list)
+
+        return filename, predicted_labels_tuple
