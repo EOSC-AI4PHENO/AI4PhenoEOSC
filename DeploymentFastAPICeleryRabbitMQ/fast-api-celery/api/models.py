@@ -4,6 +4,7 @@ import numpy as np
 from typing import Optional
 from typing import List
 
+
 class TaskRedisRemoved(BaseModel):
     """ID and status for the async tasks"""
     statusFlag: bool
@@ -90,11 +91,13 @@ class AutomaticAppleSegmentationWithIndicatorsOutput(BaseModel):
     avg_area: float
     number_of_apples: int
 
+
 class LindenClassificationInput(BaseModel):
     """Model features as input for prediction"""
     imageBase64: str  # base64 encoded image
     filename: str
     jsonBase64ImageROIs: str
+
 
 class LindenClassificationOutput(BaseModel):
     """Model features as input for prediction"""
@@ -102,3 +105,18 @@ class LindenClassificationOutput(BaseModel):
     status: str
     filename: str
     isfloweringList: List[bool]
+
+
+class AutomaticLindenSegmentationInput(BaseModel):
+    """Model features as input for prediction"""
+    imageBase64: str  # base64 encoded image
+    filename: str
+    jsonBase64ImageROIs: Optional[str] = None  # optional parameter
+
+
+class AutomaticLindenSegmentationOutput(BaseModel):
+    """Model features as input for prediction"""
+    task_id: str
+    status: str
+    filename: str
+    jsonBase64LindenROIs: str

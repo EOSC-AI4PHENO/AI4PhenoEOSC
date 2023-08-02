@@ -1,7 +1,6 @@
 import numpy as np
 from tritonclient.grpc import InferenceServerClient, InferInput, InferRequestedOutput, InferResult
 
-
 def infer(image: np.ndarray, image_meta: np.ndarray, anchors: np.ndarray):
     # Ustawienia
     url = "10.0.20.50:8001"

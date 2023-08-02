@@ -4,12 +4,14 @@ from celery.result import AsyncResult
 import redis
 
 from worker.tasks import get_sunrise_sunset, is_Image_WellExposedByHisto, get_apple_automatic_rois, \
-    get_apple_automatic_rois_with_indicators,get_classification_linden
+    get_apple_automatic_rois_with_indicators, get_classification_linden, get_linden_automatic_rois
 from .models import SunriseSunsetInput, TaskTicket, SunriseSunsetOutput, TaskRedisRemoved
 from .models import ImageWellExposedInput, ImageWellExposedOutput
 from .models import AutomaticAppleSegmentationInput, AutomaticAppleSegmentationOutput, \
     AutomaticAppleSegmentationWithIndicatorsOutput
-from .models import LindenClassificationInput,LindenClassificationOutput
+from .models import LindenClassificationInput, LindenClassificationOutput
+
+from .models import AutomaticLindenSegmentationInput, AutomaticLindenSegmentationOutput
 
 app = FastAPI()
 
@@ -131,7 +133,7 @@ async def get_AutomaticAppleSegmentationModel_get_apple_automatic_rois_with_indi
         return JSONResponse(status_code=202, content={'task_id': str(task_id), 'status': 'Processing'})
 
     result = task.get()
-    #filename, jsonBase64AppleROIs, df_local = result
+    # filename, jsonBase64AppleROIs, df_local = result
     filename, jsonBase64AppleROIs, r_av, g_av, b_av, r_sd, g_sd, b_sd, bri_av, bri_sd, gi_av, gei_av, gei_sd, ri_av, ri_sd, bi_av, bi_sd, avg_width, avg_height, avg_area, number_of_apples = result
 
     output = AutomaticAppleSegmentationWithIndicatorsOutput(
@@ -162,13 +164,16 @@ async def get_AutomaticAppleSegmentationModel_get_apple_automatic_rois_with_indi
 
     return output
 
+
 @app.post('/LindenClassificationModel/get_classification_linden', response_model=TaskTicket, status_code=202)
 async def schedule_LindenClassificationModel_get_classification_linden(
         model_input: LindenClassificationInput):
     """Create celery prediction task. Return task_id to client in order to retrieve result"""
-    task_id = get_classification_linden.delay(model_input.imageBase64, model_input.filename,model_input.jsonBase64ImageROIs)
+    task_id = get_classification_linden.delay(model_input.imageBase64, model_input.filename,
+                                              model_input.jsonBase64ImageROIs)
     # return {'task_id': str(task_id), 'status': 'Processing'}
     return TaskTicket(task_id=str(task_id), status='Processing')
+
 
 @app.get('/LindenClassificationModel/get_classification_linden_result/{task_id}',
          response_model=LindenClassificationOutput,
@@ -182,4 +187,32 @@ async def get_LindenClassificationModel_get_classification_linden_result(task_id
         return JSONResponse(status_code=202, content={'task_id': str(task_id), 'status': 'Processing'})
     result = task.get()
     filename, isfloweringList = result
-    return LindenClassificationOutput(task_id=task_id, status='Success', filename=filename, isfloweringList=isfloweringList)
+    return LindenClassificationOutput(task_id=task_id, status='Success', filename=filename,
+                                      isfloweringList=isfloweringList)
+
+
+###Linden
+@app.post('/AutomaticLindenSegmentationModel/get_linden_automatic_rois', response_model=TaskTicket, status_code=202)
+async def schedule_AutomaticLindenSegmentationModel_get_linden_automatic_rois(
+        model_input: AutomaticLindenSegmentationInput):
+    """Create celery prediction task. Return task_id to client in order to retrieve result"""
+    task_id = get_linden_automatic_rois.delay(model_input.imageBase64, model_input.filename,
+                                              model_input.jsonBase64ImageROIs)
+    # return {'task_id': str(task_id), 'status': 'Processing'}
+    return TaskTicket(task_id=str(task_id), status='Processing')
+
+
+@app.get('/AutomaticLindenSegmentationModel/get_linden_automatic_rois_result/{task_id}',
+         response_model=AutomaticLindenSegmentationOutput,
+         status_code=200,
+         responses={202: {'model': TaskTicket, 'description': 'Accepted: Not Ready'}})
+async def get_AutomaticLindenSegmentationModel_get_linden_automatic_rois_result(task_id):
+    """Fetch result for given task_id"""
+    task = AsyncResult(task_id)
+    if not task.ready():
+        # print(app.url_path_for('schedule_prediction'))
+        return JSONResponse(status_code=202, content={'task_id': str(task_id), 'status': 'Processing'})
+    result = task.get()
+    filename, jsonBase64LindenROIs = result
+    return AutomaticLindenSegmentationOutput(task_id=task_id, status='Success', filename=filename,
+                                             jsonBase64LindenROIs=jsonBase64LindenROIs)

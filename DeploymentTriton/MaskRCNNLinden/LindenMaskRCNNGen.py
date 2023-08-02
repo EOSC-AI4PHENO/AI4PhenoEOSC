@@ -15,7 +15,7 @@ from datetime import datetime
 ROOT_DIR = os.path.abspath("")
 sys.path.append(ROOT_DIR)
 
-import appleDeployment
+#import appleDeployment
 from mrcnn.config import Config
 from mrcnn import utils
 from mrcnn import visualizeJarek

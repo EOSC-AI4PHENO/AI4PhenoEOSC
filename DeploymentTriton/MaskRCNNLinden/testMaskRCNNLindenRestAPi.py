@@ -89,12 +89,12 @@ def load_image(fullnameImage):
     return image
 
 
-class AppleDeploymentConfig(Config):
+class LindenDeploymentConfig(Config):
     """Configuration for training on the toy  dataset.
     Derives from the base Config class and overrides some values.
     """
     # Give the configuration a recognizable name
-    NAME = "apple"
+    NAME = "linden"
 
     GPU_COUNT = 1
 
@@ -122,13 +122,12 @@ class AppleDeploymentConfig(Config):
     RUN_EAGERLY = True
 #####################################################################
 
-config = AppleDeploymentConfig()
+config = LindenDeploymentConfig()
 
 # create inference model
 model = modellib.MaskRCNN(mode="inference", model_dir="/home", config=config)
 
-#fullname = 'E:/!DeepTechnology/!Customers/!2023/Seth Software EOSC-AI4Pheno/AI4PhenoEOSC/apple/Mask-RCNN-Apple/apple_dataset/apple/test1/20220710_1204_0700F136_PIC_84_CAM_2.xml.pi.jpg'
-fullname = 'E:/!DeepTechnology/!Customers/!2023/Seth Software EOSC-AI4Pheno/AI4PhenoEOSC/apple/Mask-RCNN-Apple/apple_dataset/apple/test1/20220712_1202_0700F136_PIC_86_CAM_2.xml.pi.jpg'
+fullname = 'E:/!DeepTechnology/!Customers/!2023/Seth Software EOSC-AI4Pheno/AI4PhenoEOSC/linden/dataset_2023_07_09_11_07_54/test/2022-06-25_07.12.34_class_1.jpg'
 
 image = load_image(fullname)
 dirname, filename = os.path.split(fullname)
