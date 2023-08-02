@@ -101,7 +101,7 @@ def get_classification_linden(self, imageBase64: str, filename: str, jsonBase64I
              base=PredictTask,
              path=('logic.modelLinden2', 'LindenSegmentationModel'),
              name='{}.{}'.format(__name__, 'get_linden_automatic_rois'))
-def get_apple_automatic_rois(self, imageBase64: str, filename: str, jsonBase64ImageROIs: str):
+def get_linden_automatic_rois(self, imageBase64: str, filename: str, jsonBase64ImageROIs: str):
     image_bytes = base64.b64decode(imageBase64)
     image_size = len(image_bytes)
     image_np = np.frombuffer(image_bytes, dtype=np.uint8)
