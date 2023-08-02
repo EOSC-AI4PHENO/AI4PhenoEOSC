@@ -16,3 +16,6 @@ using ConsoleAppAI4PhenoTest;
 
 //Ticket objtaskTicket5 = LindenClassificationTest.PostLindenClassificationModelgetClassificationLindenCall();
 //LindenClassificationOutput objLindenClassificationOutput = LindenClassificationTest.GetLindenClassificationGetClassificationLindenResult("7505a54a-286a-4886-88ca-db45a776d858");
+
+Ticket objtaskTicket6 = LindenSegmentationTest.PostLindenSegmentationGetLindenAutomaticRoisCall();
+//LindenClassificationOutput objLindenClassificationOutput = LindenClassificationTest.GetLindenClassificationGetClassificationLindenResult("7505a54a-286a-4886-88ca-db45a776d858");
