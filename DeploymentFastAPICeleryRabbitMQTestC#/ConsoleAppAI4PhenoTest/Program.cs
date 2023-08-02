@@ -18,4 +18,6 @@ using ConsoleAppAI4PhenoTest;
 //LindenClassificationOutput objLindenClassificationOutput = LindenClassificationTest.GetLindenClassificationGetClassificationLindenResult("7505a54a-286a-4886-88ca-db45a776d858");
 
 //Ticket objtaskTicket6 = LindenSegmentationTest.PostLindenSegmentationGetLindenAutomaticRoisCall();
-AutomaticLindenSegmentationOutput objAutomaticLindenSegmentationOutput = LindenSegmentationTest.GetLindenSegmentationGetLindenAutomaticRoisCallResult("500370e0-e905-4347-86d6-5484333acf9b");
+//AutomaticLindenSegmentationOutput objAutomaticLindenSegmentationOutput = LindenSegmentationTest.GetLindenSegmentationGetLindenAutomaticRoisCallResult("500370e0-e905-4347-86d6-5484333acf9b");
+
+RedisTest.RemoveResultFromRedis("52a7a3c5-71db-4127-acb0-a37dd4d6f89f");

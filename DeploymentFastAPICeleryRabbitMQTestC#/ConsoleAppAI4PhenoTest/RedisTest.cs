@@ -7,8 +7,14 @@ using System.Threading.Tasks;
 
 namespace ConsoleAppAI4PhenoTest
 {
+    public class RedisOutput
+    {
+        public bool statusFlag { get; set; }
+    }
+
     public class RedisTest
     {
+
         private static readonly HttpClient client = new HttpClient();
         private static readonly string baseUrl = "http://10.0.20.50:8888";  // Change to your actual base URL
 
@@ -26,22 +32,9 @@ namespace ConsoleAppAI4PhenoTest
             response.EnsureSuccessStatusCode();
             var responseBody = response.Content.ReadAsStringAsync().Result;
 
-            AutomaticAppleSegmentationOutput objAutomaticAppleSegmentationOutput = JsonConvert.DeserializeObject<AutomaticAppleSegmentationOutput>(responseBody);
+            RedisOutput objRedisOutput = JsonConvert.DeserializeObject<RedisOutput>(responseBody);
 
-            Console.WriteLine($"TaskId: {objAutomaticAppleSegmentationOutput.task_id}, Status: {objAutomaticAppleSegmentationOutput.status},filename:{objAutomaticAppleSegmentationOutput.filename}");
-
-
-            // Decode the Base64 string
-            byte[] base64EncodedBytes = Convert.FromBase64String(objAutomaticAppleSegmentationOutput.jsonBase64AppleROIs);
-            string jsonText = Encoding.UTF8.GetString(base64EncodedBytes);
-
-            // Path to save the JSON file
-            string filename = objAutomaticAppleSegmentationOutput.filename;
-            filename = System.IO.Path.ChangeExtension(filename, "json");
-
-            // Write JSON string to a file
-            File.WriteAllText(filename, jsonText);
-
+            Console.WriteLine($"Redis output: {objRedisOutput.statusFlag}");
         }
     }
 }
