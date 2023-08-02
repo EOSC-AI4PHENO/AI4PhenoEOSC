@@ -76,10 +76,10 @@ namespace ConsoleAppAI4PhenoTest
         }
         #endregion
 
-        #region static AutomaticAppleSegmentationOutput GetAppleSegmentationGetAppleAutomaticRoisCallResult(string task_id)
-        public static AutomaticAppleSegmentationOutput GetAppleSegmentationGetAppleAutomaticRoisCallResult(string task_id)
+        #region static AutomaticAppleSegmentationOutput GetLindenSegmentationGetLindenAutomaticRoisCallResult(string task_id)
+        public static AutomaticLindenSegmentationOutput GetLindenSegmentationGetLindenAutomaticRoisCallResult(string task_id)
         {
-            string url = string.Format("{0}/AutomaticAppleSegmentationModel/get_apple_automatic_rois_result/{1}", baseUrl, task_id);
+            string url = string.Format("{0}/AutomaticLindenSegmentationModel/get_linden_automatic_rois_result/{1}", baseUrl, task_id);
 
             var response = client.GetAsync(url).Result;
 
@@ -91,23 +91,23 @@ namespace ConsoleAppAI4PhenoTest
             response.EnsureSuccessStatusCode();
             var responseBody = response.Content.ReadAsStringAsync().Result;
 
-            AutomaticAppleSegmentationOutput objAutomaticAppleSegmentationOutput = JsonConvert.DeserializeObject<AutomaticAppleSegmentationOutput>(responseBody);
+            AutomaticLindenSegmentationOutput objAutomaticLindenSegmentationOutput = JsonConvert.DeserializeObject<AutomaticLindenSegmentationOutput>(responseBody);
 
-            Console.WriteLine($"TaskId: {objAutomaticAppleSegmentationOutput.task_id}, Status: {objAutomaticAppleSegmentationOutput.status},filename:{objAutomaticAppleSegmentationOutput.filename}");
+            Console.WriteLine($"TaskId: {objAutomaticLindenSegmentationOutput.task_id}, Status: {objAutomaticLindenSegmentationOutput.status},filename:{objAutomaticLindenSegmentationOutput.filename}");
 
 
             // Decode the Base64 string
-            byte[] base64EncodedBytes = Convert.FromBase64String(objAutomaticAppleSegmentationOutput.jsonBase64AppleROIs);
+            byte[] base64EncodedBytes = Convert.FromBase64String(objAutomaticLindenSegmentationOutput.jsonBase64LindenROIs);
             string jsonText = Encoding.UTF8.GetString(base64EncodedBytes);
 
             // Path to save the JSON file
-            string filename = objAutomaticAppleSegmentationOutput.filename;
+            string filename = objAutomaticLindenSegmentationOutput.filename;
             filename = System.IO.Path.ChangeExtension(filename, "json");
 
             // Write JSON string to a file
             File.WriteAllText(filename, jsonText);
 
-            return objAutomaticAppleSegmentationOutput;
+            return objAutomaticLindenSegmentationOutput;
         }
         #endregion
     }
