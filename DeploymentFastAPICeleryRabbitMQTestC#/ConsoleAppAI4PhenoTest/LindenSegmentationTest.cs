@@ -110,5 +110,47 @@ namespace ConsoleAppAI4PhenoTest
             return objAutomaticLindenSegmentationOutput;
         }
         #endregion
+
+        #region static Ticket PostLindenSegmentationGetLindenAutomaticRoisCall(string fullname)
+        public static Ticket PostLindenSegmentationGetLindenAutomaticRoisCall(string fullname)
+        {
+            string filename = System.IO.Path.GetFileName(fullname);
+            string imagejson = ImageConverter.ImageToBase64(fullname);
+
+            //string fullnameAREA = @"E:\!DeepTechnology\!Customers\!2023\Seth Software EOSC-AI4Pheno\AI4PhenoEOSC\VGGBartek\via_project_30Jul2023_20h54m_jsonTEST.json";
+            //string filenameAREA = System.IO.Path.GetFileName(fullnameAREA);
+            //string imagejsonAREA = ImageConverter.ImageToBase64(fullnameAREA);
+
+            var modelInput = new AutomaticAppleSegmentationInput
+            {
+                imageBase64 = imagejson,
+                filename = filename
+                //jsonBase64ImageROIs = imagejsonAREA
+            };
+
+            StringContent stringContent = new StringContent(JsonConvert.SerializeObject(modelInput), Encoding.UTF8, "application/json");
+
+            var jsonString = JsonConvert.SerializeObject(modelInput);
+            //File.WriteAllText("json.txt", jsonString);
+
+            string url = string.Format("{0}/AutomaticLindenSegmentationModel/get_linden_automatic_rois", baseUrl);
+
+            var response = client.PostAsync(url, stringContent).Result;
+
+            if (!response.IsSuccessStatusCode)
+            {
+                Console.WriteLine(response.Content.ReadAsStringAsync().Result);
+            }
+
+            response.EnsureSuccessStatusCode();
+            var responseBody = response.Content.ReadAsStringAsync().Result;
+
+            Ticket objTaskTicket = JsonConvert.DeserializeObject<Ticket>(responseBody);
+
+            Console.WriteLine($"TaskId: {objTaskTicket.task_id}, Status: {objTaskTicket.Status}");
+
+            return objTaskTicket;
+        }
+        #endregion
     }
 }
