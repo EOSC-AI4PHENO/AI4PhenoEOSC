@@ -4,7 +4,8 @@ from . import grpcLindenClassification
 from . import Convert2Polygon
 import base64
 import json
-from api.models import LindenDecision
+#from models import LindenDecision
+from ..api.models import LindenDecision
 
 class LindenModel:
     def __init__(self):
