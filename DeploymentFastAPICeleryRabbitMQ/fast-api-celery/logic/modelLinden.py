@@ -5,7 +5,8 @@ from . import Convert2Polygon
 import base64
 import json
 #from models import LindenDecision
-from ..api.models import LindenDecision
+#from ..api.models import LindenDecision
+from api.models import LindenDecision
 
 class LindenModel:
     def __init__(self):
