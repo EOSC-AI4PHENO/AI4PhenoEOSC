@@ -93,7 +93,7 @@ model.compile(optimizer=tf.keras.optimizers.Adam(),
 # Setting up model checkpoint
 checkpoint = tf.keras.callbacks.ModelCheckpoint('best_model.h5', monitor='val_loss', mode='min', save_best_only=True)
 
-early_stopping = tf.keras.callbacks.EarlyStopping(monitor='val_loss', patience=5, restore_best_weights=True)
+early_stopping = tf.keras.callbacks.EarlyStopping(monitor='val_loss', patience=10, restore_best_weights=True)
 history = model.fit(X_train, y_train, batch_size=32, epochs=500, validation_data=(X_val, y_val), callbacks=[early_stopping, checkpoint], class_weight=class_weight_dict)
 
 model.save('ClassificationLindenModelv2', save_format='tf')
