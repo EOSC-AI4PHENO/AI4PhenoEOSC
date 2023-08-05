@@ -4,7 +4,7 @@ from . import grpcLindenClassification
 from . import Convert2Polygon
 import base64
 import json
-
+from api.models import LindenDecision
 
 class LindenModel:
     def __init__(self):
@@ -77,19 +77,36 @@ class LindenModel:
         image_roi = imageRGB[min_y:max_y, min_x:max_x]
         return image_roi
 
-    def get_classification_linden(self, imageRGB: np.ndarray, filename: str, jsonBase64ImageROI: str):
-        croppedImagesList = self.cropImages(imageRGB, jsonBase64ImageROI)
+    # def get_classification_linden(self, imageRGB: np.ndarray, filename: str, jsonBase64ImageROI: str):
+    #     croppedImagesList = self.cropImages(imageRGB, jsonBase64ImageROI)
+    #
+    #     predicted_labels_list = []
+    #
+    #     for croppedImage in croppedImagesList:
+    #         prediction = grpcLindenClassification.infer(croppedImage)
+    #         predicted_labels = np.argmax(prediction)
+    #         predicted_labels_list.append(predicted_labels == 1)
+    #
+    #     #predicted_labels_list = list(map(bool, predicted_labels_list))
+    #
+    #     return filename, predicted_labels_list
 
-        predicted_labels_list = []
+def get_classification_linden(self, imageRGB: np.ndarray, filename: str, jsonBase64ImageROI: str):
+    croppedImagesList = self.cropImages(imageRGB, jsonBase64ImageROI)
 
-        for croppedImage in croppedImagesList:
-            prediction = grpcLindenClassification.infer(croppedImage)
-            predicted_labels = np.argmax(prediction)
-            predicted_labels_list.append(predicted_labels == 1)
+    linden_decisions = []
 
-        # Convert predicted_labels_list to a tuple
-        #predicted_labels_tuple = tuple(predicted_labels_list)
+    for croppedImage in croppedImagesList:
+        prediction = grpcLindenClassification.infer(croppedImage)
+        predicted_label = np.argmax(prediction)
 
-        predicted_labels_list = list(map(bool, predicted_labels_list))
+        # Create new LindenDecision object
+        linden_decision = LindenDecision(
+            is_flowering=int(predicted_label),
+            confidence_score=float(prediction),
+            message="Linden is flowering." if predicted_label == 1 else "Linden is NOT flowering."
+        )
 
-        return filename, predicted_labels_list
+        linden_decisions.append(linden_decision)
+
+    return filename, linden_decisions

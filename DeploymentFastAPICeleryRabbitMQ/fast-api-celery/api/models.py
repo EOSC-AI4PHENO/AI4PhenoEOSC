@@ -98,14 +98,16 @@ class LindenClassificationInput(BaseModel):
     filename: str
     jsonBase64ImageROIs: str
 
-
+class LindenDecision(BaseModel):
+    is_flowering: int
+    confidence_score: float
+    message: str
 class LindenClassificationOutput(BaseModel):
     """Model features as input for prediction"""
     task_id: str
     status: str
     filename: str
-    isfloweringList: List[bool]
-
+    isFloweringDecision: List[LindenDecision]
 
 class AutomaticLindenSegmentationInput(BaseModel):
     """Model features as input for prediction"""
