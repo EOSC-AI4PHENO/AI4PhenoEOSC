@@ -26,7 +26,6 @@ class PredictTask(Task):
         if not self.model:
             logging.info('Loading Model...')
             sys.path.append("..")
-            sys.path.append("../api")
             module_import = importlib.import_module(self.path[0])
             model_obj = getattr(module_import, self.path[1])
             self.model = model_obj()
