@@ -106,11 +106,12 @@ class LindenModel:
         for croppedImage in croppedImagesList:
             prediction = grpcLindenClassification.infer(croppedImage)
             predicted_label = np.argmax(prediction)
+            predicted_score = np.max(prediction)
 
             # Create new LindenDecision object
             linden_decision = LindenDecision(
                 is_flowering=int(predicted_label),
-                confidence_score=float(prediction),
+                confidence_score=float(predicted_score),
                 message="Linden is flowering." if predicted_label == 1 else "Linden is NOT flowering."
             )
 
