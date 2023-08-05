@@ -3,6 +3,7 @@ from datetime import datetime
 import numpy as np
 from typing import Optional
 from typing import List
+from logic.modelLinden import LindenDecision
 
 
 class TaskRedisRemoved(BaseModel):
@@ -98,10 +99,6 @@ class LindenClassificationInput(BaseModel):
     filename: str
     jsonBase64ImageROIs: str
 
-class LindenDecision(BaseModel):
-    is_flowering: int
-    confidence_score: float
-    message: str
 class LindenClassificationOutput(BaseModel):
     """Model features as input for prediction"""
     task_id: str

@@ -4,8 +4,12 @@ from . import grpcLindenClassification
 from . import Convert2Polygon
 import base64
 import json
-from models import LindenDecision
-#from ..api.models import LindenDecision
+from pydantic import BaseModel
+
+class LindenDecision(BaseModel):
+    is_flowering: int
+    confidence_score: float
+    message: str
 
 class LindenModel:
     def __init__(self):
