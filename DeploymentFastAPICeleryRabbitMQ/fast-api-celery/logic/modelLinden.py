@@ -1,10 +1,12 @@
-import cv2
-import numpy as np
-from . import grpcLindenClassification
-from . import Convert2Polygon
 import base64
 import json
+
+import numpy as np
 from pydantic import BaseModel
+
+from . import Convert2Polygon
+from . import grpcLindenClassification
+
 
 class LindenDecision(BaseModel):
     is_flowering: int
@@ -96,22 +98,22 @@ class LindenModel:
     #
     #     return filename, predicted_labels_list
 
-def get_classification_linden(self, imageRGB: np.ndarray, filename: str, jsonBase64ImageROI: str):
-    croppedImagesList = self.cropImages(imageRGB, jsonBase64ImageROI)
+    def get_classification_linden(self, imageRGB: np.ndarray, filename: str, jsonBase64ImageROI: str):
+        croppedImagesList = self.cropImages(imageRGB, jsonBase64ImageROI)
 
-    linden_decisions = []
+        linden_decisions = []
 
-    for croppedImage in croppedImagesList:
-        prediction = grpcLindenClassification.infer(croppedImage)
-        predicted_label = np.argmax(prediction)
+        for croppedImage in croppedImagesList:
+            prediction = grpcLindenClassification.infer(croppedImage)
+            predicted_label = np.argmax(prediction)
 
-        # Create new LindenDecision object
-        linden_decision = LindenDecision(
-            is_flowering=int(predicted_label),
-            confidence_score=float(prediction),
-            message="Linden is flowering." if predicted_label == 1 else "Linden is NOT flowering."
-        )
+            # Create new LindenDecision object
+            linden_decision = LindenDecision(
+                is_flowering=int(predicted_label),
+                confidence_score=float(prediction),
+                message="Linden is flowering." if predicted_label == 1 else "Linden is NOT flowering."
+            )
 
-        linden_decisions.append(linden_decision)
+            linden_decisions.append(linden_decision)
 
-    return filename, linden_decisions
+        return filename, linden_decisions
