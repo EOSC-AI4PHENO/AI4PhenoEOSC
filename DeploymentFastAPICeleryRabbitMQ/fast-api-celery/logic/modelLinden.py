@@ -1,17 +1,9 @@
 import base64
 import json
-
 import numpy as np
 from pydantic import BaseModel
-
 from . import Convert2Polygon
 from . import grpcLindenClassification
-
-
-class LindenDecision(BaseModel):
-    is_flowering: int
-    confidence_score: float
-    message: str
 
 class LindenModel:
     def __init__(self):
@@ -101,20 +93,17 @@ class LindenModel:
     def get_classification_linden(self, imageRGB: np.ndarray, filename: str, jsonBase64ImageROI: str):
         croppedImagesList = self.cropImages(imageRGB, jsonBase64ImageROI)
 
-        linden_decisions = []
+        isFloweringList = []
+        isFloweringConfidence = []
 
         for croppedImage in croppedImagesList:
             prediction = grpcLindenClassification.infer(croppedImage)
             predicted_label = np.argmax(prediction)
             predicted_score = np.max(prediction)
 
-            # Create new LindenDecision object
-            linden_decision = LindenDecision(
-                is_flowering=int(predicted_label),
-                confidence_score=float(predicted_score),
-                message="Linden is flowering." if predicted_label == 1 else "Linden is NOT flowering."
-            )
+            # Append to lists instead of creating a LindenDecision object
+            isFloweringList.append(int(predicted_label))
+            isFloweringConfidence.append(float(predicted_score))
 
-            linden_decisions.append(linden_decision)
+        return filename, isFloweringList, isFloweringConfidence
 
-        return filename, linden_decisions
