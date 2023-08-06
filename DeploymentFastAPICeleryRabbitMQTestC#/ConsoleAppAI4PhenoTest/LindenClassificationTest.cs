@@ -32,8 +32,8 @@ namespace ConsoleAppAI4PhenoTest
         private static readonly HttpClient client = new HttpClient();
         private static readonly string baseUrl = "http://10.0.20.50:8888";  // Change to your actual base URL
 
-        #region static Ticket PostLindenClassificationModelgetClassificationLindenCall()
-        public static Ticket PostLindenClassificationModelgetClassificationLindenCall()
+        #region static Ticket PostLindenClassificationModelgetClassificationLindenCall1()
+        public static Ticket PostLindenClassificationModelgetClassificationLindenCall1()
         {
             string fullname = @"E:\!DeepTechnology\!Customers\!2023\Seth Software EOSC-AI4Pheno\Linden_Photos\1\2022-06-19_04.18.34_class_1.jpg";
             string filename = System.IO.Path.GetFileName(fullname);
@@ -41,6 +41,51 @@ namespace ConsoleAppAI4PhenoTest
 
             //string fullnameAREA = @"E:\!DeepTechnology\!Customers\!2023\Seth Software EOSC-AI4Pheno\AI4PhenoEOSC\example\LindenKlas\via_project_5Aug2023_18h44m_json.json";
             string fullnameAREA = @"E:\!DeepTechnology\!Customers\!2023\Seth Software EOSC-AI4Pheno\AI4PhenoEOSC\linden\LindenClassification\2023-08-05\ODUPP_2022.06.28.05.54.35._json.json";
+
+            string filenameAREA = System.IO.Path.GetFileName(fullnameAREA);
+            string imagejsonAREA = ImageConverter.ImageToBase64(fullnameAREA);
+
+            var modelInput = new LindenClassificationInput
+            {
+                imageBase64 = imagejson,
+                filename = filename,
+                jsonBase64ImageROIs = imagejsonAREA
+            };
+
+            StringContent stringContent = new StringContent(JsonConvert.SerializeObject(modelInput), Encoding.UTF8, "application/json");
+
+            var jsonString = JsonConvert.SerializeObject(modelInput);
+            //File.WriteAllText("json.txt", jsonString);
+
+            string url = string.Format("{0}/LindenClassificationModel/get_classification_linden", baseUrl);
+
+            var response = client.PostAsync(url, stringContent).Result;
+
+            if (!response.IsSuccessStatusCode)
+            {
+                Console.WriteLine(response.Content.ReadAsStringAsync().Result);
+            }
+
+            response.EnsureSuccessStatusCode();
+            var responseBody = response.Content.ReadAsStringAsync().Result;
+
+            Ticket objTaskTicket = JsonConvert.DeserializeObject<Ticket>(responseBody);
+
+            Console.WriteLine($"TaskId: {objTaskTicket.task_id}, Status: {objTaskTicket.Status}");
+
+            return objTaskTicket;
+        }
+        #endregion
+
+        #region static Ticket PostLindenClassificationModelgetClassificationLindenCall2()
+        public static Ticket PostLindenClassificationModelgetClassificationLindenCall2()
+        {
+            string fullname = @"E:\!DeepTechnology\!Customers\!2023\Seth Software EOSC-AI4Pheno\AI4PhenoEOSC\example\LindenKlas\2022-06-19_02.48.33_class_1.jpg";
+            string filename = System.IO.Path.GetFileName(fullname);
+            string imagejson = ImageConverter.ImageToBase64(fullname);
+
+            //string fullnameAREA = @"E:\!DeepTechnology\!Customers\!2023\Seth Software EOSC-AI4Pheno\AI4PhenoEOSC\example\LindenKlas\via_project_5Aug2023_18h44m_json.json";
+            string fullnameAREA = @"E:\!DeepTechnology\!Customers\!2023\Seth Software EOSC-AI4Pheno\AI4PhenoEOSC\example\LindenKlas\via_project_6Aug2023_17h46m_json1.json";
 
             string filenameAREA = System.IO.Path.GetFileName(fullnameAREA);
             string imagejsonAREA = ImageConverter.ImageToBase64(fullnameAREA);
