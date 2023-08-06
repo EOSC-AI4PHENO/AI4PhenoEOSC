@@ -104,7 +104,6 @@ class LindenClassificationOutput(BaseModel):
     filename: str
     isFlowering: List[int]
     isFloweringConfidence: List[float]
-    message: str
 
 class AutomaticLindenSegmentationInput(BaseModel):
     """Model features as input for prediction"""

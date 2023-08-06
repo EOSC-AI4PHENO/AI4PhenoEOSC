@@ -15,7 +15,6 @@ from .models import AutomaticLindenSegmentationInput, AutomaticLindenSegmentatio
 
 app = FastAPI()
 
-
 def delete_task_from_redis(task_id):
     r = redis.Redis(host='10.0.20.50', port=6379)
 
@@ -186,9 +185,9 @@ async def get_LindenClassificationModel_get_classification_linden_result(task_id
         # print(app.url_path_for('schedule_prediction'))
         return JSONResponse(status_code=202, content={'task_id': str(task_id), 'status': 'Processing'})
     result = task.get()
-    filename, isFloweringDecision = result
+    filename, isFloweringList, isFloweringConfidence  = result
     return LindenClassificationOutput(task_id=task_id, status='Success', filename=filename,
-                                      isFloweringDecision=isFloweringDecision)
+                                      isFlowering=isFloweringList,isFloweringConfidence=isFloweringConfidence)
 
 
 ###Linden
