@@ -35,11 +35,13 @@ namespace ConsoleAppAI4PhenoTest
         #region static Ticket PostLindenClassificationModelgetClassificationLindenCall()
         public static Ticket PostLindenClassificationModelgetClassificationLindenCall()
         {
-            string fullname = @"E:\!DeepTechnology\!Customers\!2023\Seth Software EOSC-AI4Pheno\AI4PhenoEOSC\example\LindenKlas\2022-06-19_02.48.33_class_1.jpg";
+            string fullname = @"E:\!DeepTechnology\!Customers\!2023\Seth Software EOSC-AI4Pheno\Linden_Photos\1\2022-06-19_04.18.34_class_1.jpg";
             string filename = System.IO.Path.GetFileName(fullname);
             string imagejson = ImageConverter.ImageToBase64(fullname);
 
-            string fullnameAREA = @"E:\!DeepTechnology\!Customers\!2023\Seth Software EOSC-AI4Pheno\AI4PhenoEOSC\example\LindenKlas\via_project_5Aug2023_18h44m_json.json";
+            //string fullnameAREA = @"E:\!DeepTechnology\!Customers\!2023\Seth Software EOSC-AI4Pheno\AI4PhenoEOSC\example\LindenKlas\via_project_5Aug2023_18h44m_json.json";
+            string fullnameAREA = @"E:\!DeepTechnology\!Customers\!2023\Seth Software EOSC-AI4Pheno\AI4PhenoEOSC\linden\LindenClassification\2023-08-05\ODUPP_2022.06.28.05.54.35._json.json";
+
             string filenameAREA = System.IO.Path.GetFileName(fullnameAREA);
             string imagejsonAREA = ImageConverter.ImageToBase64(fullnameAREA);
 

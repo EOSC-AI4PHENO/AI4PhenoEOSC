@@ -15,7 +15,7 @@ using ConsoleAppAI4PhenoTest;
 //AutomaticAppleSegmentationWithIndicatorsOutput objAutomaticAppleSegmentationWithIndicatorsOutput = AppleSegmentationTest.GetAppleSegmentationGetAppleAutomaticRoisWithIndicatorsCallResult("c340bd81-e214-412c-af8c-897633143a81");
 
 //Ticket objtaskTicket5 = LindenClassificationTest.PostLindenClassificationModelgetClassificationLindenCall();
-LindenClassificationOutput objLindenClassificationOutput = LindenClassificationTest.GetLindenClassificationGetClassificationLindenResult("a9704733-3348-4c1f-a6ed-617e160d3b36\r\n");
+//LindenClassificationOutput objLindenClassificationOutput = LindenClassificationTest.GetLindenClassificationGetClassificationLindenResult("085e7526-5787-4d15-83c9-16cc91626e3b");
 
 //Ticket objtaskTicket6 = LindenSegmentationTest.PostLindenSegmentationGetLindenAutomaticRoisCall();
 //AutomaticLindenSegmentationOutput objAutomaticLindenSegmentationOutput = LindenSegmentationTest.GetLindenSegmentationGetLindenAutomaticRoisCallResult("500370e0-e905-4347-86d6-5484333acf9b");
