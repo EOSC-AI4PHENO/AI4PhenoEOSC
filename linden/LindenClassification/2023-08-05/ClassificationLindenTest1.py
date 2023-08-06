@@ -12,7 +12,7 @@ import time
 import platform
 from tensorflow.python.framework.config import set_memory_growth
 from tqdm import tqdm
-from tensorflow.keras.models import load_model`
+from tensorflow.keras.models import load_model
 
 def load_images_from_folder(folder_path, resize_shape=None):
     image_files, loaded_images = [], []
