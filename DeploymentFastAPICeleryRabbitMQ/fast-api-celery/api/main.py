@@ -15,7 +15,6 @@ from .models import AutomaticLindenSegmentationInput, AutomaticLindenSegmentatio
 
 app = FastAPI()
 
-
 def delete_task_from_redis(task_id):
     r = redis.Redis(host='10.0.20.50', port=6379)
 

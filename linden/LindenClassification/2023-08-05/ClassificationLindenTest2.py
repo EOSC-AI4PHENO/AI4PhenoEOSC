@@ -2,6 +2,7 @@ import os
 import numpy as np
 import tensorflow as tf
 from PIL import Image
+from tritonclient.grpc import InferenceServerClient, InferInput, InferRequestedOutput, InferResult
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import classification_report
 from sklearn.utils.class_weight import compute_class_weight
@@ -36,10 +37,37 @@ def load_images_from_folder(folder_path, resize_shape=None):
 
     return np.array(loaded_images)
 
+def infer(image: np.ndarray):
+    # Ustawienia
+    url = "10.0.20.50:8001"
+    model_name = "ClassificationLinden"
+
+    # Inicjalizacja klienta
+    client = InferenceServerClient(url)
+
+    image = np.expand_dims(image, axis=0)
+
+    # Konwersja danych na InferInput
+    infer_input = InferInput("input_1", image.shape, "FP32")
+    # konwersja danych na odpowiedni format
+    image = image.astype(np.float32)
+    infer_input.set_data_from_numpy(image)
+
+    # określenie wyjścia
+    output = InferRequestedOutput("dense_1")
+
+    # Wykonanie inferencji
+    results = client.infer(model_name, inputs=[infer_input], outputs=[output])
+
+    # Zwrócenie wyników jako osobnych zmiennych
+    dense_1 = results.as_numpy("dense_1")
+
+    return dense_1
 
 # Wczytanie modelu
 
-loaded_model = load_model('best_model.h5')
+#loaded_model = load_model('best_model.h5')
+#loaded_model = tf.keras.models.load_model('ClassificationLindenModelv2')
 
 # Określenie rozmiaru obrazów (na podstawie tego, co oczekuje model)
 # Dostosuj to do Twojego modelu!
@@ -58,14 +86,9 @@ predicted_labels_list = []
 
 # Przewidywanie przy użyciu wczytanego modelu
 for image in images_to_predict:
-    image = np.expand_dims(image, axis=0)
-    #images1=[]
-    #images1.append(image)
-    # Zmniejszenie rozmiaru o 1 piksel z każdej strony
-    #img1_cropped = image[1:-1, 1:-1]
-    #images1.append(img1_cropped)
-    #images1= np.array(images1)
-    predictions = loaded_model.predict(image)
+    #image = np.expand_dims(image, axis=0)
+    #predictions = loaded_model.predict(image)
+    predictions = infer(image)
     predicted_label = np.argmax(predictions, axis=1)
     print(predictions)
     print(predicted_label)
@@ -88,8 +111,9 @@ print(f"Klasa 1 została przewidziana {count_class_1} razy, co stanowi {percenta
 imageRGB = Image.open('/home/kurekj/AI4PhenoEOSC/linden/LindenClassification/2023-08-05/Test/1/2022-06-19_04.18.34_class_1_ROI.jpg')
 imageRGB = imageRGB.resize(image_shape)
 imageRGB = np.array(imageRGB)
-imageRGB = np.expand_dims(imageRGB, axis=0)
-predictions = loaded_model.predict(imageRGB)
+#imageRGB = np.expand_dims(imageRGB, axis=0)
+#predictions = loaded_model.predict(imageRGB)
+predictions = infer(imageRGB)
 predicted_label = np.argmax(predictions, axis=1)
 print(predictions)
 print(predicted_label)
