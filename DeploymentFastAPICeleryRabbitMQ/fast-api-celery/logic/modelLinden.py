@@ -4,6 +4,7 @@ import numpy as np
 from pydantic import BaseModel
 from . import Convert2Polygon
 from . import grpcLindenClassification
+import cv2
 
 class LindenModel:
     def __init__(self):
@@ -44,7 +45,8 @@ class LindenModel:
             max_y = max(all_points_y)
 
             image_roi = imageRGB[min_y:max_y, min_x:max_x]
-            image_roi = image_roi.resize(image_shape)  # Dostosowanie rozmiaru
+            #image_roi = image_roi.resize(image_shape)  # Dostosowanie rozmiaru
+            image_roi = cv2.resize(image_roi, image_shape)  # Dostosowanie rozmiaru za pomocą OpenCV
 
             images_roi.append(image_roi)
 
