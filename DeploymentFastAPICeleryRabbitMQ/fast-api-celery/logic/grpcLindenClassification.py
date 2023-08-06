@@ -14,7 +14,7 @@ def infer(image: np.ndarray):
     image = np.expand_dims(image, axis=0)
 
     # Konwersja danych na InferInput
-    infer_input = InferInput("input_1", image.shape, "FP32")
+    infer_input = InferInput("vgg16_input", image.shape, "FP32")
     # konwersja danych na odpowiedni format
     image = image.astype(np.float32)
     infer_input.set_data_from_numpy(image)
