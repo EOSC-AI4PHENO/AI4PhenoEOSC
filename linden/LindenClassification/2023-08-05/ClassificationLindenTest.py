@@ -232,9 +232,9 @@ def TestImageLocalModel(dir, filename,model):
     print(f'Triton: filename{filename}, klasa:{predicted_class},score={predicted_score}, wynik:{prediction}')
 
 
-#dir = 'E:/!DeepTechnology/!Customers/!2023/Seth Software EOSC-AI4Pheno/AI4PhenoEOSC/linden/LindenClassification/2023-08-05/Linden_Photos_WellExposed_ROIs/1'
+dir = 'E:/!DeepTechnology/!Customers/!2023/Seth Software EOSC-AI4Pheno/AI4PhenoEOSC/linden/LindenClassification/2023-08-05/Linden_Photos_WellExposed_ROIs/1'
 
-dir = '/home/kurekj/AI4PhenoEOSC/linden/LindenClassification/2023-08-05/Linden_Photos_WellExposed_ROIs/1'
+#dir = '/home/kurekj/AI4PhenoEOSC/linden/LindenClassification/2023-08-05/Linden_Photos_WellExposed_ROIs/1'
 
 
 TestImageTriton(dir, '2022-06-19_04.18.34_class_1_ROI.jpg')
@@ -248,15 +248,15 @@ TestImageTriton(dir, '2022-06-19_05.28.34_class_1_ROI.jpg')
 TestImageTriton(dir, '2022-06-19_05.38.34_class_1_ROI.jpg')
 TestImageTriton(dir, '2022-06-19_05.48.34_class_1_ROI.jpg')
 
-loaded_model = tf.keras.models.load_model('ClassificationLindenModelv2')
-
-TestImageLocalModel(dir, '2022-06-19_04.18.34_class_1_ROI.jpg',loaded_model)
-TestImageLocalModel(dir, '2022-06-19_04.28.35_class_1_ROI.jpg',loaded_model)
-TestImageLocalModel(dir, '2022-06-19_04.38.35_class_1_ROI.jpg',loaded_model)
-TestImageLocalModel(dir, '2022-06-19_04.48.36_class_1_ROI.jpg',loaded_model)
-TestImageLocalModel(dir, '2022-06-19_04.58.35_class_1_ROI.jpg',loaded_model)
-TestImageLocalModel(dir, '2022-06-19_05.18.35_class_1_ROI.jpg',loaded_model)
-TestImageLocalModel(dir, '2022-06-19_05.28.34_class_1_ROI.jpg',loaded_model)
-TestImageLocalModel(dir, '2022-06-19_05.28.34_class_1_ROI.jpg',loaded_model)
-TestImageLocalModel(dir, '2022-06-19_05.38.34_class_1_ROI.jpg',loaded_model)
-TestImageLocalModel(dir, '2022-06-19_05.48.34_class_1_ROI.jpg',loaded_model)
+# loaded_model = tf.keras.models.load_model('ClassificationLindenModelv2')
+#
+# TestImageLocalModel(dir, '2022-06-19_04.18.34_class_1_ROI.jpg',loaded_model)
+# TestImageLocalModel(dir, '2022-06-19_04.28.35_class_1_ROI.jpg',loaded_model)
+# TestImageLocalModel(dir, '2022-06-19_04.38.35_class_1_ROI.jpg',loaded_model)
+# TestImageLocalModel(dir, '2022-06-19_04.48.36_class_1_ROI.jpg',loaded_model)
+# TestImageLocalModel(dir, '2022-06-19_04.58.35_class_1_ROI.jpg',loaded_model)
+# TestImageLocalModel(dir, '2022-06-19_05.18.35_class_1_ROI.jpg',loaded_model)
+# TestImageLocalModel(dir, '2022-06-19_05.28.34_class_1_ROI.jpg',loaded_model)
+# TestImageLocalModel(dir, '2022-06-19_05.28.34_class_1_ROI.jpg',loaded_model)
+# TestImageLocalModel(dir, '2022-06-19_05.38.34_class_1_ROI.jpg',loaded_model)
+# TestImageLocalModel(dir, '2022-06-19_05.48.34_class_1_ROI.jpg',loaded_model)
