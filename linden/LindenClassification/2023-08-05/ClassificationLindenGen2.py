@@ -14,7 +14,7 @@ from tensorflow.python.framework.config import set_memory_growth
 from tqdm import tqdm
 
 def load_images_and_labels(class_dirs):
-    images, labels = [], []
+    imagefilenames, images, labels = [], [], []
     max_width, max_height = 0, 0
 
     total_files = sum([len(os.listdir(class_dir)) for class_dir in class_dirs])
@@ -32,7 +32,7 @@ def load_images_and_labels(class_dirs):
                     max_height = max(max_height, height)
 
                     pbar.update(1)
-
+    print(f'max_width={max_width},max_height={max_height}')
     # Drugie przejście: wczytanie obrazów i dostosowanie ich do największych wymiarów
     with tqdm(total=total_files, desc="Loading images", dynamic_ncols=True) as pbar:
         for label, class_dir in enumerate(class_dirs):
@@ -41,6 +41,7 @@ def load_images_and_labels(class_dirs):
                     img_path = os.path.join(class_dir, img_file)
                     img = Image.open(img_path).resize((max_width, max_height))  # Dostosowanie rozmiaru do największych wymiarów
 
+                    imagefilenames.append(img_file)
                     images.append(np.array(img))
                     labels.append(label)
 

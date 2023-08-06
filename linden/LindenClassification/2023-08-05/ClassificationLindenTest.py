@@ -209,17 +209,54 @@ def TestImageTriton(dir, filename):
     predicted_score = np.max(prediction)
     print(f'Triton: filename{filename}, klasa:{predicted_label},score={predicted_score}, wynik:{prediction}')
 
+def TestImageLocalModel(dir, filename,model):
 
-dir = 'E:/!DeepTechnology/!Customers/!2023/Seth Software EOSC-AI4Pheno/AI4PhenoEOSC/linden/LindenClassification/2023-08-05/Linden_Photos_WellExposed_ROIs/1'
+    fullname = os.path.join(dir, filename)
+    imageRGB = Image.open(fullname)
+    width = 321
+    height = 384
+    #img_resized = imageRGB.resize((model.input_shape[1], model.input_shape[2]))
+    #img_resized = imageRGB.resize((384, 321))
+    img_array = np.expand_dims(np.array(imageRGB), axis=0)  # Convert to (1, height, width, 3) shape
+
+    #img_array=np.array(img_resized)
+    #prediction = model.predict(img_array)
+    #predicted_class = np.argmax(prediction, axis=1)[0]
+    #y_pred_probs = loaded_model.predict(X_test)
+
+    # 3. Make a prediction
+    prediction = model.predict(img_array)
+    #predicted_class = np.argmax(prediction, axis=1)[0]
+    predicted_class = np.argmax(prediction, axis=1)
+    predicted_score = np.max(prediction)
+    print(f'Triton: filename{filename}, klasa:{predicted_class},score={predicted_score}, wynik:{prediction}')
+
+
+#dir = 'E:/!DeepTechnology/!Customers/!2023/Seth Software EOSC-AI4Pheno/AI4PhenoEOSC/linden/LindenClassification/2023-08-05/Linden_Photos_WellExposed_ROIs/1'
+
+dir = '/home/kurekj/AI4PhenoEOSC/linden/LindenClassification/2023-08-05/Linden_Photos_WellExposed_ROIs/1'
+
 
 TestImageTriton(dir, '2022-06-19_04.18.34_class_1_ROI.jpg')
 TestImageTriton(dir, '2022-06-19_04.28.35_class_1_ROI.jpg')
 TestImageTriton(dir, '2022-06-19_04.38.35_class_1_ROI.jpg')
 TestImageTriton(dir, '2022-06-19_04.48.36_class_1_ROI.jpg')
 TestImageTriton(dir, '2022-06-19_04.58.35_class_1_ROI.jpg')
-
 TestImageTriton(dir, '2022-06-19_05.18.35_class_1_ROI.jpg')
 TestImageTriton(dir, '2022-06-19_05.28.34_class_1_ROI.jpg')
 TestImageTriton(dir, '2022-06-19_05.28.34_class_1_ROI.jpg')
 TestImageTriton(dir, '2022-06-19_05.38.34_class_1_ROI.jpg')
 TestImageTriton(dir, '2022-06-19_05.48.34_class_1_ROI.jpg')
+
+loaded_model = tf.keras.models.load_model('ClassificationLindenModelv2')
+
+TestImageLocalModel(dir, '2022-06-19_04.18.34_class_1_ROI.jpg',loaded_model)
+TestImageLocalModel(dir, '2022-06-19_04.28.35_class_1_ROI.jpg',loaded_model)
+TestImageLocalModel(dir, '2022-06-19_04.38.35_class_1_ROI.jpg',loaded_model)
+TestImageLocalModel(dir, '2022-06-19_04.48.36_class_1_ROI.jpg',loaded_model)
+TestImageLocalModel(dir, '2022-06-19_04.58.35_class_1_ROI.jpg',loaded_model)
+TestImageLocalModel(dir, '2022-06-19_05.18.35_class_1_ROI.jpg',loaded_model)
+TestImageLocalModel(dir, '2022-06-19_05.28.34_class_1_ROI.jpg',loaded_model)
+TestImageLocalModel(dir, '2022-06-19_05.28.34_class_1_ROI.jpg',loaded_model)
+TestImageLocalModel(dir, '2022-06-19_05.38.34_class_1_ROI.jpg',loaded_model)
+TestImageLocalModel(dir, '2022-06-19_05.48.34_class_1_ROI.jpg',loaded_model)
