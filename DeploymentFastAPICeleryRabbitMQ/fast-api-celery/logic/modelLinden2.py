@@ -134,7 +134,7 @@ class LindenSegmentationModel:
             return filename, json_linden_rois_b64_filtered
 
     def get_linden_automatic_rois_with_indicators(self, imageRGB: np.ndarray, image_size: int, height: int, width: int, filename: str,
-                                 jsonBase64ImageROIs: str) -> tuple[str, str]:
+                                 jsonBase64ImageROIs: str):
 
         config = LindenDeploymentConfig()
         image = self.load_image(imageRGB)
@@ -161,7 +161,7 @@ class LindenSegmentationModel:
             # Koduj ciąg tekstowy do base64
             # nie ma regionów gdzie szukać jabłek, zwróć z całego obrazu
 
-            df_local = calculate_indicators_with_area_Jarek.calculate_indicators(imageRGB, json_apple_rois_b64)
+            df_local = calculate_indicators_with_area_Jarek.calculate_indicators(imageRGB, json_linden_rois_b64)
 
             # Sprawdź, czy df_local jest pusty
             if df_local.empty:
@@ -187,11 +187,11 @@ class LindenSegmentationModel:
                 avg_area = float(df_local["avg_area"].iloc[0])
                 number_of_apples = int(df_local["number_of_apples"].iloc[0])
 
-            return filename, json_apple_rois_b64, r_av, g_av, b_av, r_sd, g_sd, b_sd, bri_av, bri_sd, gi_av, gei_av, gei_sd, ri_av, ri_sd, bi_av, bi_sd, avg_width, avg_height, avg_area, number_of_apples
+            return filename, json_linden_rois_b64, r_av, g_av, b_av, r_sd, g_sd, b_sd, bri_av, bri_sd, gi_av, gei_av, gei_sd, ri_av, ri_sd, bi_av, bi_sd, avg_width, avg_height, avg_area, number_of_apples
         else:
             jsonBase64ImageROIsPolygon = Convert2Polygon.Convert2Polygon1(jsonBase64ImageROIs, width, height)
-            json_apple_rois_b64_filtered = roi_intersection.filter_json_file1(jsonBase64ImageROIsPolygon, json_apple_rois_b64, width, height)
-            df_local = calculate_indicators_with_area_Jarek.calculate_indicators(imageRGB, json_apple_rois_b64_filtered)
+            json_linden_rois_b64_filtered = roi_intersection.filter_json_file1(jsonBase64ImageROIsPolygon, json_linden_rois_b64, width, height)
+            df_local = calculate_indicators_with_area_Jarek.calculate_indicators(imageRGB, json_linden_rois_b64_filtered)
 
             # Sprawdź, czy df_local jest pusty
             if df_local.empty:
@@ -217,4 +217,4 @@ class LindenSegmentationModel:
                 avg_area = float(df_local["avg_area"].iloc[0])
                 number_of_apples = int(df_local["number_of_apples"].iloc[0])
 
-            return filename, json_apple_rois_b64_filtered, r_av, g_av, b_av, r_sd, g_sd, b_sd, bri_av, bri_sd, gi_av, gei_av, gei_sd, ri_av, ri_sd, bi_av, bi_sd, avg_width, avg_height, avg_area, number_of_apples
+            return filename, json_linden_rois_b64_filtered, r_av, g_av, b_av, r_sd, g_sd, b_sd, bri_av, bri_sd, gi_av, gei_av, gei_sd, ri_av, ri_sd, bi_av, bi_sd, avg_width, avg_height, avg_area, number_of_apples
