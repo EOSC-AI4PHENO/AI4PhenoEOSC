@@ -186,7 +186,7 @@ namespace ConsoleAppAI4PhenoTest
         #region static AutomaticAppleSegmentationWithIndicatorsOutput GetAppleSegmentationGetAppleAutomaticRoisWithIndicatorsCallResult(string task_id)
         public static AutomaticAppleSegmentationWithIndicatorsOutput GetAppleSegmentationGetAppleAutomaticRoisWithIndicatorsCallResult(string task_id)
         {
-            string url = string.Format("{0}/AutomaticAppleSegmentationModel/get_apple_automatic_rois_with_indicators_result/{1}", baseUrl, task_id);
+            string url = string.Format("{0}/AutomaticLindenSegmentationModel/get_linden_automatic_rois_with_indicators_result/{1}", baseUrl, task_id);
 
             var response = client.GetAsync(url).Result;
 
