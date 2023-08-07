@@ -147,16 +147,6 @@ class LindenSegmentationModel:
         json_str = json.dumps(json_results)
         json_linden_rois_b64 = base64.b64encode(json_str.encode()).decode()
 
-        # if jsonBase64ImageROIs is None:
-        #     # Koduj ciąg tekstowy do base64
-        #     # nie ma regionów gdzie szukać jabłek, zwróć z całego obrazu
-        #
-        #     return filename, json_linden_rois_b64
-        # else:
-        #     jsonBase64ImageROIsPolygon = Convert2Polygon.Convert2Polygon1(jsonBase64ImageROIs, width, height)
-        #     json_linden_rois_b64_filtered = roi_intersection.filter_json_file1(jsonBase64ImageROIsPolygon, json_linden_rois_b64, width, height)
-        #     return filename, json_linden_rois_b64_filtered
-
         if jsonBase64ImageROIs is None:
             # Koduj ciąg tekstowy do base64
             # nie ma regionów gdzie szukać jabłek, zwróć z całego obrazu

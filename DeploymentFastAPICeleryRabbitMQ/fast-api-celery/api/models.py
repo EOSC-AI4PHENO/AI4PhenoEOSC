@@ -105,6 +105,38 @@ class LindenClassificationOutput(BaseModel):
     isFlowering: List[int]
     isFloweringConfidence: List[float]
 
+class LindenClassificationWithIndicatorsInput(BaseModel):
+    """Model features as input for prediction"""
+    imageBase64: str  # base64 encoded image
+    filename: str
+    jsonBase64ImageROIs: str
+class LindenClassificationWithIndicatorsOutput(BaseModel):
+    """Model features as input for prediction"""
+    task_id: str
+    status: str
+    filename: str
+    isFlowering: List[int]
+    isFloweringConfidence: List[float]
+    r_av: float
+    g_av: float
+    b_av: float
+    r_sd: float
+    g_sd: float
+    b_sd: float
+    bri_av: float
+    bri_sd: float
+    gi_av: float
+    gei_av: float
+    gei_sd: float
+    ri_av: float
+    ri_sd: float
+    bi_av: float
+    bi_sd: float
+    avg_width: float
+    avg_height: float
+    avg_area: float
+    number_of_lindens: int
+
 class AutomaticLindenSegmentationInput(BaseModel):
     """Model features as input for prediction"""
     imageBase64: str  # base64 encoded image
