@@ -4,7 +4,7 @@ from celery.result import AsyncResult
 import redis
 
 from worker.tasks import get_sunrise_sunset, is_Image_WellExposedByHisto, get_apple_automatic_rois, \
-    get_apple_automatic_rois_with_indicators, get_classification_linden, get_linden_automatic_rois, get_linden_automatic_rois_with_indicators
+    get_apple_automatic_rois_with_indicators, get_classification_linden, get_linden_automatic_rois, get_linden_automatic_rois_with_indicators, get_classification_linden_with_indicators
 from .models import SunriseSunsetInput, TaskTicket, SunriseSunsetOutput, TaskRedisRemoved
 from .models import ImageWellExposedInput, ImageWellExposedOutput
 from .models import AutomaticAppleSegmentationInput, AutomaticAppleSegmentationOutput, \
@@ -12,6 +12,7 @@ from .models import AutomaticAppleSegmentationInput, AutomaticAppleSegmentationO
 from .models import LindenClassificationInput, LindenClassificationOutput
 from .models import AutomaticLindenSegmentationInput, AutomaticLindenSegmentationOutput
 from .models import AutomaticLindenSegmentationWithIndicatorsInput, AutomaticLindenSegmentationWithIndicatorsOutput
+from .models import LindenClassificationWithIndicatorsInput, LindenClassificationWithIndicatorsOutput
 
 app = FastAPI()
 
@@ -43,7 +44,6 @@ async def schedule_ImageWellExposedModel_is_Image_WellExposedByHisto(model_input
                                                 model_input.lon, model_input.UTCdate)
     # return {'task_id': str(task_id), 'status': 'Processing'}
     return TaskTicket(task_id=str(task_id), status='Processing')
-
 
 @app.get('/ImageWellExposedModel/is_Image_WellExposedByHisto_result/{task_id}', response_model=ImageWellExposedOutput,
          status_code=200,
@@ -188,6 +188,55 @@ async def get_LindenClassificationModel_get_classification_linden_result(task_id
     filename, isFloweringList, isFloweringConfidence  = result
     return LindenClassificationOutput(task_id=task_id, status='Success', filename=filename,
                                       isFlowering=isFloweringList,isFloweringConfidence=isFloweringConfidence)
+
+
+### START Linden Classification with Indicators
+@app.post('/LindenClassificationModel/get_classification_linden_with_indicators', response_model=TaskTicket, status_code=202)
+async def schedule_LindenClassificationModel_get_classification_linden_with_indicators(
+        model_input: LindenClassificationWithIndicatorsInput):
+    """Create celery prediction task. Return task_id to client in order to retrieve result"""
+    task_id = get_classification_linden_with_indicators.delay(model_input.imageBase64, model_input.filename,
+                                              model_input.jsonBase64ImageROIs)
+    return TaskTicket(task_id=str(task_id), status='Processing')
+@app.get('/LindenClassificationModel/get_classification_linden_with_indicators_result/{task_id}',
+         response_model=LindenClassificationWithIndicatorsOutput,
+         status_code=200,
+         responses={202: {'model': TaskTicket, 'description': 'Accepted: Not Ready'}})
+async def get_LindenClassificationModel_get_classification_linden_with_indicators_result(task_id):
+    """Fetch result for given task_id"""
+    task = AsyncResult(task_id)
+    if not task.ready():
+        # print(app.url_path_for('schedule_prediction'))
+        return JSONResponse(status_code=202, content={'task_id': str(task_id), 'status': 'Processing'})
+    result = task.get()
+    filename, isFloweringList, isFloweringConfidence, r_av, g_av, b_av, r_sd, g_sd, b_sd, bri_av, bri_sd, gi_av, gei_av, gei_sd, ri_av, ri_sd, bi_av, bi_sd, avg_width, avg_height, avg_area, number_of_lindens = result
+
+    return LindenClassificationWithIndicatorsOutput(
+        task_id=task_id,
+        status='Success',
+        filename=filename,
+        isFlowering=isFloweringList,
+        isFloweringConfidence=isFloweringConfidence,
+        r_av=r_av,
+        g_av=g_av,
+        b_av=b_av,
+        r_sd=r_sd,
+        g_sd=g_sd,
+        b_sd=b_sd,
+        bri_av=bri_av,
+        bri_sd=bri_sd,
+        gi_av=gi_av,
+        gei_av=gei_av,
+        gei_sd=gei_sd,
+        ri_av=ri_av,
+        ri_sd=ri_sd,
+        bi_av=bi_av,
+        bi_sd=bi_sd,
+        avg_width=avg_width,
+        avg_height=avg_height,
+        avg_area=avg_area,
+        number_of_lindens =number_of_lindens)
+### END Linden Classification with Indicators
 
 
 ###Linden
