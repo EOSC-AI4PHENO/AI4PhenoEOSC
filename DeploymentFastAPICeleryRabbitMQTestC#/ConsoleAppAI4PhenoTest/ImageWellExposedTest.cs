@@ -126,7 +126,7 @@ namespace ConsoleAppAI4PhenoTest
         #region static Ticket PostisImageWellExposedByHistoCall()
         public static Ticket PostisImageWellExposedByHistoCall()
         {
-            string fullname = @"E:\!DeepTechnology\!Customers\!2023\Seth Software EOSC-AI4Pheno\AI4PhenoEOSC\linden\LindenClassification\Linden_Photos_ROI\0\2022-01-01_00.06.40_class_0_ROI.jpg";
+            string fullname = @"d:\01.03[R][0@0][0].jpg";
 
             string filename = System.IO.Path.GetFileName(fullname);
 
@@ -136,10 +136,10 @@ namespace ConsoleAppAI4PhenoTest
             {
                 imageBase64 = imagejson,
                 filename = filename,
-                lat = 52.2297f,
-                lon = 21.0122f,
+                lat = 50.041187f,
+                lon = 21.999121f,
                 //UTCdate = DateTime.UtcNow
-                UTCdate = new DateTime(2022,01,01,00,06,40)
+                UTCdate = new DateTime(2023,08,07,22,01,03)
             };
 
             StringContent stringContent = new StringContent(JsonConvert.SerializeObject(modelInput), Encoding.UTF8, "application/json");
