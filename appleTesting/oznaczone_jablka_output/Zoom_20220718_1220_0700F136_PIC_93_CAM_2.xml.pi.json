@@ -1,0 +1,692 @@
+{
+    "20220719_1222_0700F136_PIC_94_CAM_2.xml.pi.jpg1441910": {
+        "filename": "20220719_1222_0700F136_PIC_94_CAM_2.xml.pi.jpg",
+        "size": 1441910,
+        "regions": [],
+        "file_attributes": {}
+    },
+    "20220718_1220_0700F136_PIC_93_CAM_2.xml.pi.jpg1409787": {
+        "filename": "zoom_20220718_1220_0700f136_pic_93_cam_2.xml.pi.jpg",
+        "size": 1409787,
+        "regions": [
+            {
+                "shape_attributes": {
+                    "name": "circle",
+                    "cx": 251,
+                    "cy": 21,
+                    "r": 42
+                },
+                "region_attributes": {
+                    "unknown": ""
+                }
+            },
+            {
+                "shape_attributes": {
+                    "name": "circle",
+                    "cx": 281,
+                    "cy": 70,
+                    "r": 41
+                },
+                "region_attributes": {
+                    "unknown": ""
+                }
+            },
+            {
+                "shape_attributes": {
+                    "name": "circle",
+                    "cx": 26,
+                    "cy": 19,
+                    "r": 37
+                },
+                "region_attributes": {
+                    "unknown": ""
+                }
+            },
+            {
+                "shape_attributes": {
+                    "name": "circle",
+                    "cx": 94,
+                    "cy": 150,
+                    "r": 37
+                },
+                "region_attributes": {
+                    "unknown": ""
+                }
+            },
+            {
+                "shape_attributes": {
+                    "name": "circle",
+                    "cx": 420,
+                    "cy": 183,
+                    "r": 38.543
+                },
+                "region_attributes": {
+                    "unknown": ""
+                }
+            },
+            {
+                "shape_attributes": {
+                    "name": "circle",
+                    "cx": 747,
+                    "cy": 40,
+                    "r": 55
+                },
+                "region_attributes": {
+                    "unknown": ""
+                }
+            },
+            {
+                "shape_attributes": {
+                    "name": "circle",
+                    "cx": 1016,
+                    "cy": 197,
+                    "r": 49.38
+                },
+                "region_attributes": {
+                    "unknown": ""
+                }
+            },
+            {
+                "shape_attributes": {
+                    "name": "circle",
+                    "cx": 958,
+                    "cy": 173,
+                    "r": 62
+                },
+                "region_attributes": {
+                    "unknown": ""
+                }
+            },
+            {
+                "shape_attributes": {
+                    "name": "circle",
+                    "cx": 935,
+                    "cy": 653,
+                    "r": 56
+                },
+                "region_attributes": {
+                    "unknown": ""
+                }
+            },
+            {
+                "shape_attributes": {
+                    "name": "circle",
+                    "cx": 677,
+                    "cy": 692,
+                    "r": 61
+                },
+                "region_attributes": {
+                    "unknown": ""
+                }
+            },
+            {
+                "shape_attributes": {
+                    "name": "circle",
+                    "cx": 1097,
+                    "cy": 871,
+                    "r": 53
+                },
+                "region_attributes": {
+                    "unknown": ""
+                }
+            },
+            {
+                "shape_attributes": {
+                    "name": "circle",
+                    "cx": 10,
+                    "cy": 1410,
+                    "r": 50
+                },
+                "region_attributes": {
+                    "unknown": ""
+                }
+            },
+            {
+                "shape_attributes": {
+                    "name": "circle",
+                    "cx": 171,
+                    "cy": 1429,
+                    "r": 54
+                },
+                "region_attributes": {
+                    "unknown": ""
+                }
+            },
+            {
+                "shape_attributes": {
+                    "name": "circle",
+                    "cx": 307,
+                    "cy": 1394,
+                    "r": 50
+                },
+                "region_attributes": {
+                    "unknown": ""
+                }
+            },
+            {
+                "shape_attributes": {
+                    "name": "circle",
+                    "cx": 526,
+                    "cy": 1368,
+                    "r": 51
+                },
+                "region_attributes": {
+                    "unknown": ""
+                }
+            },
+            {
+                "shape_attributes": {
+                    "name": "circle",
+                    "cx": 909,
+                    "cy": 1342,
+                    "r": 68
+                },
+                "region_attributes": {
+                    "unknown": ""
+                }
+            },
+            {
+                "shape_attributes": {
+                    "name": "circle",
+                    "cx": 1211,
+                    "cy": 1322,
+                    "r": 68
+                },
+                "region_attributes": {
+                    "unknown": ""
+                }
+            },
+            {
+                "shape_attributes": {
+                    "name": "circle",
+                    "cx": 1267,
+                    "cy": 1445,
+                    "r": 63.029
+                },
+                "region_attributes": {
+                    "unknown": ""
+                }
+            },
+            {
+                "shape_attributes": {
+                    "name": "circle",
+                    "cx": 1225,
+                    "cy": 1661,
+                    "r": 61
+                },
+                "region_attributes": {
+                    "unknown": ""
+                }
+            },
+            {
+                "shape_attributes": {
+                    "name": "circle",
+                    "cx": 1068,
+                    "cy": 1617,
+                    "r": 55
+                },
+                "region_attributes": {
+                    "unknown": ""
+                }
+            },
+            {
+                "shape_attributes": {
+                    "name": "circle",
+                    "cx": 890,
+                    "cy": 1785,
+                    "r": 57
+                },
+                "region_attributes": {
+                    "unknown": ""
+                }
+            },
+            {
+                "shape_attributes": {
+                    "name": "circle",
+                    "cx": 993,
+                    "cy": 1800,
+                    "r": 64
+                },
+                "region_attributes": {
+                    "unknown": ""
+                }
+            },
+            {
+                "shape_attributes": {
+                    "name": "circle",
+                    "cx": 1038,
+                    "cy": 1967,
+                    "r": 65
+                },
+                "region_attributes": {
+                    "unknown": ""
+                }
+            },
+            {
+                "shape_attributes": {
+                    "name": "circle",
+                    "cx": 816,
+                    "cy": 2010,
+                    "r": 56
+                },
+                "region_attributes": {
+                    "unknown": ""
+                }
+            },
+            {
+                "shape_attributes": {
+                    "name": "circle",
+                    "cx": 1472,
+                    "cy": 318,
+                    "r": 61
+                },
+                "region_attributes": {
+                    "unknown": ""
+                }
+            },
+            {
+                "shape_attributes": {
+                    "name": "circle",
+                    "cx": 1710,
+                    "cy": 246,
+                    "r": 59.96
+                },
+                "region_attributes": {
+                    "unknown": ""
+                }
+            },
+            {
+                "shape_attributes": {
+                    "name": "circle",
+                    "cx": 1785,
+                    "cy": 312,
+                    "r": 56.321
+                },
+                "region_attributes": {
+                    "unknown": ""
+                }
+            },
+            {
+                "shape_attributes": {
+                    "name": "circle",
+                    "cx": 1830,
+                    "cy": 85,
+                    "r": 58
+                },
+                "region_attributes": {
+                    "unknown": ""
+                }
+            },
+            {
+                "shape_attributes": {
+                    "name": "circle",
+                    "cx": 2155,
+                    "cy": 1738,
+                    "r": 48.005
+                },
+                "region_attributes": {
+                    "unknown": ""
+                }
+            },
+            {
+                "shape_attributes": {
+                    "name": "circle",
+                    "cx": 2073,
+                    "cy": 1736,
+                    "r": 52
+                },
+                "region_attributes": {
+                    "unknown": ""
+                }
+            },
+            {
+                "shape_attributes": {
+                    "name": "circle",
+                    "cx": 2725,
+                    "cy": 863,
+                    "r": 50
+                },
+                "region_attributes": {
+                    "unknown": ""
+                }
+            },
+            {
+                "shape_attributes": {
+                    "name": "circle",
+                    "cx": 2713,
+                    "cy": 1255,
+                    "r": 68
+                },
+                "region_attributes": {
+                    "unknown": ""
+                }
+            },
+            {
+                "shape_attributes": {
+                    "name": "circle",
+                    "cx": 2492,
+                    "cy": 1537,
+                    "r": 48
+                },
+                "region_attributes": {
+                    "unknown": ""
+                }
+            },
+            {
+                "shape_attributes": {
+                    "name": "circle",
+                    "cx": 2778,
+                    "cy": 1406,
+                    "r": 50
+                },
+                "region_attributes": {
+                    "unknown": ""
+                }
+            },
+            {
+                "shape_attributes": {
+                    "name": "circle",
+                    "cx": 2971,
+                    "cy": 1127,
+                    "r": 45
+                },
+                "region_attributes": {
+                    "unknown": ""
+                }
+            },
+            {
+                "shape_attributes": {
+                    "name": "circle",
+                    "cx": 3098,
+                    "cy": 940,
+                    "r": 50
+                },
+                "region_attributes": {
+                    "unknown": ""
+                }
+            },
+            {
+                "shape_attributes": {
+                    "name": "circle",
+                    "cx": 3120,
+                    "cy": 1040,
+                    "r": 56
+                },
+                "region_attributes": {
+                    "unknown": ""
+                }
+            },
+            {
+                "shape_attributes": {
+                    "name": "circle",
+                    "cx": 3050,
+                    "cy": 1295,
+                    "r": 53
+                },
+                "region_attributes": {
+                    "unknown": ""
+                }
+            },
+            {
+                "shape_attributes": {
+                    "name": "circle",
+                    "cx": 3131,
+                    "cy": 1340,
+                    "r": 58
+                },
+                "region_attributes": {
+                    "unknown": ""
+                }
+            },
+            {
+                "shape_attributes": {
+                    "name": "circle",
+                    "cx": 3091,
+                    "cy": 1396,
+                    "r": 55.091
+                },
+                "region_attributes": {
+                    "unknown": ""
+                }
+            },
+            {
+                "shape_attributes": {
+                    "name": "circle",
+                    "cx": 3371,
+                    "cy": 1239,
+                    "r": 56
+                },
+                "region_attributes": {
+                    "unknown": ""
+                }
+            },
+            {
+                "shape_attributes": {
+                    "name": "circle",
+                    "cx": 3341,
+                    "cy": 1364,
+                    "r": 64
+                },
+                "region_attributes": {
+                    "unknown": ""
+                }
+            },
+            {
+                "shape_attributes": {
+                    "name": "circle",
+                    "cx": 3252,
+                    "cy": 1122,
+                    "r": 56
+                },
+                "region_attributes": {
+                    "unknown": ""
+                }
+            },
+            {
+                "shape_attributes": {
+                    "name": "circle",
+                    "cx": 2416,
+                    "cy": 166,
+                    "r": 40
+                },
+                "region_attributes": {
+                    "unknown": ""
+                }
+            },
+            {
+                "shape_attributes": {
+                    "name": "circle",
+                    "cx": 2582,
+                    "cy": 154,
+                    "r": 49
+                },
+                "region_attributes": {
+                    "unknown": "yes"
+                }
+            },
+            {
+                "shape_attributes": {
+                    "name": "circle",
+                    "cx": 3481,
+                    "cy": 478,
+                    "r": 66
+                },
+                "region_attributes": {
+                    "unknown": ""
+                }
+            },
+            {
+                "shape_attributes": {
+                    "name": "circle",
+                    "cx": 3383,
+                    "cy": 544,
+                    "r": 57
+                },
+                "region_attributes": {
+                    "unknown": ""
+                }
+            },
+            {
+                "shape_attributes": {
+                    "name": "circle",
+                    "cx": 3500,
+                    "cy": 711,
+                    "r": 63.222
+                },
+                "region_attributes": {
+                    "unknown": ""
+                }
+            },
+            {
+                "shape_attributes": {
+                    "name": "circle",
+                    "cx": 3024,
+                    "cy": 833,
+                    "r": 55
+                },
+                "region_attributes": {
+                    "unknown": ""
+                }
+            },
+            {
+                "shape_attributes": {
+                    "name": "circle",
+                    "cx": 3366,
+                    "cy": 1802,
+                    "r": 57
+                },
+                "region_attributes": {
+                    "unknown": ""
+                }
+            },
+            {
+                "shape_attributes": {
+                    "name": "circle",
+                    "cx": 2781,
+                    "cy": 1809,
+                    "r": 50
+                },
+                "region_attributes": {
+                    "unknown": ""
+                }
+            },
+            {
+                "shape_attributes": {
+                    "name": "circle",
+                    "cx": 2755,
+                    "cy": 1984,
+                    "r": 51
+                },
+                "region_attributes": {
+                    "unknown": ""
+                }
+            },
+            {
+                "shape_attributes": {
+                    "name": "circle",
+                    "cx": 2629,
+                    "cy": 2019,
+                    "r": 50
+                },
+                "region_attributes": {
+                    "unknown": ""
+                }
+            },
+            {
+                "shape_attributes": {
+                    "name": "circle",
+                    "cx": 2495,
+                    "cy": 2156,
+                    "r": 56
+                },
+                "region_attributes": {
+                    "unknown": ""
+                }
+            },
+            {
+                "shape_attributes": {
+                    "name": "circle",
+                    "cx": 2821,
+                    "cy": 707,
+                    "r": 53
+                },
+                "region_attributes": {
+                    "unknown": ""
+                }
+            },
+            {
+                "shape_attributes": {
+                    "name": "circle",
+                    "cx": 2697,
+                    "cy": 728,
+                    "r": 63
+                },
+                "region_attributes": {
+                    "unknown": ""
+                }
+            },
+            {
+                "shape_attributes": {
+                    "name": "circle",
+                    "cx": 1620,
+                    "cy": 116,
+                    "r": 58
+                },
+                "region_attributes": {
+                    "unknown": ""
+                }
+            },
+            {
+                "shape_attributes": {
+                    "name": "circle",
+                    "cx": 928,
+                    "cy": 1740,
+                    "r": 53
+                },
+                "region_attributes": {
+                    "unknown": ""
+                }
+            },
+            {
+                "shape_attributes": {
+                    "name": "circle",
+                    "cx": 908,
+                    "cy": 1851,
+                    "r": 50
+                },
+                "region_attributes": {
+                    "unknown": "yes"
+                }
+            },
+            {
+                "shape_attributes": {
+                    "name": "circle",
+                    "cx": 1023,
+                    "cy": 1568,
+                    "r": 50
+                },
+                "region_attributes": {
+                    "unknown": "yes"
+                }
+            },
+            {
+                "shape_attributes": {
+                    "name": "circle",
+                    "cx": 2644,
+                    "cy": 128,
+                    "r": 39
+                },
+                "region_attributes": {
+                    "unknown": "yes"
+                }
+            }
+        ],
+        "file_attributes": {}
+    },
+    "20220928_1122_0700F136_PIC_161_CAM_2.xml.pi.jpg1457860": {
+        "filename": "20220928_1122_0700F136_PIC_161_CAM_2.xml.pi.jpg",
+        "size": 1457860,
+        "regions": [],
+        "file_attributes": {}
+    }
+}
