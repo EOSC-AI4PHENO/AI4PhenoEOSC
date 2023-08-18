@@ -21,11 +21,11 @@ def clearing_json_files(folder_path):
             # Sprawdzenie każdego obiektu w słowniku
             for key, value in data_copy.items():
                 filenameJPG = value['filename']
-                nazwa_bez_rozszerzeniaJPG = os.path.splitext(filenameJPG)[0]
 
-                # Sprawdzenie, czy wartość "filename" jest różna od nazwy pliku JSON z rozszerzeniem ".jpg"
-                if nazwa_bez_rozszerzeniaJPG != nazwa_bez_rozszerzeniaJSON:
+                jpg_path = os.path.join(folder_path, filenameJPG)
 
+                # Sprawdzenie, czy plik o nazwie filenameJPG istnieje w folderze
+                if not os.path.exists(jpg_path):
                     # Usuwanie obiektu, jeśli wartość "filename" jest różna
                     i = i + 1
                     print(f'{i}.{filename}')

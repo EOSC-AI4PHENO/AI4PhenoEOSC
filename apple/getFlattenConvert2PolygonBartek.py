@@ -10,19 +10,23 @@ import pickle
 import math
 
 
-def zwroc_maske(cx, cy, r, width, height):
+def zwroc_maskeold(cx, cy, r, width, height):
     xv, yv = np.meshgrid(np.arange(width), np.arange(height), indexing='ij')
     r2 = np.power(r, 2)
     maska = (np.power(xv - cx, 2) + np.power(yv - cy, 2)) <= r2
     x, y = np.where(maska)
     points = np.stack([x, y], axis=1)
+
+    if len(points) == 0:
+        raise ValueError("Brak punktów w masce. Sprawdź wartości cx, cy, r, width oraz height.")
+
     hull = ConvexHull(points)
     x = points[hull.vertices, 0]
     y = points[hull.vertices, 1]
     return x, y
 
 
-def convert_circle_to_polygon(input_path, output_path):
+def convert_circle_to_polygonold(input_path, output_path):
     # Załadowanie pliku JSON
     with open(input_path) as f:
         data = json.load(f)
@@ -33,7 +37,7 @@ def convert_circle_to_polygon(input_path, output_path):
     ile = len(data.items())
     # Konwersja elipsy na wielokąt
     for filename, file_data in data.items():
-        print(f'{j}/{ile}')
+        print(f'{j}/{ile} | {input_path} | {filename}')
         j = j + 1
         output_data[filename] = {
             "fileref": "",

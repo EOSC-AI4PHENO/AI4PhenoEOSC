@@ -1,0 +1,5 @@
+import genFlattenValidation1
+
+input_folder='oznaczone_jablka_2023_08_18'
+
+genFlattenValidation1.validation_json_files1(input_folder)
