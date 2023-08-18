@@ -1,0 +1,198 @@
+{
+    "20230802_142249.jpg9311258": {
+        "filename": "przybroda1_20230802_142249.jpg",
+        "size": 9311258,
+        "regions": [
+            {
+                "shape_attributes": {
+                    "name": "circle",
+                    "cx": 1780,
+                    "cy": 1000,
+                    "r": 123
+                },
+                "region_attributes": {}
+            },
+            {
+                "shape_attributes": {
+                    "name": "circle",
+                    "cx": 1637,
+                    "cy": 1164,
+                    "r": 116
+                },
+                "region_attributes": {}
+            },
+            {
+                "shape_attributes": {
+                    "name": "circle",
+                    "cx": 1341,
+                    "cy": 1288,
+                    "r": 104.489
+                },
+                "region_attributes": {}
+            },
+            {
+                "shape_attributes": {
+                    "name": "circle",
+                    "cx": 1759,
+                    "cy": 1597,
+                    "r": 89
+                },
+                "region_attributes": {}
+            },
+            {
+                "shape_attributes": {
+                    "name": "circle",
+                    "cx": 1540,
+                    "cy": 1673,
+                    "r": 110.267
+                },
+                "region_attributes": {}
+            },
+            {
+                "shape_attributes": {
+                    "name": "circle",
+                    "cx": 1842,
+                    "cy": 2149,
+                    "r": 93
+                },
+                "region_attributes": {}
+            },
+            {
+                "shape_attributes": {
+                    "name": "circle",
+                    "cx": 1699,
+                    "cy": 2120,
+                    "r": 93
+                },
+                "region_attributes": {}
+            },
+            {
+                "shape_attributes": {
+                    "name": "circle",
+                    "cx": 501,
+                    "cy": 2108,
+                    "r": 135
+                },
+                "region_attributes": {}
+            },
+            {
+                "shape_attributes": {
+                    "name": "circle",
+                    "cx": 573,
+                    "cy": 2127,
+                    "r": 123
+                },
+                "region_attributes": {}
+            },
+            {
+                "shape_attributes": {
+                    "name": "circle",
+                    "cx": 3945,
+                    "cy": 563,
+                    "r": 92.058
+                },
+                "region_attributes": {}
+            },
+            {
+                "shape_attributes": {
+                    "name": "circle",
+                    "cx": 3907,
+                    "cy": 1292,
+                    "r": 73
+                },
+                "region_attributes": {}
+            },
+            {
+                "shape_attributes": {
+                    "name": "circle",
+                    "cx": 4148,
+                    "cy": 1493,
+                    "r": 78
+                },
+                "region_attributes": {}
+            },
+            {
+                "shape_attributes": {
+                    "name": "circle",
+                    "cx": 4006,
+                    "cy": 1497,
+                    "r": 65
+                },
+                "region_attributes": {}
+            },
+            {
+                "shape_attributes": {
+                    "name": "circle",
+                    "cx": 3842,
+                    "cy": 1532,
+                    "r": 83
+                },
+                "region_attributes": {}
+            },
+            {
+                "shape_attributes": {
+                    "name": "circle",
+                    "cx": 3994,
+                    "cy": 1627,
+                    "r": 87
+                },
+                "region_attributes": {}
+            },
+            {
+                "shape_attributes": {
+                    "name": "circle",
+                    "cx": 4120,
+                    "cy": 1822,
+                    "r": 85
+                },
+                "region_attributes": {}
+            },
+            {
+                "shape_attributes": {
+                    "name": "circle",
+                    "cx": 3785,
+                    "cy": 1839,
+                    "r": 80
+                },
+                "region_attributes": {}
+            },
+            {
+                "shape_attributes": {
+                    "name": "circle",
+                    "cx": 2541,
+                    "cy": 2190,
+                    "r": 97
+                },
+                "region_attributes": {}
+            },
+            {
+                "shape_attributes": {
+                    "name": "circle",
+                    "cx": 1631,
+                    "cy": 2520,
+                    "r": 89
+                },
+                "region_attributes": {}
+            },
+            {
+                "shape_attributes": {
+                    "name": "circle",
+                    "cx": 1520,
+                    "cy": 2515,
+                    "r": 77
+                },
+                "region_attributes": {}
+            },
+            {
+                "shape_attributes": {
+                    "name": "circle",
+                    "cx": 1461,
+                    "cy": 2562,
+                    "r": 90.929
+                },
+                "region_attributes": {}
+            }
+        ],
+        "file_attributes": {}
+    }
+}
