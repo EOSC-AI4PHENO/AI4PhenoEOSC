@@ -2,13 +2,13 @@ import os
 from os import walk
 import shutil
 import json
-import PIL
-from PIL import Image
+#import PIL
+#from PIL import Image
 import numpy as np
 from scipy.spatial import ConvexHull
 import pickle
 import math
-
+import cv2
 
 def zwroc_maske(cx, cy, r, width, height):
     xv, yv = np.meshgrid(np.arange(width), np.arange(height), indexing='ij')
@@ -17,8 +17,8 @@ def zwroc_maske(cx, cy, r, width, height):
     x, y = np.where(maska)
     points = np.stack([x, y], axis=1)
 
-    if len(points) == 0:
-        return None
+    #if len(points) == 0:
+    #    return None
 
     hull = ConvexHull(points)
     x = points[hull.vertices, 0]
@@ -61,14 +61,17 @@ def convert_circle_to_polygon(input_path, output_path):
             path, filenamejson = os.path.split(input_path)
             filenamejpg = file_data['filename']
             fullnamejpg = os.path.join(path, filenamejpg)
-            img = Image.open(fullnamejpg)
-            width, height = img.size
+            #img = Image.open(fullnamejpg)
+            #width, height = img.size
+
+            img = cv2.imread(fullnamejpg)
+            height, width, channels = img.shape
 
             result = zwroc_maske(cx, cy, r, width, height)
 
-            if result is None:  # Sprawdzanie czy punkty zostały zwrócone
-                empty_cases += 1
-                continue
+            #if result is None:  # Sprawdzanie czy punkty zostały zwrócone
+            #    empty_cases += 1
+            #    continue
 
             all_points_x, all_points_y = result
 
