@@ -44,7 +44,7 @@ class AppleConfig(Config):
     NUM_CLASSES = 1 + 1  # Background + balloon
 
     # Number of training steps
-    EPOCHS = 500
+    EPOCHS = 100
     STEPS_PER_EPOCH = 61
 
     # Number of gt instances to use in batch
