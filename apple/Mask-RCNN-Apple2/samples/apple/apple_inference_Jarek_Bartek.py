@@ -67,14 +67,14 @@ class AppleConfig(Config):
     NUM_CLASSES = 1 + 1  # Background + balloon
 
     # Number of training steps
-    EPOCHS = 500
+    EPOCHS = 100
     STEPS_PER_EPOCH = 61
 
     # Number of gt instances to use in batch
     MAX_GT_INSTANCES = 100
 
     # Skip detections with < 90% confidence
-    DETECTION_MIN_CONFIDENCE = 0.9
+    DETECTION_MIN_CONFIDENCE = 0.5
 
     # see REMARK in the description
     USE_MINI_MASK = False
@@ -106,7 +106,7 @@ print("Images: {}\nClasses: {}".format(len(dataset.image_ids), dataset.class_nam
 #weights_path = os.path.join(ROOT_DIR, "model_logs", "apple20230708T0522_0.5", "mask_rcnn_apple_0050.h5")
 #weights_path = os.path.join(ROOT_DIR, "model_logs", "apple20230708T0522_0.5", "mask_rcnn_apple_0020.h5")
 #weights_path = os.path.join(ROOT_DIR, "model_logs", "apple20230708T1006_0.9", "mask_rcnn_apple_0020.h5")
-weights_path = os.path.join(ROOT_DIR, "model_logs", "apple20230708T1131_0.9", "mask_rcnn_apple_0020.h5")
+weights_path = os.path.join(ROOT_DIR, "model_logs", "apple20230818T1302", "mask_rcnn_apple_0100.h5")
 
 # create inference model
 model = modellib.MaskRCNN(mode="inference", model_dir="/home", config=config)
@@ -202,5 +202,5 @@ for image_id in dataset.image_ids:
     rekord = [filename, mioumicro, miouweighted, f1, acc, tn, fp, fn, tp]
     df_results.loc[df_results.shape[0]] = rekord
 
-Statistics_fullname = os.path.join(dirname, "Statistics_20_0.9.xlsx")
+Statistics_fullname = os.path.join(dirname, "Statistics_100_0.5.xlsx")
 df_results.to_excel(Statistics_fullname, index=False)
