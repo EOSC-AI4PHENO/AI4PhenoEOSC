@@ -11,8 +11,9 @@ using ConsoleAppAI4PhenoTest;
 //Ticket objtaskTicket3 = AppleSegmentationTest.PostAppleSegmentationGetAppleAutomaticRoisCall();
 //AutomaticAppleSegmentationOutput objAutomaticAppleSegmentationOutput = AppleSegmentationTest.GetAppleSegmentationGetAppleAutomaticRoisCallResult("f4245856-0360-4135-be63-9df4405e407b");
 
+//Apple
 //Ticket objtaskTicket4 = AppleSegmentationTest.PostAppleSegmentationGetAppleAutomaticRoisWithIndicatorsCall();
-//AutomaticAppleSegmentationWithIndicatorsOutput objAutomaticAppleSegmentationWithIndicatorsOutput = AppleSegmentationTest.GetAppleSegmentationGetAppleAutomaticRoisWithIndicatorsCallResult("c340bd81-e214-412c-af8c-897633143a81");
+AutomaticAppleSegmentationWithIndicatorsOutput objAutomaticAppleSegmentationWithIndicatorsOutput = AppleSegmentationTest.GetAppleSegmentationGetAppleAutomaticRoisWithIndicatorsCallResult("2ac763d7-119a-4a76-bbe8-2aefbf937c2c");
 
 //Ticket objtaskTicket51 = LindenClassificationTest.PostLindenClassificationModelgetClassificationLindenCall1();
 //Ticket objtaskTicket52 = LindenClassificationTest.PostLindenClassificationModelgetClassificationLindenCall2();
@@ -30,5 +31,5 @@ using ConsoleAppAI4PhenoTest;
 //Ticket objtaskTicket71 = LindenClassificationTest.PostLindenClassificationModelgetClassificationLindenWithIndicatorsCall1();
 //LindenClassificationWithIndicatorsOutput objLindenClassificationWithIndicatorsOutputt = LindenClassificationTest.GetLindenClassificationGetClassificationLindenWithIndicatorsResult("cbad2e65-dac5-4f3c-a3e9-dc099eab0f33");
 
-Ticket objtaskTicket21 = ImageWellExposedTest.PostisImageWellExposedByHistoCall();
+//Ticket objtaskTicket21 = ImageWellExposedTest.PostisImageWellExposedByHistoCall();
 //ImageWellExposedOutput objImageWellExposedOutput = ImageWellExposedTest.GetisImageWellExposedByHistoCallResult(objtaskTicket2.
