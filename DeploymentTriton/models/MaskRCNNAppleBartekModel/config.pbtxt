@@ -9,12 +9,12 @@ input [
     dims: [ -1, -1, -1 ]  # Tutaj powinieneś określić wymiary twojego obrazu, np. [3, 224, 224] dla RGB 224x224.
   },
   {
-    name: "height"
+    name: "height1"
     data_type: TYPE_FP32  # lub inny odpowiedni typ danych, jeśli jest inny
     dims: [ -1 ]
   },
   {
-    name: "width"
+    name: "width1"
     data_type: TYPE_FP32  # lub inny odpowiedni typ danych, jeśli jest inny
     dims: [ -1 ]
   }
