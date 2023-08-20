@@ -143,8 +143,8 @@ namespace ConsoleAppAI4PhenoTest
         #region static Ticket PostAppleSegmentationGetAppleAutomaticRoisWithIndicatorsCall()
         public static Ticket PostAppleSegmentationGetAppleAutomaticRoisWithIndicatorsCall()
         {
-            //string fullname = @"E:\!DeepTechnology\!Customers\!2023\Seth Software EOSC-AI4Pheno\AI4PhenoEOSC\appleBartek\input\001_20230818062050_[R][0@0][0].jpg";
-            string fullname = @"E:\!DeepTechnology\!Customers\!2023\Seth Software EOSC-AI4Pheno\AI4PhenoEOSC\apple\Mask-RCNN-Apple3\apple_dataset\apple\test\przybroda1_20230802_143628.jpg";
+            string fullname = @"E:\!DeepTechnology\!Customers\!2023\Seth Software EOSC-AI4Pheno\AI4PhenoEOSC\appleBartek\input\001_20230818062050_[R][0@0][0].jpg";
+            //string fullname = @"E:\!DeepTechnology\!Customers\!2023\Seth Software EOSC-AI4Pheno\AI4PhenoEOSC\apple\Mask-RCNN-Apple3\apple_dataset\apple\test\przybroda1_20230802_143628.jpg";
             string filename = System.IO.Path.GetFileName(fullname);
             string imagejson = ImageConverter.ImageToBase64(fullname);
 
