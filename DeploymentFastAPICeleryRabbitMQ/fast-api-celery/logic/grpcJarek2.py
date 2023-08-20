@@ -4,7 +4,8 @@ from tritonclient.grpc import InferenceServerClient, InferInput, InferRequestedO
 def infer(image: np.ndarray, image_meta: np.ndarray, anchors: np.ndarray):
     # Ustawienia
     url = "10.0.20.50:8001"
-    model_name = "AppleMaskRCNNModel"
+    #model_name = "AppleMaskRCNNModel"
+    model_name = "AppleMaskRCNNModelv3"
 
     # Inicjalizacja klienta
     client = InferenceServerClient(url)
