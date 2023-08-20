@@ -11,12 +11,12 @@ input [
   {
     name: "height1"
     data_type: TYPE_FP32  # lub inny odpowiedni typ danych, jeśli jest inny
-    dims: [ -1 ]
+    dims: [1]
   },
   {
     name: "width1"
     data_type: TYPE_FP32  # lub inny odpowiedni typ danych, jeśli jest inny
-    dims: [ -1 ]
+    dims: [1]
   }
 ]
 
