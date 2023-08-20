@@ -68,7 +68,7 @@ class AppleConfig(Config):
 
     # Number of training steps
     EPOCHS = 100
-    STEPS_PER_EPOCH = 61
+    STEPS_PER_EPOCH = 183
 
     # Number of gt instances to use in batch
     MAX_GT_INSTANCES = 100
@@ -106,7 +106,7 @@ print("Images: {}\nClasses: {}".format(len(dataset.image_ids), dataset.class_nam
 #weights_path = os.path.join(ROOT_DIR, "model_logs", "apple20230708T0522_0.5", "mask_rcnn_apple_0050.h5")
 #weights_path = os.path.join(ROOT_DIR, "model_logs", "apple20230708T0522_0.5", "mask_rcnn_apple_0020.h5")
 #weights_path = os.path.join(ROOT_DIR, "model_logs", "apple20230708T1006_0.9", "mask_rcnn_apple_0020.h5")
-weights_path = os.path.join(ROOT_DIR, "model_logs", "apple20230818T1302", "mask_rcnn_apple_0100.h5")
+weights_path = os.path.join(ROOT_DIR, "model_logs", "apple20230820T0249", "mask_rcnn_apple_0100.h5")
 
 # create inference model
 model = modellib.MaskRCNN(mode="inference", model_dir="/home", config=config)

@@ -39,14 +39,14 @@ class AppleConfig(Config):
     # We use a GPU with 12GB memory, which can fit two images.
     # Adjust down if you use a smaller GPU.
     #IMAGES_PER_GPU = 1
-    IMAGES_PER_GPU = 8
+    IMAGES_PER_GPU = 1
 
     # Number of classes (including background)
     NUM_CLASSES = 1 + 1  # Background + balloon
 
     # Number of training steps
     EPOCHS = 100
-    STEPS_PER_EPOCH = 61
+    STEPS_PER_EPOCH = 183
 
     # Number of gt instances to use in batch
     MAX_GT_INSTANCES = 100
