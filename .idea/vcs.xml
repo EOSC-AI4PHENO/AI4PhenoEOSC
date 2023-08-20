@@ -2,5 +2,6 @@
 <project version="4">
   <component name="VcsDirectoryMappings">
     <mapping directory="$PROJECT_DIR$" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/apple/Mask-RCNN-Apple-Detectron2/detectron2_v5/detectron2" vcs="Git" />
   </component>
 </project>
