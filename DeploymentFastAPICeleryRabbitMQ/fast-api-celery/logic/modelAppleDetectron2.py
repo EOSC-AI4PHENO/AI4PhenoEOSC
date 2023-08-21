@@ -41,7 +41,7 @@ class AppleSegmentationDetectron2Model:
         self.m = 7.0  # not used only example
         self.q = 0.5  # not used only example
 
-    def get_apple_automatic_rois(self, imageRGB: np.ndarray, image_size: int, height: int, width: int, filename: str,
+    def get_apple_automatic_rois_Detectron2(self, imageRGB: np.ndarray, image_size: int, height: int, width: int, filename: str,
                                  jsonBase64ImageROIs: str) -> tuple[str, str]:
 
         image = self.load_image(imageRGB)
@@ -58,7 +58,7 @@ class AppleSegmentationDetectron2Model:
             json_apple_rois_b64_filtered = roi_intersection.filter_json_file1(jsonBase64ImageROIsPolygon, json_apple_rois_b64, width, height)
             return filename, json_apple_rois_b64_filtered
 
-    def get_apple_automatic_rois_with_indicators(self, imageRGB: np.ndarray, image_size: int, height: int, width: int, filename: str,
+    def get_apple_automatic_rois_with_indicators_Detectron2(self, imageRGB: np.ndarray, image_size: int, height: int, width: int, filename: str,
                                  jsonBase64ImageROIs: str):
 
         image = self.load_image(imageRGB)

@@ -12,6 +12,20 @@ import copy
 from detectron2.data.transforms import ResizeShortestEdge, AugInput
 from tritonclient.grpc import InferenceServerClient, InferInput, InferRequestedOutput, InferResult
 
+def ConvertJsonDict2ListJarek(json_file: str):
+    data = json.loads(json_file)
+    photos = data.keys()
+    for photo in photos:
+        one_photo = data[photo]
+        regions = one_photo['regions']
+        new_regions = {}  # utworzenie nowego słownika
+        for i, region in enumerate(regions):
+            shape_attributes = region['shape_attributes']
+            name = shape_attributes['name']
+            new_regions[str(i)] = region  # dodajemy region do nowego słownika
+        one_photo['regions'] = new_regions  # zastępujemy starą listę nowym słownikiem
+    json_out = json.dumps(data)
+    return json_out
 def make_json_pred(filename, image_size, masks):
     data = {'filename':filename}
     regions_new=[]
@@ -73,5 +87,5 @@ def inferDetectron2(original_image: np.ndarray, filename: str, image_size: int):
     masks = output2
     output_json = make_json_pred(filename, image_size, masks)
     json_str = json.dumps(output_json)
-
+    json_str=ConvertJsonDict2ListJarek(json_str)
     return json_str

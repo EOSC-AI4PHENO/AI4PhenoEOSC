@@ -12,6 +12,7 @@ from detectron2 import model_zoo
 from detectron2.config import get_cfg
 import copy
 from detectron2.data.transforms import ResizeShortestEdge, AugInput
+from ConvertJsonDict2List import ConvertJsonDict2ListJarek
 
 def cv2_imshow(im):
     im = cv2.cvtColor(im, cv2.COLOR_BGR2RGB)
@@ -72,8 +73,12 @@ def odtworz_model(jitfile, image_file, nr_karty, path_to_results):
     # exit()
     masks = np.asarray(outputs[2].cpu())
     output_json = make_json_pred(image_file,masks)
+    output_json_str = json.dumps(output_json)
+    output_jsonList=ConvertJsonDict2ListJarek(output_json_str)
     with open(f"{path_to_results}/{file_prefix}_jit_pred_json_Jr_array.json", "w") as fp:
         json.dump(output_json, fp)
+    with open(f"{path_to_results}/{file_prefix}_jit_pred_json_Jr_arrayList.json", "w") as fp:
+        fp.write(output_jsonList)
 
 nr_karty = 0
 image_file = '/home/kurekj/AI4PhenoEOSC/apple/Mask-RCNN-Apple-Detectron2/apple_dataset/apple/test/przybroda1_20230802_143628.jpg'
