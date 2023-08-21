@@ -225,5 +225,93 @@ namespace ConsoleAppAI4PhenoTest
             return objAutomaticAppleSegmentationWithIndicatorsOutput;
         }
         #endregion
+
+        #region static Ticket PostAppleSegmentationGetAppleAutomaticRoisWithIndicatorsDetectron2Call()
+        public static Ticket PostAppleSegmentationGetAppleAutomaticRoisWithIndicatorsDetectron2Call()
+        {
+            string fullname = @"E:\!DeepTechnology\!Customers\!2023\Seth Software EOSC-AI4Pheno\AI4PhenoEOSC\appleBartek\input\001_20230818062050_[R][0@0][0].jpg";
+            //string fullname = @"E:\!DeepTechnology\!Customers\!2023\Seth Software EOSC-AI4Pheno\AI4PhenoEOSC\apple\Mask-RCNN-Apple3\apple_dataset\apple\test\przybroda1_20230802_143628.jpg";
+            string filename = System.IO.Path.GetFileName(fullname);
+            string imagejson = ImageConverter.ImageToBase64(fullname);
+
+            string fullnameAREA = @"E:\!DeepTechnology\!Customers\!2023\Seth Software EOSC-AI4Pheno\AI4PhenoEOSC\VGGBartek\via_project_30Jul2023_20h54m_jsonTEST.json";
+            string filenameAREA = System.IO.Path.GetFileName(fullnameAREA);
+            string imagejsonAREA = ImageConverter.ImageToBase64(fullnameAREA);
+
+            var modelInput = new AutomaticAppleSegmentationInput
+            {
+                imageBase64 = imagejson,
+                filename = filename
+                //jsonBase64ImageROIs = imagejsonAREA
+            };
+
+            StringContent stringContent = new StringContent(JsonConvert.SerializeObject(modelInput), Encoding.UTF8, "application/json");
+
+            var jsonString = JsonConvert.SerializeObject(modelInput);
+            //File.WriteAllText("json.txt", jsonString);
+
+            string url = string.Format("{0}/AutomaticAppleSegmentationDetectron2Model/get_apple_automatic_rois_with_indicators_Detectron2", baseUrl);
+
+            var response = client.PostAsync(url, stringContent).Result;
+
+            if (!response.IsSuccessStatusCode)
+            {
+                Console.WriteLine(response.Content.ReadAsStringAsync().Result);
+            }
+
+            response.EnsureSuccessStatusCode();
+            var responseBody = response.Content.ReadAsStringAsync().Result;
+
+            Ticket objTaskTicket = JsonConvert.DeserializeObject<Ticket>(responseBody);
+
+            Console.WriteLine($"TaskId: {objTaskTicket.task_id}, Status: {objTaskTicket.Status}");
+
+            return objTaskTicket;
+        }
+        #endregion
+
+        #region static AutomaticAppleSegmentationWithIndicatorsOutput GetAppleSegmentationGetAppleAutomaticRoisWithIndicatorsDetectron2CallResult(string task_id)
+        public static AutomaticAppleSegmentationWithIndicatorsOutput GetAppleSegmentationGetAppleAutomaticRoisWithIndicatorsDetectron2CallResult(string task_id)
+        {
+            string url = string.Format("{0}/AutomaticAppleSegmentationDetectron2Model/get_apple_automatic_rois_with_indicators_Detectron2_result/{1}", baseUrl, task_id);
+
+            var response = client.GetAsync(url).Result;
+
+            if (!response.IsSuccessStatusCode)
+            {
+                Console.WriteLine(response.Content.ReadAsStringAsync().Result);
+            }
+
+            response.EnsureSuccessStatusCode();
+            var responseBody = response.Content.ReadAsStringAsync().Result;
+
+            AutomaticAppleSegmentationWithIndicatorsOutput objAutomaticAppleSegmentationWithIndicatorsOutput = JsonConvert.DeserializeObject<AutomaticAppleSegmentationWithIndicatorsOutput>(responseBody);
+
+            Console.WriteLine($"TaskId: {objAutomaticAppleSegmentationWithIndicatorsOutput.task_id}," +
+                $" Status: {objAutomaticAppleSegmentationWithIndicatorsOutput.status}," +
+                $" avg_area: {objAutomaticAppleSegmentationWithIndicatorsOutput.avg_area}," +
+                $" avg_height: {objAutomaticAppleSegmentationWithIndicatorsOutput.avg_height}," +
+                $" avg_width: {objAutomaticAppleSegmentationWithIndicatorsOutput.avg_width}," +
+                $" r_av: {objAutomaticAppleSegmentationWithIndicatorsOutput.r_av}," +
+                $" g_av: {objAutomaticAppleSegmentationWithIndicatorsOutput.g_av}," +
+                $" filename:{objAutomaticAppleSegmentationWithIndicatorsOutput.filename}");
+
+
+            // Decode the Base64 string
+            byte[] base64EncodedBytes = Convert.FromBase64String(objAutomaticAppleSegmentationWithIndicatorsOutput.jsonBase64AppleROIs);
+            string jsonText = Encoding.UTF8.GetString(base64EncodedBytes);
+
+            // Path to save the JSON file
+            string filename = objAutomaticAppleSegmentationWithIndicatorsOutput.filename;
+            filename = System.IO.Path.ChangeExtension(filename, "json");
+
+            // Write JSON string to a file
+            File.WriteAllText(filename, jsonText);
+
+            return objAutomaticAppleSegmentationWithIndicatorsOutput;
+        }
+        #endregion
+
+
     }
 }
