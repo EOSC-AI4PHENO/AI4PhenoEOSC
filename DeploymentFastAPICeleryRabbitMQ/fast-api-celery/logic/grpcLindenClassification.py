@@ -5,7 +5,7 @@ from PIL import Image
 
 def infer(image: np.ndarray):
     # Ustawienia
-    url = "10.0.20.50:8001"
+    url = os.getenv("TRITON_BACKEND_URL")
     model_name = "ClassificationLinden"
 
     # Inicjalizacja klienta
