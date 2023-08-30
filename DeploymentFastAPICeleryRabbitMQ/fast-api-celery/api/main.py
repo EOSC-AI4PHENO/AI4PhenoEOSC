@@ -20,7 +20,9 @@ from .models import LindenClassificationWithIndicatorsInput, LindenClassificatio
 app = FastAPI(root_path="/fastapi")
 
 def delete_task_from_redis(task_id):
-    r = redis.Redis(host='10.0.20.50', port=6379)
+
+    r = redis.Redis(url=os.getenv("CELERY_BACKEND_URL"))
+    # r = redis.Redis(host='10.0.20.50', port=6379)
 
     key = "celery-task-meta-" + task_id
 
