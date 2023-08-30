@@ -1,4 +1,5 @@
 import numpy as np
+import os
 from tritonclient.grpc import InferenceServerClient, InferInput, InferRequestedOutput, InferResult
 from PIL import Image
 
