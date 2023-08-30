@@ -1,4 +1,5 @@
 import numpy as np
+import os
 from tritonclient.grpc import InferenceServerClient, InferInput, InferRequestedOutput, InferResult
 
 def infer(image: np.ndarray, image_meta: np.ndarray, anchors: np.ndarray):
