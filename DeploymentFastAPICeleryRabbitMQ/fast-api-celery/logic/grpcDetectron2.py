@@ -58,7 +58,7 @@ def inferDetectron2(original_image: np.ndarray, filename: str, image_size: int):
 
     image = torch.as_tensor(image.astype("float32").transpose(2, 0, 1))
 
-    url = "10.0.20.50:8001"
+    url = os.getenv("TRITON_BACKEND_URL")
     model_name = "MaskRCNNAppleBartekModel"
     client = InferenceServerClient(url)
 
