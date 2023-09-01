@@ -129,7 +129,7 @@ class AppleSegmentationModel:
 
             return filename, json_apple_rois_b64
         else:
-            jsonBase64ImageROIsPolygon = Convert2Polygon.Convert2Polygon1(jsonBase64ImageROIs, width, height)
+            jsonBase64ImageROIsPolygon = Convert2Polygon.Convert2Polygon2(jsonBase64ImageROIs, width, height)
             json_apple_rois_b64_filtered = roi_intersection.filter_json_file1(jsonBase64ImageROIsPolygon, json_apple_rois_b64, width, height)
             return filename, json_apple_rois_b64_filtered
 
@@ -179,7 +179,7 @@ class AppleSegmentationModel:
 
             return filename, json_apple_rois_b64, r_av, g_av, b_av, r_sd, g_sd, b_sd, bri_av, bri_sd, gi_av, gei_av, gei_sd, ri_av, ri_sd, bi_av, bi_sd, avg_width, avg_height, avg_area, number_of_apples
         else:
-            jsonBase64ImageROIsPolygon = Convert2Polygon.Convert2Polygon1(jsonBase64ImageROIs, width, height)
+            jsonBase64ImageROIsPolygon = Convert2Polygon.Convert2Polygon2(jsonBase64ImageROIs, width, height)
             json_apple_rois_b64_filtered = roi_intersection.filter_json_file1(jsonBase64ImageROIsPolygon, json_apple_rois_b64, width, height)
             df_local = calculate_indicators_with_area_Jarek.calculate_indicators(imageRGB, json_apple_rois_b64_filtered)
 

@@ -78,6 +78,63 @@ def Convert2Polygon1(jsonfile_base64: str, width: int, height: int):
     json_out = json.dumps(data)
     return base64.b64encode(json_out.encode('utf-8')).decode('utf-8')
 
+
+def Convert2Polygon2(jsonfile_base64: str, width: int, height: int):
+    json_bytes = base64.b64decode(jsonfile_base64)
+    json_file = io.StringIO(json_bytes.decode('utf-8'))
+    data = json.load(json_file)
+    photos = data.keys()
+
+    for photo in photos:
+        one_photo = data[photo]
+        regions = one_photo.get('regions', [])
+
+        new_regions = {}  # utworzenie nowego słownika dla wynikowego JSON-a
+
+        if isinstance(regions, dict):  # Obsługa formatu jsonSlownik
+            for i, region in regions.items():
+                new_regions[str(i)] = update_shape(region, width, height)
+
+        elif isinstance(regions, list):  # Obsługa formatu JsonLista
+            for i, region in enumerate(regions):
+                new_regions[str(i)] = update_shape(region, width, height)
+
+        one_photo['regions'] = new_regions  # zastępujemy starą strukturę nowym słownikiem
+
+    json_out = json.dumps(data)
+    return base64.b64encode(json_out.encode('utf-8')).decode('utf-8')
+
+def update_shape(region, width, height):
+    shape_attributes = region['shape_attributes']
+    name = shape_attributes['name']
+
+    if name in ['circle', 'ellipse', 'rect']:
+        if name == 'circle':
+            x, y = circle2polygon(cx=shape_attributes['cx'],
+                                  cy=shape_attributes['cy'],
+                                  r=shape_attributes['r'],
+                                  width=width, height=height)
+
+        elif name == 'ellipse':
+            x, y = ellipse2polygon(
+                cx=shape_attributes['cx'],
+                cy=shape_attributes['cy'],
+                rx=shape_attributes['rx'],
+                ry=shape_attributes['ry'],
+                theta=shape_attributes['theta'],
+                width=width, height=height)
+
+        elif name == 'rect':
+            x, y = rect2polygon(x=shape_attributes['x'],
+                                y=shape_attributes['y'],
+                                rwidth=shape_attributes['width'],
+                                rheight=shape_attributes['height'],
+                                width=width, height=height)
+
+        region['shape_attributes'] = {'name': 'polygon', 'all_points_x': x, 'all_points_y': y}
+
+    return region
+
 def jsonfile_to_base64(jsonfilename: str) -> str:
     with open(jsonfilename, 'r', encoding='utf-8') as json_file:
         json_content = json_file.read()

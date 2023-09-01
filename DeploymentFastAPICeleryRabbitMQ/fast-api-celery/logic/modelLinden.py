@@ -17,7 +17,7 @@ class LindenModel:
     def cropImages(self, imageRGB: np.ndarray, jsonBase64ImageROIs: str, image_shape):
         height, width, _ = imageRGB.shape
 
-        jsonBase64ImageROIsPolygon = Convert2Polygon.Convert2Polygon1(jsonBase64ImageROIs, width, height)
+        jsonBase64ImageROIsPolygon = Convert2Polygon.Convert2Polygon2(jsonBase64ImageROIs, width, height)
 
         # Dekodowanie base64
         decoded_json = base64.b64decode(jsonBase64ImageROIsPolygon).decode('utf-8')
@@ -81,7 +81,7 @@ class LindenModel:
         image_shape = (width, height)
 
         ### START Indicators
-        json_linden_rois_b64_Polygon = Convert2Polygon.Convert2Polygon1(jsonBase64ImageROI, width, height)
+        json_linden_rois_b64_Polygon = Convert2Polygon.Convert2Polygon2(jsonBase64ImageROI, width, height)
         df_local = calculate_indicators_with_area_Jarek.calculate_indicators(imageRGB, json_linden_rois_b64_Polygon)
 
         # Sprawdź, czy df_local jest pusty

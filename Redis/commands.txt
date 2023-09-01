@@ -6,6 +6,8 @@ docker run -p 8081:8081 --name redis-commander -it \
 
 docker run -v redisinsight:/db -p 8881:8001 redislabs/redisinsight:latest
 
+docker run -d -v redisinsight:/db -p 8881:8001 redislabs/redisinsight:latest
+
 FLUSHALL
 
 
