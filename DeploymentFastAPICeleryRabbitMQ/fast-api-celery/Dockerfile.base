@@ -54,5 +54,5 @@ RUN python -m pip install -e detectron2
 
 WORKDIR /app
 RUN mkdir api worker logic
-# Ensure conda environment is activated by default
+#1 Ensure conda environment is activated by default
 ENV PATH /opt/conda/envs/env/bin:$PATH

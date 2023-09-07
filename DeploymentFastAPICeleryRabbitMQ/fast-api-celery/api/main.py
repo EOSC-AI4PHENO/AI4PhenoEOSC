@@ -17,7 +17,8 @@ from .models import AutomaticLindenSegmentationInput, AutomaticLindenSegmentatio
 from .models import AutomaticLindenSegmentationWithIndicatorsInput, AutomaticLindenSegmentationWithIndicatorsOutput
 from .models import LindenClassificationWithIndicatorsInput, LindenClassificationWithIndicatorsOutput
 
-app = FastAPI(root_path="/fastapi")
+#app = FastAPI(root_path="/fastapi")
+app = FastAPI()
 
 def delete_task_from_redis(task_id):
     r = redis.Redis(host='10.0.20.50', port=6379)
