@@ -1,0 +1,5 @@
+apt-get install stress
+
+stress --cpu 4
+
+stress --cpu $(nproc)
