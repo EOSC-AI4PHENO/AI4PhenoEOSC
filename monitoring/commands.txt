@@ -1,0 +1,81 @@
+https://www.phpservermonitor.org/
+https://github.com/phpservermon/phpservermon/releases
+https://github.com/phpservermon/phpservermon
+https://github.com/phpservermon/phpservermon.git
+
+http://docs.phpservermonitor.org/en/latest/intro.html
+
+10.0.20.40
+/etc/nginx/conf.d/monitoring.conf
+
+http://10.0.20.40:8000/index.html
+
+sudo apt install mysql-server
+
+sudo mysql_secure_installation
+
+sudo apt install php libapache2-mod-php php-mysql
+
+sudo apt install php-cli php-fpm php-json php-common php-mysql php-zip php-gd php-mbstring php-curl php-xml php-pear
+
+sudo nano /var/www/html/info.php
+==================================================
+sudo apt install php-fpm php-mysql php-cli php-zip php-gd php-mbstring php-curl php-xml php-pear php-bcmath
+sudo systemctl start php7.4-fpm
+sudo systemctl enable php7.4-fpm
+
+curl -sS https://getcomposer.org/installer | php
+sudo mv composer.phar /usr/local/bin/composer
+cd /var/www/phpservermon/
+composer install
+http://10.0.20.40:8000/install.php?action=config
+sudo apt install mysql-client
+
+mysql -u root -p
+Qwerty_123
+
+username:kurekj
+password:Qwerty_123
+email:jaroslaw_kurek@sggw.edu.pl
+
+/etc/crontab
+*/15 * * * * /usr/bin/php /var/www/phpservermon/cron/status.cron.php
+
+*/15 * * * * root /usr/bin/php /var/www/phpservermon/cron/status.cron.php
+
+sudo systemctl restart cron
+
+ai4pheno
+ai4pheno
+login:ai4pheno-monitoring@wp.pl
+password:fPktqkCJ3Ae5
+recovery email:kurekj@wp.pl
+phone:505482708
+
+login:jaroslaw.kurek3@gmail.com
+password:Ankoorr180!!
+
+kurekj@wp.pl
+Ankoorr180!
+
+sudo apt install msmtp msmtp-mta
+nano ~/.msmtprc
+
+echo -e "Subject: Testowy email\n\nTreść wiadomości" | msmtp jaroslaw_kurek@sggw.edu.pl
+
+Monitoring
+http://10.0.20.40:8000/
+
+login:kbobran
+password:N3ZqUfRmVuEP
+kbobran@seth.software
+
+Łukasz Cypcar
+login:lcypcar
+password:N3ZqUfRmVuEP
+lcypcar@seth.software
+
+Dominik Gruew
+login:dgruew
+password:N3ZqUfRmVuEP
+dgruew@seth.software
