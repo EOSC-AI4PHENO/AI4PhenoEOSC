@@ -54,6 +54,7 @@ services:
     environment:
       - CELERY_BROKER_URL=${CELERY_BROKER_URL}
       - CELERY_BACKEND_URL=${CELERY_BACKEND_URL}
+      - FLOWER_UNAUTHENTICATED_API=true  # Dodana zmienna środowiskowa
     command: ./starter.sh --target flower
     ports:
       - "5555:5555"
