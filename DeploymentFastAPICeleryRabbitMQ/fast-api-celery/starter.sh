@@ -9,7 +9,7 @@ done
 
 case $W in
     worker)
-      celery --broker ${CELERY_BROKER_URL} --result-backend ${CELERY_BACKEND_URL} -A worker.celery worker --loglevel=INFO;;
+      celery --broker ${CELERY_BROKER_URL} --result-backend ${CELERY_BACKEND_URL} -A worker.celery worker --loglevel=INFO --pool-restarts;;
     flower)
       export FLOWER_UNAUTHENTICATED_API=true
       celery --broker ${CELERY_BROKER_URL} --result-backend ${CELERY_BACKEND_URL} -A worker.celery flower;;
