@@ -37,7 +37,9 @@ class PredictTask(Task):
              bind=True,
              base=PredictTask,
              path=('logic.model', 'ImageWellExposedModel'),
-             name='{}.{}'.format(__name__, 'is_Image_WellExposedByHisto'))
+             name='{}.{}'.format(__name__, 'is_Image_WellExposedByHisto'),
+             rate_limit='60/m'
+             )
 
 def is_Image_WellExposedByHisto(self, imageBase64:str, filename:str, lat: float, lon: float, UTCdate: datetime):
     image_bytes = base64.b64decode(imageBase64)
@@ -49,7 +51,8 @@ def is_Image_WellExposedByHisto(self, imageBase64:str, filename:str, lat: float,
              bind=True,
              base=PredictTask,
              path=('logic.model', 'ImageWellExposedModel'),
-             name='{}.{}'.format(__name__, 'get_sunrise_sunset'))
+             name='{}.{}'.format(__name__, 'get_sunrise_sunset'),
+             rate_limit='60/m')
 
 def get_sunrise_sunset(self, lat: float, lon: float, UTCdate: datetime):
     return self.model.get_sunrise_sunset(lat, lon, UTCdate)
@@ -58,7 +61,8 @@ def get_sunrise_sunset(self, lat: float, lon: float, UTCdate: datetime):
              bind=True,
              base=PredictTask,
              path=('logic.modelApple', 'AppleSegmentationModel'),
-             name='{}.{}'.format(__name__, 'get_apple_automatic_rois'))
+             name='{}.{}'.format(__name__, 'get_apple_automatic_rois'),
+             rate_limit='2/m')
 def get_apple_automatic_rois(self, imageBase64: str, filename: str, jsonBase64ImageROIs: str):
     image_bytes = base64.b64decode(imageBase64)
     image_size = len(image_bytes)
@@ -72,7 +76,8 @@ def get_apple_automatic_rois(self, imageBase64: str, filename: str, jsonBase64Im
              bind=True,
              base=PredictTask,
              path=('logic.modelApple', 'AppleSegmentationModel'),
-             name='{}.{}'.format(__name__, 'get_apple_automatic_rois_with_indicators'))
+             name='{}.{}'.format(__name__, 'get_apple_automatic_rois_with_indicators'),
+             rate_limit='2/m')
 def get_apple_automatic_rois_with_indicators(self, imageBase64: str, filename: str, jsonBase64ImageROIs: str):
     image_bytes = base64.b64decode(imageBase64)
     image_size = len(image_bytes)
@@ -86,7 +91,8 @@ def get_apple_automatic_rois_with_indicators(self, imageBase64: str, filename: s
              bind=True,
              base=PredictTask,
              path=('logic.modelAppleDetectron2', 'AppleSegmentationDetectron2Model'),
-             name='{}.{}'.format(__name__, 'get_apple_automatic_rois_with_indicators_Detectron2'))
+             name='{}.{}'.format(__name__, 'get_apple_automatic_rois_with_indicators_Detectron2'),
+             rate_limit='2/m')
 def get_apple_automatic_rois_with_indicators_Detectron2(self, imageBase64: str, filename: str, jsonBase64ImageROIs: str):
     image_bytes = base64.b64decode(imageBase64)
     image_size = len(image_bytes)
@@ -100,7 +106,8 @@ def get_apple_automatic_rois_with_indicators_Detectron2(self, imageBase64: str, 
              bind=True,
              base=PredictTask,
              path=('logic.modelLinden', 'LindenModel'),
-             name='{}.{}'.format(__name__, 'get_classification_linden'))
+             name='{}.{}'.format(__name__, 'get_classification_linden'),
+             rate_limit='2/m')
 def get_classification_linden(self, imageBase64: str, filename: str, jsonBase64ImageROIs: str):
     image_bytes = base64.b64decode(imageBase64)
     image_size = len(image_bytes)
@@ -114,7 +121,8 @@ def get_classification_linden(self, imageBase64: str, filename: str, jsonBase64I
              bind=True,
              base=PredictTask,
              path=('logic.modelLinden', 'LindenModel'),
-             name='{}.{}'.format(__name__, 'get_classification_linden_with_indicators'))
+             name='{}.{}'.format(__name__, 'get_classification_linden_with_indicators'),
+             rate_limit='2/m')
 def get_classification_linden_with_indicators(self, imageBase64: str, filename: str, jsonBase64ImageROIs: str):
     image_bytes = base64.b64decode(imageBase64)
     image_size = len(image_bytes)
@@ -128,7 +136,8 @@ def get_classification_linden_with_indicators(self, imageBase64: str, filename: 
              bind=True,
              base=PredictTask,
              path=('logic.modelLinden2', 'LindenSegmentationModel'),
-             name='{}.{}'.format(__name__, 'get_linden_automatic_rois'))
+             name='{}.{}'.format(__name__, 'get_linden_automatic_rois'),
+             rate_limit='2/m')
 def get_linden_automatic_rois(self, imageBase64: str, filename: str, jsonBase64ImageROIs: str):
     image_bytes = base64.b64decode(imageBase64)
     image_size = len(image_bytes)
@@ -142,7 +151,8 @@ def get_linden_automatic_rois(self, imageBase64: str, filename: str, jsonBase64I
              bind=True,
              base=PredictTask,
              path=('logic.modelLinden2', 'LindenSegmentationModel'),
-             name='{}.{}'.format(__name__, 'get_linden_automatic_rois_with_indicators'))
+             name='{}.{}'.format(__name__, 'get_linden_automatic_rois_with_indicators'),
+             rate_limit='2/m')
 def get_linden_automatic_rois_with_indicators(self, imageBase64: str, filename: str, jsonBase64ImageROIs: str):
     image_bytes = base64.b64decode(imageBase64)
     image_size = len(image_bytes)
