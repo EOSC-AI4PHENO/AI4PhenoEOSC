@@ -21,12 +21,6 @@ worker = Celery("myapp", backend=os.getenv("CELERY_BACKEND_URL"), broker=os.gete
 #     result_expires=3600,
 # )
 
-worker.conf.broker_transport_options = {
-    'confirm_publish': True,
-    #'acknowledgement_timeout':3600000 #1h,
-    'acknowledgement_timeout': 86400000  # 24h
-}
-
 worker.conf.update(
     result_expires=86400,
 )
