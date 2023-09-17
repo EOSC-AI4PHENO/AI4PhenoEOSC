@@ -1,7 +1,8 @@
 #!/bin/bash
 
 run_worker() {
-  celery --broker ${CELERY_BROKER_URL} --result-backend ${CELERY_BACKEND_URL} -A worker.celery worker --loglevel=INFO -Q image_exposure_queue,sunrise_sunset_queue,apple_segment_queue,apple_detectron2_queue,linden_class_queue,linden_segment_queue
+  #celery --broker ${CELERY_BROKER_URL} --result-backend ${CELERY_BACKEND_URL} -A worker.celery worker --loglevel=INFO -Q image_exposure_queue,sunrise_sunset_queue,apple_segment_queue,apple_detectron2_queue,linden_class_queue,linden_segment_queue
+  celery --broker ${CELERY_BROKER_URL} --result-backend ${CELERY_BACKEND_URL} -A worker.celery worker --loglevel=INFO --concurrency 36
 }
 
 run_flower() {

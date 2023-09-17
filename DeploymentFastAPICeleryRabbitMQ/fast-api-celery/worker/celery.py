@@ -28,7 +28,8 @@ worker.conf.broker_transport_options = {
 }
 
 worker.conf.update(
-    result_expires=86400,
+    result_expires=864000,
+    #result_expires=86400,
 )
 
 if __name__ == "__main__":
