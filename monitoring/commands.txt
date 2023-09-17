@@ -47,6 +47,13 @@ sudo systemctl restart cron
 
 ai4pheno
 ai4pheno
+login:ai4pheno@wp.pl
+password:fPktqkCJ3Ae5
+recovery email:kurekj@wp.pl
+phone:505482708
+
+ai4pheno
+ai4pheno
 login:ai4pheno-monitoring@wp.pl
 password:fPktqkCJ3Ae5
 recovery email:kurekj@wp.pl
