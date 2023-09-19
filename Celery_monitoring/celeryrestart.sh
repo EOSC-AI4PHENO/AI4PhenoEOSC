@@ -20,5 +20,6 @@ echo "-------------------------"
 if [[ $CELERY_STATUS == *"online"* ]]; then
     echo 1
 else
+    docker exec $CONTAINER_ID celery -A worker.celery purge
     docker exec $CONTAINER_ID celery --broker ${CELERY_BROKER_URL} --result-backend ${CELERY_BACKEND_URL} -A worker.celery worker --loglevel=INFO --concurrency 36
 fi
