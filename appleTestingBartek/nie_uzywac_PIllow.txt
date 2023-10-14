@@ -1,7 +1,0 @@
-Zamiast:
-img = Image.open(image_file)
-width, height = img.size
-
-powinno być:
-img = cv2.imread(file)
-height, width, channels = img.shape
