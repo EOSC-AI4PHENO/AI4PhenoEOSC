@@ -1,8 +1,0 @@
-Cześć,
-
-Sparsowaliśmy obrazy (circle do poligonów), są teraz w jednym katalogu (link do we transfer: https://we.tl/t-lmlNXRWcnc) wszystkie obrazy (wyszło 99 wszystkich). I do tego jeden zbiorczy json (w załączniku). Teraz łatwo się to przegląda. Wystarczy dodać wszystkie obrazy („Add Files” – i zaznaczyć wszystkie pliki) w VGGAnnotator a następnie tego jsona (Annotation->Import Annotations (from json).
-
-Czasami faktyczni są obszary gdzie trudno mi jest dostrzec jabłka (np. screen w załączniku) – do dalszego zastanowienia się.
-
-Pozdrawiam
-Bartek

@@ -103,6 +103,7 @@ class LindenModel:
             ri_sd = float(df_local["ri.sd"].iloc[0])
             bi_av = float(df_local["bi.av"].iloc[0])
             bi_sd = float(df_local["bi.sd"].iloc[0])
+            gi_sd = float(df_local["gi.sd"].iloc[0])
             avg_width = float(df_local["avg_width"].iloc[0])
             avg_height = float(df_local["avg_height"].iloc[0])
             avg_area = float(df_local["avg_area"].iloc[0])
