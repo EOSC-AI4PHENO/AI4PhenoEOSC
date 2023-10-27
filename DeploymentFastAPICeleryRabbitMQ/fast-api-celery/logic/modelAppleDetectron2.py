@@ -73,7 +73,7 @@ class AppleSegmentationDetectron2Model:
 
             # Sprawdź, czy df_local jest pusty
             if df_local.empty:
-                r_av = g_av = b_av = r_sd = g_sd = b_sd = bri_av = bri_sd = gi_av = gei_av = gei_sd = ri_av = ri_sd = bi_av = bi_sd = avg_width = avg_height = avg_area = number_of_apples = -1
+                r_av = g_av = b_av = r_sd = g_sd = b_sd = bri_av = bri_sd = gi_av = gei_av = gei_sd = ri_av = ri_sd = bi_av = bi_sd = gi_sd = avg_width = avg_height = avg_area = number_of_apples = -1
             else:
                 r_av = float(df_local["r.av"].iloc[0])
                 g_av = float(df_local["g.av"].iloc[0])
@@ -96,7 +96,7 @@ class AppleSegmentationDetectron2Model:
                 avg_area = float(df_local["avg_area"].iloc[0])
                 number_of_apples = int(df_local["number_of_apples"].iloc[0])
 
-            return filename, json_apple_rois_b64, r_av, g_av, b_av, r_sd, g_sd, b_sd, bri_av, bri_sd, gi_av, gei_av, gei_sd, ri_av, ri_sd, bi_av, bi_sd, avg_width, avg_height, avg_area, number_of_apples
+            return filename, json_apple_rois_b64, r_av, g_av, b_av, r_sd, g_sd, b_sd, bri_av, bri_sd, gi_av, gei_av, gei_sd, ri_av, ri_sd, bi_av, bi_sd, gi_sd, avg_width, avg_height, avg_area, number_of_apples
         else:
             jsonBase64ImageROIsPolygon = Convert2Polygon.Convert2Polygon2(jsonBase64ImageROIs, width, height)
             json_apple_rois_b64_filtered = roi_intersection.filter_json_file1(jsonBase64ImageROIsPolygon, json_apple_rois_b64, width, height)
@@ -104,7 +104,7 @@ class AppleSegmentationDetectron2Model:
 
             # Sprawdź, czy df_local jest pusty
             if df_local.empty:
-                r_av = g_av = b_av = r_sd = g_sd = b_sd = bri_av = bri_sd = gi_av = gei_av = gei_sd = ri_av = ri_sd = bi_av = bi_sd = avg_width = avg_height = avg_area = number_of_apples = -1
+                r_av = g_av = b_av = r_sd = g_sd = b_sd = bri_av = bri_sd = gi_av = gei_av = gei_sd = ri_av = ri_sd = bi_av = bi_sd = gi_sd = avg_width = avg_height = avg_area = number_of_apples = -1
             else:
                 r_av = float(df_local["r.av"].iloc[0])
                 g_av = float(df_local["g.av"].iloc[0])
@@ -127,7 +127,7 @@ class AppleSegmentationDetectron2Model:
                 avg_area = float(df_local["avg_area"].iloc[0])
                 number_of_apples = int(df_local["number_of_apples"].iloc[0])
 
-            return filename, json_apple_rois_b64_filtered, r_av, g_av, b_av, r_sd, g_sd, b_sd, bri_av, bri_sd, gi_av, gei_av, gei_sd, ri_av, ri_sd, bi_av, bi_sd, avg_width, avg_height, avg_area, number_of_apples
+            return filename, json_apple_rois_b64_filtered, r_av, g_av, b_av, r_sd, g_sd, b_sd, bri_av, bri_sd, gi_av, gei_av, gei_sd, ri_av, ri_sd, bi_av, bi_sd, gi_sd, avg_width, avg_height, avg_area, number_of_apples
 
 
 # # Tworzę instancję klasy AppleSegmentationModel
