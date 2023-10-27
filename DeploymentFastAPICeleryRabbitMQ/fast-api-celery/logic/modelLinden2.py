@@ -209,4 +209,4 @@ class LindenSegmentationModel:
                 avg_area = float(df_local["avg_area"].iloc[0])
                 number_of_apples = int(df_local["number_of_apples"].iloc[0])
 
-            return filename, json_linden_rois_b64_filtered, r_av, g_av, b_av, r_sd, g_sd, b_sd, bri_av, bri_sd, gi_av, gei_av, gei_sd, ri_av, ri_sd, bi_av, bi_sd, gi_sd avg_width, avg_height, avg_area, number_of_apples
+            return filename, json_linden_rois_b64_filtered, r_av, g_av, b_av, r_sd, g_sd, b_sd, bri_av, bri_sd, gi_av, gei_av, gei_sd, ri_av, ri_sd, bi_av, bi_sd, gi_sd, avg_width, avg_height, avg_area, number_of_apples
