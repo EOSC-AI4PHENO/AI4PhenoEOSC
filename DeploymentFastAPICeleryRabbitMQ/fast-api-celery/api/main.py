@@ -137,7 +137,7 @@ async def get_AutomaticAppleSegmentationModel_get_apple_automatic_rois_with_indi
 
     result = task.get()
     # filename, jsonBase64AppleROIs, df_local = result
-    filename, jsonBase64AppleROIs, r_av, g_av, b_av, r_sd, g_sd, b_sd, bri_av, bri_sd, gi_av, gei_av, gei_sd, ri_av, ri_sd, bi_av, bi_sd, avg_width, avg_height, avg_area, number_of_apples = result
+    filename, jsonBase64AppleROIs, r_av, g_av, b_av, r_sd, g_sd, b_sd, bri_av, bri_sd, gi_av, gei_av, gei_sd, ri_av, ri_sd, bi_av, bi_sd, gi_sd, avg_width, avg_height, avg_area, number_of_apples = result
 
     output = AutomaticAppleSegmentationWithIndicatorsOutput(
         task_id=task_id,
@@ -192,7 +192,7 @@ async def get_AutomaticAppleSegmentationDetectron2Model_get_apple_automatic_rois
 
     result = task.get()
     # filename, jsonBase64AppleROIs, df_local = result
-    filename, jsonBase64AppleROIs, r_av, g_av, b_av, r_sd, g_sd, b_sd, bri_av, bri_sd, gi_av, gei_av, gei_sd, ri_av, ri_sd, bi_av, bi_sd, avg_width, avg_height, avg_area, number_of_apples = result
+    filename, jsonBase64AppleROIs, r_av, g_av, b_av, r_sd, g_sd, b_sd, bri_av, bri_sd, gi_av, gei_av, gei_sd, ri_av, ri_sd, bi_av, bi_sd, gi_sd, avg_width, avg_height, avg_area, number_of_apples = result
 
     output = AutomaticAppleSegmentationWithIndicatorsOutput(
         task_id=task_id,
@@ -269,7 +269,7 @@ async def get_LindenClassificationModel_get_classification_linden_with_indicator
         # print(app.url_path_for('schedule_prediction'))
         return JSONResponse(status_code=202, content={'task_id': str(task_id), 'status': 'Processing'})
     result = task.get()
-    filename, isFloweringList, isFloweringConfidence, r_av, g_av, b_av, r_sd, g_sd, b_sd, bri_av, bri_sd, gi_av, gei_av, gei_sd, ri_av, ri_sd, bi_av, bi_sd, avg_width, avg_height, avg_area, number_of_lindens = result
+    filename, isFloweringList, isFloweringConfidence, r_av, g_av, b_av, r_sd, g_sd, b_sd, bri_av, bri_sd, gi_av, gei_av, gei_sd, ri_av, ri_sd, bi_av, bi_sd, gi_sd, avg_width, avg_height, avg_area, number_of_lindens = result
 
     return LindenClassificationWithIndicatorsOutput(
         task_id=task_id,
@@ -347,7 +347,7 @@ async def get_AutomaticLindenSegmentationModel_get_linden_automatic_rois_with_in
 
     result = task.get()
     # filename, jsonBase64AppleROIs, df_local = result
-    filename, jsonBase64LindenROIs, r_av, g_av, b_av, r_sd, g_sd, b_sd, bri_av, bri_sd, gi_av, gei_av, gei_sd, ri_av, ri_sd, bi_av, bi_sd, avg_width, avg_height, avg_area, number_of_lindens = result
+    filename, jsonBase64LindenROIs, r_av, g_av, b_av, r_sd, g_sd, b_sd, bri_av, bri_sd, gi_av, gei_av, gei_sd, ri_av, ri_sd, bi_av, bi_sd, gi_sd, avg_width, avg_height, avg_area, number_of_lindens = result
 
     output = AutomaticLindenSegmentationWithIndicatorsOutput(
         task_id=task_id,
