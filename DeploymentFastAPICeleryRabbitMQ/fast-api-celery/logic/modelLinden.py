@@ -81,12 +81,12 @@ class LindenModel:
         image_shape = (width, height)
 
         ### START Indicators
-        json_linden_rois_b64_Polygon = Convert2Polygon.Convert2Polygon2(jsonBase64ImageROI, width, height)
+        json_linden_rois_b64_Polygon = Convert2Polygon.Convert2Polygon2(jsonBase64ImageROI, imageRGB.shape[0], imageRGB.shape[1])
         df_local = calculate_indicators_with_area_Jarek.calculate_indicators(imageRGB, json_linden_rois_b64_Polygon)
 
         # Sprawdź, czy df_local jest pusty
         if df_local.empty:
-            r_av = g_av = b_av = r_sd = g_sd = b_sd = bri_av = bri_sd = gi_av = gei_av = gei_sd = ri_av = ri_sd = bi_av = bi_sd = avg_width = avg_height = avg_area = number_of_apples = -1
+            r_av = g_av = b_av = r_sd = g_sd = b_sd = bri_av = bri_sd = gi_av = gei_av = gei_sd = ri_av = ri_sd = bi_av = bi_sd = gi_sd = avg_width = avg_height = avg_area = number_of_apples = -1
         else:
             r_av = float(df_local["r.av"].iloc[0])
             g_av = float(df_local["g.av"].iloc[0])
@@ -123,5 +123,5 @@ class LindenModel:
             isFloweringList.append(int(predicted_label))
             isFloweringConfidence.append(float(predicted_score))
 
-        return filename, isFloweringList, isFloweringConfidence, r_av, g_av, b_av, r_sd, g_sd, b_sd, bri_av, bri_sd, gi_av, gei_av, gei_sd, ri_av, ri_sd, bi_av, bi_sd, avg_width, avg_height, avg_area, number_of_lindens
+        return filename, isFloweringList, isFloweringConfidence, r_av, g_av, b_av, r_sd, g_sd, b_sd, bri_av, bri_sd, gi_av, gei_av, gei_sd, ri_av, ri_sd, bi_av, bi_sd, gi_sd, avg_width, avg_height, avg_area, number_of_lindens
 

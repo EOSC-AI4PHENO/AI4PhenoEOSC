@@ -86,6 +86,7 @@ class AutomaticAppleSegmentationWithIndicatorsOutput(BaseModel):
     ri_sd: float
     bi_av: float
     bi_sd: float
+    gi_sd: float
     avg_width: float
     avg_height: float
     avg_area: float
@@ -132,6 +133,7 @@ class LindenClassificationWithIndicatorsOutput(BaseModel):
     ri_sd: float
     bi_av: float
     bi_sd: float
+    gi_sd: float
     avg_width: float
     avg_height: float
     avg_area: float
@@ -177,6 +179,7 @@ class AutomaticLindenSegmentationWithIndicatorsOutput(BaseModel):
     ri_sd: float
     bi_av: float
     bi_sd: float
+    gi_sd: float
     avg_width: float
     avg_height: float
     avg_area: float
