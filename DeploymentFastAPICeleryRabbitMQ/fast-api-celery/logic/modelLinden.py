@@ -81,7 +81,7 @@ class LindenModel:
         image_shape = (width, height)
 
         ### START Indicators
-        json_linden_rois_b64_Polygon = Convert2Polygon.Convert2Polygon2(jsonBase64ImageROI, width, height)
+        json_linden_rois_b64_Polygon = Convert2Polygon.Convert2Polygon2(jsonBase64ImageROI, imageRGB.shape[0], imageRGB.shape[1])
         df_local = calculate_indicators_with_area_Jarek.calculate_indicators(imageRGB, json_linden_rois_b64_Polygon)
 
         # Sprawdź, czy df_local jest pusty
